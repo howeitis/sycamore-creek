@@ -26,12 +26,22 @@ const Contact = () => {
                             className="contact-form"
                         >
                             <label className="form-group">
-                                <span className="label-text">Your Email:</span>
+                                <span className="label-text">Name <span className="required">*</span></span>
+                                <input type="text" name="name" required />
+                            </label>
+
+                            <label className="form-group">
+                                <span className="label-text">Company</span>
+                                <input type="text" name="company" />
+                            </label>
+
+                            <label className="form-group">
+                                <span className="label-text">Email <span className="required">*</span></span>
                                 <input type="email" name="email" required />
                             </label>
 
                             <label className="form-group">
-                                <span className="label-text">Your Message:</span>
+                                <span className="label-text">How can we help? <span className="required">*</span></span>
                                 <textarea name="message" rows="5" required></textarea>
                             </label>
 
