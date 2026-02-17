@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Closing = () => {
-    const mailtoLink = "mailto:owen@howe.app?subject=Sycamore%20Creek%20Consulting%20-%20Inquiry&body=Hi%20Owen,%0A%0AI%20am%20interested%20in%20discussing%20a%20search%20strategy.%0A%0AContext:%20";
+    const mailtoLink = "mailto:owen@howe.app";
 
     return (
         <section className="closing-section">

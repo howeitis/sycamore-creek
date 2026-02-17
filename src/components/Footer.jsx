@@ -1,25 +1,25 @@
 import React from 'react';
 
 const Footer = () => {
-    return (
-        <footer className="footer-section">
-            <div className="footer-container">
-                <div className="footer-left">
-                    <span className="copyright">Sycamore Creek Consulting © 2026</span>
-                </div>
+  return (
+    <footer className="footer-section">
+      <div className="footer-container">
+        <div className="footer-left">
+          <span className="copyright">Sycamore Creek Consulting © 2026</span>
+        </div>
 
-                <div className="footer-center">
-                    <span className="principal">Owen Howe | Principal | Washington, D.C.</span>
-                </div>
+        <div className="footer-center">
+          <span className="principal">Owen Howe | Principal | Washington, D.C.</span>
+        </div>
 
-                <div className="footer-right">
-                    <a href="mailto:owen@howe.app" className="footer-link">owen@howe.app</a>
-                    <span className="separator">|</span>
-                    <a href="https://linkedin.com/in/owenhowe" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
-                </div>
-            </div>
+        <div className="footer-right">
+          <a href="mailto:owen@howe.app" className="footer-link">owen@howe.app</a>
+          <span className="separator">|</span>
+          <a href="https://www.linkedin.com/in/owen-howe-wm2016/" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .footer-section {
           background-color: var(--color-text-primary); /* Charcoal */
           color: var(--color-text-inverse); /* Cream */
@@ -63,8 +63,8 @@ const Footer = () => {
           }
         }
       `}</style>
-        </footer>
-    );
+    </footer>
+  );
 };
 
 export default Footer;
