@@ -1,34 +1,34 @@
 import React from 'react';
 
 const Pedigree = () => {
-    return (
-        <section className="pedigree-section">
-            <div className="pedigree-container">
-                <h3 className="pedigree-lead">
-                    You don't need another resume screener. You need a talent engine.
-                </h3>
+  return (
+    <section className="pedigree-section">
+      <div className="pedigree-container">
+        <h3 className="pedigree-lead">
+          You don't need another resume screener. You need a talent engine.
+        </h3>
 
-                <p className="pedigree-body">
-                    We specialize in navigating heavily constrained, complex engineering environments and scaling specialized pipelines for globally recognized legacy brands.
-                </p>
+        <p className="pedigree-body">
+          We specialize in navigating heavily constrained, complex engineering environments and scaling specialized pipelines for globally recognized legacy brands.
+        </p>
 
-                <div className="proof-grid">
-                    <div className="proof-item">
-                        <h4 className="proof-title">The R&D Strike</h4>
-                        <p className="proof-desc">Placed a founding ML engineer for a Series A startup in 14 days.</p>
-                    </div>
-                    <div className="proof-item">
-                        <h4 className="proof-title">The Scale Engine</h4>
-                        <p className="proof-desc">Architected and scaled non-newsroom internship and early-career pipelines for a premier global media institution.</p>
-                    </div>
-                    <div className="proof-item">
-                        <h4 className="proof-title">The Extraction</h4>
-                        <p className="proof-desc">Secured foundational, cleared technical talent for highly competitive, specialized startup environments.</p>
-                    </div>
-                </div>
-            </div>
+        <div className="proof-grid">
+          <div className="proof-item">
+            <h4 className="proof-title">Start-up Scaling</h4>
+            <p className="proof-desc">Rapid hiring that builds new teams and launches new products.</p>
+          </div>
+          <div className="proof-item">
+            <h4 className="proof-title">Enterprise Adaptation</h4>
+            <p className="proof-desc">Architected and scaled hiring strategies for global institutions from early-career to senior leadership.</p>
+          </div>
+          <div className="proof-item">
+            <h4 className="proof-title">Unicorn Hunting</h4>
+            <p className="proof-desc">Specialized in finding passive talent others can't reach — and closing them.</p>
+          </div>
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .pedigree-section {
           background-color: var(--color-bg-base);
           padding: 5rem 20px;
@@ -79,8 +79,8 @@ const Pedigree = () => {
           color: #555;
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Pedigree;
