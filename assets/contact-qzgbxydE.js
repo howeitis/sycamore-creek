@@ -14,8 +14,9 @@ import{j as e,F as o,R as r,a as n}from"./Footer-BQ_l6VNw.js";const t=()=>e.jsxs
 
                 /* Header */
                  .contact-header-section {
-                    background-color: var(--color-bg-base);
+                    background-color: var(--color-bg-emphasis); /* British Racing Green */
                     padding: 6rem 0 4rem;
+                    color: var(--color-text-inverse);
                 }
 
                 .contact-headline {
@@ -25,7 +26,7 @@ import{j as e,F as o,R as r,a as n}from"./Footer-BQ_l6VNw.js";const t=()=>e.jsxs
                     margin-bottom: 1.5rem;
                     line-height: 1.1;
                     max-width: 800px;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                 }
 
                 .contact-subhead {
@@ -34,7 +35,7 @@ import{j as e,F as o,R as r,a as n}from"./Footer-BQ_l6VNw.js";const t=()=>e.jsxs
                     font-weight: 300;
                     line-height: 1.6;
                     max-width: 800px;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                     opacity: 0.9;
                 }
 
