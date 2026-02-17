@@ -49,7 +49,7 @@ const About = () => {
                             <p className="proof-desc">There is no handoff after the sales call. The person who scopes your search is the same person running it, evaluating candidates, and managing your offer negotiations. That continuity is the difference between a placed candidate and a retained one.</p>
                         </div>
                         <div className="proof-item">
-                            <h4 className="proof-title">Market Intelligence as Standard</h4>
+                            <h4 className="proof-title">Market Intelligence</h4>
                             <p className="proof-desc">Every engagement produces durable knowledge — compensation benchmarks, competitor org charts, talent density maps — that informs your hiring strategy long after the search closes.</p>
                         </div>
                     </div>
