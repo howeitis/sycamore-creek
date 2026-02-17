@@ -13,6 +13,8 @@ const Footer = () => {
         </div>
 
         <div className="footer-right">
+          <a href="https://www.sycamorecreekconsulting.com/contact" className="footer-link" target="_top">Initiate a Search</a>
+          <span className="separator">|</span>
           <a href="mailto:owen@howe.app" className="footer-link">owen@howe.app</a>
           <span className="separator">|</span>
           <a href="https://www.linkedin.com/in/owen-howe-wm2016/" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
