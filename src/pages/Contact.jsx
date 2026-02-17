@@ -88,8 +88,9 @@ const Contact = () => {
 
                 /* Header */
                  .contact-header-section {
-                    background-color: var(--color-bg-base);
+                    background-color: var(--color-bg-emphasis); /* British Racing Green */
                     padding: 6rem 0 4rem;
+                    color: var(--color-text-inverse);
                 }
 
                 .contact-headline {
@@ -99,7 +100,7 @@ const Contact = () => {
                     margin-bottom: 1.5rem;
                     line-height: 1.1;
                     max-width: 800px;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                 }
 
                 .contact-subhead {
@@ -108,7 +109,7 @@ const Contact = () => {
                     font-weight: 300;
                     line-height: 1.6;
                     max-width: 800px;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                     opacity: 0.9;
                 }
 

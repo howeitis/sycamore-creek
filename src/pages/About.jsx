@@ -18,9 +18,7 @@ const About = () => {
             <section className="founder-section">
                 <div className="content-container founder-grid">
                     <div className="founder-image-col">
-                        <div className="headshot-placeholder">
-                            <span>Headshot</span>
-                        </div>
+                        <img src={`${import.meta.env.BASE_URL}founder.jpg`} alt="Owen Howe" className="founder-image" />
                     </div>
                     <div className="founder-text-col">
                         <span className="founder-label">OWEN HOWE</span>
@@ -76,8 +74,9 @@ const About = () => {
 
                 /* Header Section */
                 .about-header-section {
-                    background-color: var(--color-bg-base); /* Parchment */
+                    background-color: var(--color-bg-emphasis); /* British Racing Green */
                     padding: 6rem 0 4rem;
+                    color: var(--color-text-inverse);
                 }
 
                 .about-headline {
@@ -87,7 +86,7 @@ const About = () => {
                     margin-bottom: 1.5rem;
                     line-height: 1.1;
                     max-width: 800px;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                 }
 
                 .about-subhead {
@@ -96,7 +95,7 @@ const About = () => {
                     font-weight: 300;
                     line-height: 1.6;
                     max-width: 800px;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                     opacity: 0.9;
                 }
 
@@ -113,18 +112,12 @@ const About = () => {
                     align-items: start;
                 }
 
-                .headshot-placeholder {
-                    background-color: #eee;
+                .founder-image {
                     width: 100%;
-                    aspect-ratio: 1 / 1;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: #999;
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
+                    height: auto;
+                    display: block;
+                    border-radius: 4px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
                 }
 
                 .founder-label {
