@@ -25,7 +25,7 @@ const About = () => {
                         <h2 className="founder-title">Founder & Principal</h2>
                         <div className="founder-bio">
                             <p>
-                                Owen Howe is the founder and principal of Sycamore Creek Consulting. Before launching the firm, he spent years embedded inside both high-growth startups and globally recognized institutions, building and scaling recruiting functions from the ground up. He has hired across the full seniority spectrum — from early-career internship cohorts to senior technical leadership — and has operated in environments where the margin for error on a hire is effectively zero.
+                                Owen Howe is the Founder and Principal of Sycamore Creek Consulting. Before launching the firm, he spent years embedded inside both high-growth startups and globally recognized institutions, building and scaling recruiting functions from the ground up. He has hired across the full seniority spectrum — from early-career internship cohorts to executive leadership — and has operated in environments where the margin for error on a hire is effectively zero.
                             </p>
                             <p>
                                 Sycamore Creek was founded on the conviction that recruiting consulting should be a craft, not a volume game. Owen works directly with every client engagement, bringing the same rigor to a five-person startup building its founding team as he does to a legacy enterprise transforming its talent strategy.
