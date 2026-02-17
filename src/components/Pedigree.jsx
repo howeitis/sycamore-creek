@@ -9,7 +9,7 @@ const Pedigree = () => {
         </h3>
 
         <p className="pedigree-body">
-          We specialize in navigating heavily constrained, complex engineering environments and scaling specialized pipelines for globally recognized legacy brands.
+          We specialize in navigating complex hiring environments and scaling pipelines with world class talent.
         </p>
 
         <div className="proof-grid">
