@@ -1,3 +1,4 @@
+```
 import React, { useState } from 'react';
 import Footer from '../components/Footer';
 
@@ -28,27 +29,20 @@ const Contact = () => {
                             method="POST"
                             className="contact-form"
                         >
-                            <div className="form-group">
-                                <label htmlFor="name">Name <span className="required">*</span></label>
-                                <input type="text" id="name" name="name" required />
-                            </div>
+                            <label className="form-group">
+                                <span className="label-text">Your Email:</span>
+                                <input type="email" name="email" required />
+                            </label>
+                            
+                            <label className="form-group">
+                                <span className="label-text">Your Message:</span>
+                                <textarea name="message" rows="5" required></textarea>
+                            </label>
 
-                            <div className="form-group">
-                                <label htmlFor="email">Email <span className="required">*</span></label>
-                                <input type="email" id="email" name="email" required />
-                            </div>
+                            {/* Hidden fields for customization if needed later */}
+                            <input type="hidden" name="_subject" value="New contact from Sycamore Creek Website" />
 
-                            <div className="form-group">
-                                <label htmlFor="company">Company</label>
-                                <input type="text" id="company" name="company" />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="message">How can we help? <span className="required">*</span></label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
-                            </div>
-
-                            <button type="submit" className="submit-button">SEND MESSAGE</button>
+                            <button type="submit" className="submit-button">Send</button>
                         </form>
                     </div>
 
@@ -73,182 +67,180 @@ const Contact = () => {
             <Footer />
 
             <style>{`
-                .page-wrapper {
-                    background-color: var(--color-bg-base);
-                    min-height: 100vh;
-                    display: flex;
-                    flex-direction: column;
-                }
+    .page - wrapper {
+    background - color: var(--color - bg - base);
+    min - height: 100vh;
+    display: flex;
+    flex - direction: column;
+}
 
-                .content-container {
-                    max-width: 1000px;
-                    margin: 0 auto;
-                    padding: 0 20px;
-                }
+                .content - container {
+    max - width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
                 /* Header */
-                 .contact-header-section {
-                    background-color: var(--color-bg-emphasis); /* British Racing Green */
-                    padding: 6rem 0 4rem;
-                    color: var(--color-text-inverse);
-                }
+                 .contact - header - section {
+    background - color: var(--color - bg - emphasis); /* British Racing Green */
+    padding: 6rem 0 4rem;
+    color: var(--color - text - inverse);
+}
 
-                .contact-headline {
-                    font-family: var(--font-heading);
-                    font-size: 3.5rem;
-                    font-weight: 700;
-                    margin-bottom: 1.5rem;
-                    line-height: 1.1;
-                    max-width: 800px;
-                    color: var(--color-text-inverse);
-                }
+                .contact - headline {
+    font - family: var(--font - heading);
+    font - size: 3.5rem;
+    font - weight: 700;
+    margin - bottom: 1.5rem;
+    line - height: 1.1;
+    max - width: 800px;
+    color: var(--color - text - inverse);
+}
 
-                .contact-subhead {
-                    font-family: var(--font-body);
-                    font-size: 1.25rem;
-                    font-weight: 300;
-                    line-height: 1.6;
-                    max-width: 800px;
-                    color: var(--color-text-inverse);
-                    opacity: 0.9;
-                }
+                .contact - subhead {
+    font - family: var(--font - body);
+    font - size: 1.25rem;
+    font - weight: 300;
+    line - height: 1.6;
+    max - width: 800px;
+    color: var(--color - text - inverse);
+    opacity: 0.9;
+}
 
                 /* Contact Grid */
-                .contact-grid-section {
-                    background-color: #FFFFFF;
-                    padding: 5rem 0;
-                    flex-grow: 1; /* Pushes footer down */
-                }
+                .contact - grid - section {
+    background - color: #FFFFFF;
+    padding: 5rem 0;
+    flex - grow: 1; /* Pushes footer down */
+}
 
-                .contact-grid {
-                    display: grid;
-                    grid-template-columns: 3fr 2fr; /* Form is wider */
-                    gap: 5rem;
-                }
+                .contact - grid {
+    display: grid;
+    grid - template - columns: 3fr 2fr; /* Form is wider */
+    gap: 5rem;
+}
 
                 /* Form Styles */
-                .contact-form {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1.5rem;
-                }
+                .contact - form {
+    display: flex;
+    flex - direction: column;
+    gap: 1.5rem;
+}
 
-                .form-group {
-                    display: flex;
-                    flex-direction: column;
-                }
+                .form - group {
+    display: flex;
+    flex - direction: column;
+}
 
-                .form-group label {
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    font-size: 0.9rem;
-                    margin-bottom: 0.5rem;
-                    color: var(--color-text-primary);
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                }
+                .label - text {
+    font - family: var(--font - body);
+    font - weight: 700;
+    font - size: 0.9rem;
+    margin - bottom: 0.5rem;
+    color: var(--color - text - primary);
+    text - transform: uppercase;
+    letter - spacing: 0.5px;
+}
 
-                .required {
-                    color: #d00;
-                }
+                .form - group input, 
+                .form - group textarea {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border - radius: 4px;
+    font - family: var(--font - body);
+    font - size: 1rem;
+    background - color: #fcfcfc;
+    transition: border - color 0.2s;
+    width: 100 %;
+    box - sizing: border - box; /* Important for width */
+}
 
-                .form-group input, 
-                .form-group textarea {
-                    padding: 0.8rem;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    font-family: var(--font-body);
-                    font-size: 1rem;
-                    background-color: #fcfcfc;
-                    transition: border-color 0.2s;
-                }
+                .form - group input: focus,
+                .form - group textarea:focus {
+    outline: none;
+    border - color: var(--color - bg - emphasis);
+    background - color: #fff;
+}
 
-                .form-group input:focus,
-                .form-group textarea:focus {
-                    outline: none;
-                    border-color: var(--color-bg-emphasis);
-                    background-color: #fff;
-                }
+                .submit - button {
+    background - color: var(--color - bg - emphasis);
+    color: var(--color - text - inverse);
+    border: none;
+    padding: 1rem 2rem;
+    font - family: var(--font - body);
+    font - weight: 700;
+    text - transform: uppercase;
+    letter - spacing: 1px;
+    border - radius: 4px;
+    cursor: pointer;
+    align - self: flex - start;
+    transition: background - color 0.2s;
+}
 
-                .submit-button {
-                    background-color: var(--color-bg-emphasis);
-                    color: var(--color-text-inverse);
-                    border: none;
-                    padding: 1rem 2rem;
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    align-self: flex-start;
-                    transition: background-color 0.2s;
-                }
-
-                .submit-button:hover {
-                    background-color: #00331b;
-                }
+                .submit - button:hover {
+    background - color: #00331b;
+}
 
                 /* Direct Info Column */
-                .info-column {
-                    padding-top: 1rem;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 3rem;
-                }
+                .info - column {
+    padding - top: 1rem;
+    display: flex;
+    flex - direction: column;
+    gap: 3rem;
+}
 
-                .info-item {
-                    display: flex;
-                    flex-direction: column;
-                }
+                .info - item {
+    display: flex;
+    flex - direction: column;
+}
 
-                .info-label {
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    font-size: 0.85rem;
-                    color: #999;
-                    margin-bottom: 0.5rem;
-                }
+                .info - label {
+    font - family: var(--font - body);
+    font - weight: 700;
+    text - transform: uppercase;
+    letter - spacing: 1px;
+    font - size: 0.85rem;
+    color: #999;
+    margin - bottom: 0.5rem;
+}
 
-                .info-link {
-                    font-family: var(--font-heading); /* Serif for elegance */
-                    font-size: 1.25rem;
-                    color: var(--color-text-primary);
-                    text-decoration: none;
-                    border-bottom: 1px solid transparent;
-                    transition: border-color 0.2s;
-                    align-self: flex-start;
-                }
+                .info - link {
+    font - family: var(--font - heading); /* Serif for elegance */
+    font - size: 1.25rem;
+    color: var(--color - text - primary);
+    text - decoration: none;
+    border - bottom: 1px solid transparent;
+    transition: border - color 0.2s;
+    align - self: flex - start;
+}
 
-                .info-link:hover {
-                    border-bottom-color: var(--color-text-primary);
-                }
+                .info - link:hover {
+    border - bottom - color: var(--color - text - primary);
+}
 
-                .info-location p {
-                    font-family: var(--font-body);
-                    font-size: 1rem;
-                    color: #666;
-                    line-height: 1.5;
-                }
+                .info - location p {
+    font - family: var(--font - body);
+    font - size: 1rem;
+    color: #666;
+    line - height: 1.5;
+}
 
-                @media (max-width: 768px) {
-                    .contact-grid {
-                         grid-template-columns: 1fr;
-                         gap: 3rem;
-                    }
+@media(max - width: 768px) {
+                    .contact - grid {
+        grid - template - columns: 1fr;
+        gap: 3rem;
+    }
 
-                    .contact-headline {
-                        font-size: 2.5rem;
-                    }
+                    .contact - headline {
+        font - size: 2.5rem;
+    }
                     
-                    .submit-button {
-                        width: 100%;
-                        text-align: center;
-                    }
-                }
-            `}</style>
+                    .submit - button {
+        width: 100 %;
+        text - align: center;
+    }
+}
+`}</style>
         </div>
     );
 };
