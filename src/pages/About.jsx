@@ -1,0 +1,208 @@
+import React from 'react';
+import Footer from '../components/Footer';
+
+const About = () => {
+    return (
+        <div className="page-wrapper">
+            {/* Section A - Page Header */}
+            <section className="about-header-section">
+                <div className="content-container">
+                    <h1 className="about-headline">Built for the searches others can't close.</h1>
+                    <p className="about-subhead">
+                        Sycamore Creek is a boutique talent advisory built on a single premise: the best people aren't applying. Reaching them requires precision, discretion, and a principal who understands your technical environment as well as your team does.
+                    </p>
+                </div>
+            </section>
+
+            {/* Section B - Founder Profile */}
+            <section className="founder-section">
+                <div className="content-container founder-grid">
+                    <div className="founder-image-col">
+                        <div className="headshot-placeholder">
+                            <span>Headshot</span>
+                        </div>
+                    </div>
+                    <div className="founder-text-col">
+                        <span className="founder-label">OWEN HOWE</span>
+                        <h2 className="founder-title">Founder & Principal</h2>
+                        <div className="founder-bio">
+                            <p>
+                                Owen Howe is the founder and principal of Sycamore Creek Consulting. Before launching the firm, he spent years embedded inside both high-growth startups and globally recognized institutions, building and scaling recruiting functions from the ground up. He has hired across the full seniority spectrum — from early-career internship cohorts to senior technical leadership — and has operated in environments where the margin for error on a hire is effectively zero.
+                            </p>
+                            <p>
+                                Sycamore Creek was founded on the conviction that recruiting consulting should be a craft, not a volume game. Owen works directly with every client engagement, bringing the same rigor to a five-person startup building its founding team as he does to a legacy enterprise transforming its talent strategy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Section C - Philosophy */}
+            <section className="philosophy-section">
+                <div className="content-container">
+                    <h3 className="section-title">How We Think</h3>
+                    <div className="proof-grid">
+                        <div className="proof-item">
+                            <h4 className="proof-title">Precision Over Volume</h4>
+                            <p className="proof-desc">We don't send you fifty resumes and hope for the best. Every candidate we present has been sourced against a detailed technical and cultural scorecard built with you before the search begins.</p>
+                        </div>
+                        <div className="proof-item">
+                            <h4 className="proof-title">Principals, Not Associates</h4>
+                            <p className="proof-desc">There is no handoff after the sales call. The person who scopes your search is the same person running it, evaluating candidates, and managing your offer negotiations. That continuity is the difference between a placed candidate and a retained one.</p>
+                        </div>
+                        <div className="proof-item">
+                            <h4 className="proof-title">Market Intelligence as Standard</h4>
+                            <p className="proof-desc">Every engagement produces durable knowledge — compensation benchmarks, competitor org charts, talent density maps — that informs your hiring strategy long after the search closes.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <Footer />
+
+            <style>{`
+                .page-wrapper {
+                    background-color: var(--color-bg-base);
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .content-container {
+                    max-width: 1000px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                }
+
+                /* Header Section */
+                .about-header-section {
+                    background-color: var(--color-bg-base); /* Parchment */
+                    padding: 6rem 0 4rem;
+                }
+
+                .about-headline {
+                    font-family: var(--font-heading);
+                    font-size: 3.5rem;
+                    font-weight: 700;
+                    margin-bottom: 1.5rem;
+                    line-height: 1.1;
+                    max-width: 800px;
+                    color: var(--color-text-primary);
+                }
+
+                .about-subhead {
+                    font-family: var(--font-body);
+                    font-size: 1.25rem;
+                    font-weight: 300;
+                    line-height: 1.6;
+                    max-width: 800px;
+                    color: var(--color-text-primary);
+                    opacity: 0.9;
+                }
+
+                /* Founder Section */
+                .founder-section {
+                    background-color: #FFFFFF;
+                    padding: 5rem 0;
+                }
+
+                .founder-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 4rem;
+                    align-items: start;
+                }
+
+                .headshot-placeholder {
+                    background-color: #eee;
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #999;
+                    font-family: var(--font-body);
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+
+                .founder-label {
+                    display: block;
+                    font-family: var(--font-body);
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    color: var(--color-text-primary);
+                    margin-bottom: 0.5rem;
+                    font-size: 0.9rem;
+                }
+
+                .founder-title {
+                    font-family: var(--font-heading);
+                    font-size: 2rem;
+                    margin-bottom: 2rem;
+                    color: var(--color-text-primary);
+                }
+
+                .founder-bio p {
+                    font-family: var(--font-body);
+                    font-size: 1.1rem;
+                    line-height: 1.6;
+                    color: #444;
+                    margin-bottom: 1.5rem;
+                }
+
+                /* Philosophy Section */
+                .philosophy-section {
+                    background-color: var(--color-bg-base); /* Parchment */
+                    padding: 5rem 0;
+                }
+
+                .section-title {
+                    font-family: var(--font-heading);
+                    font-size: 2rem;
+                    font-weight: 700;
+                    margin-bottom: 3rem;
+                    color: var(--color-text-primary);
+                }
+
+                 /* Reusing Grid Styles */
+                .proof-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 2rem;
+                    border-top: 1px solid rgba(0,0,0,0.1);
+                    padding-top: 3rem;
+                }
+
+                .proof-title {
+                    font-family: var(--font-heading);
+                    font-size: 1.2rem;
+                    margin-bottom: 0.5rem;
+                    color: var(--color-bg-emphasis);
+                    font-weight: 700;
+                }
+
+                .proof-desc {
+                    font-family: var(--font-body);
+                    font-size: 1rem;
+                    color: #555;
+                    line-height: 1.5;
+                }
+
+                @media (max-width: 768px) {
+                    .about-headline {
+                        font-size: 2.5rem;
+                    }
+                    .founder-grid {
+                        grid-template-columns: 1fr;
+                        gap: 2rem;
+                    }
+                }
+            `}</style>
+        </div>
+    );
+};
+
+export default About;

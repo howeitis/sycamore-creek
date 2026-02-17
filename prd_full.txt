@@ -1,0 +1,338 @@
+SYCAMORE CREEK CONSULTING
+Product Requirements Document
+About, Services & Contact Pages
+Version 1.0 | February 2026 | Prepared for Engineering
+THREE STANDALONE PAGES FOR GOOGLE SITES IFRAME DEPLOYMENT
+
+-- 1 of 15 --
+
+Table of Contents
+1. Executive Summary & Deployment Model
+2. Design System Reference (Extracted from Homepage)
+3. Page 1: About
+4. Page 2: Services
+5. Page 3: Contact
+6. Engineering Checklist & Acceptance Criteria
+
+-- 2 of 15 --
+
+1. Executive Summary & Deployment Model
+Objective
+Build three new standalone web pages — About, Services, and Contact — for Sycamore Creek
+Consulting. Each page will be deployed as an independent static file and embedded via iframe into
+the existing private Google Site, alongside the current homepage.
+Critical Architecture Decision
+These pages are NOT additional routes within the existing React SPA. Each page is a separate,
+independently deployable HTML file (or lightweight React build) that Google Sites will embed via
+its "Embed by URL" feature on separate Google Sites pages. This avoids all iframe routing conflicts,
+enables independent deployment, and leverages Google Sites' native navigation.
+Deployment Architecture
+Homepage 	Existing React SPA (no changes) — embedded at
+sycamorecreekconsulting.com or equivalent
+About Page 	Standalone file deployed to /about or about.html — embedded on Google
+Sites "About" page
+Services Page 	Standalone file deployed to /services or services.html — embedded on
+Google Sites "Services" page
+Contact Page 	Standalone file deployed to /contact or contact.html — embedded on
+Google Sites "Contact" page
+Hosting 	Same Vercel/Netlify/GitHub Pages deployment as homepage
+Repo 	Same sycamore-creek repository — shared styles, independent page files
+Technical Constraints
+• Each page must be 100% fluid (min-height: 100vh) to prevent double-scrollbars inside the
+Google Sites iframe.
+• Do NOT set restrictive X-Frame-Options or Content-Security-Policy: frame-ancestors
+headers that block Google Sites from displaying the pages.
+• Each page must import the same index.css (or shared stylesheet) to ensure visual
+consistency with the homepage.
+• All pages must be fully functional in the latest versions of Chrome, Safari, and Firefox.
+
+-- 3 of 15 --
+
+• Contact form must operate at $0 cost — use Formspree free tier (50 submissions/month)
+or native Google Form embed.
+
+-- 4 of 15 --
+
+2. Design System Reference
+Extracted directly from the current homepage codebase (index.css, Hero.jsx, Pedigree.jsx,
+ServiceHierarchy.jsx, Closing.jsx, Footer.jsx). All new pages must use these exact values.
+Color Palette
+Token 	Hex 	Name 	Usage
+--color-bg-base 	#F5F5F0 	Parchment Cream 	Page backgrounds, light sections
+--color-bg-accent 	#2C4C48 	Sycamore Teal 	Accent blocks, borders, labels
+--color-bg-emphasis 	#004225 	British Racing Green 	Primary CTA buttons, hero
+overlays, key headings
+--color-text-primary 	#333333 	Charcoal 	Body text, headings on light
+backgrounds
+--color-text-inverse 	#F5F5F0 	Cream 	Text on dark backgrounds
+Hover state 	#00331B 	Darker Green 	Button hover states
+Section BG 	#FFFFFF 	White 	Alternating section
+backgrounds (e.g., Closing
+section)
+Muted text 	#555555 / #666666 	Mid Gray 	Secondary body copy,
+descriptions
+Typography
+Heading Font 	Merriweather (serif) — var(--font-heading) — weights: 300, 400, 700,
+900
+Body Font 	Lato (sans-serif) — var(--font-body) — weights: 300, 400, 700
+Hero Headline 	Merriweather, 3.5rem (2.5rem mobile), 700, letter-spacing: -0.02em
+Section Titles 	Merriweather, 2rem–2.5rem, 700, uppercase with 1px letter-spacing
+Body Copy 	Lato, 1rem–1.25rem, 300 weight, line-height: 1.6
+Labels / Overlines 	Lato, uppercase, letter-spacing: 1px, bold
+CTA Buttons 	Lato, uppercase, 700 weight, letter-spacing: 1px, border-radius: 4px
+Layout Patterns
+Max Width 	1000px for content containers
+Section Padding 	5rem–6rem vertical, 20px horizontal
+
+-- 5 of 15 --
+
+Mobile Breakpoint 	@media (max-width: 768px)
+Grid Pattern 	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) for card
+layouts
+Two-Column Grid 	grid-template-columns: 1fr 1fr, gap: 4rem — collapses to 1fr on mobile
+Step Numbers 	Merriweather, 1.5rem, 900 weight, colored with --bg-emphasis at 30%
+opacity
+Component Patterns from Homepage
+The homepage establishes the following reusable patterns that the new pages should follow:
+• Dark full-width hero section with overlay — used sparingly (homepage only). New pages
+should use a lighter page header approach.
+• Alternating background sections: Parchment (#F5F5F0) → British Racing Green
+(#004225) → Parchment → Teal (#2C4C48) → White (#FFFFFF). New pages should use
+this alternating rhythm.
+• Proof grid cards: title in --bg-emphasis green, description in #555 gray, separated by a 1px
+border-top.
+• Numbered steps: 01/02/03 pattern with faded green step numbers and left-aligned text in
+a 3-column grid.
+• CTA button: British Racing Green background, cream text, uppercase, 4px border-radius,
+hover darkens to #00331B.
+• Footer: Charcoal (#333333) background, cream text, three-column flex layout (copyright |
+name/title/location | email/LinkedIn).
+Footer Reuse
+All three new pages must include the exact same footer component as the homepage. Replicate
+the Footer.jsx output identically: Sycamore Creek Consulting © 2026 | Owen Howe | Principal |
+Washington, D.C. | owen@howe.app | LinkedIn.
+
+-- 6 of 15 --
+
+3. Page 1: About
+Page Purpose
+Establish credibility, communicate the firm's philosophy, and give visitors confidence that
+Sycamore Creek is a serious, premium operation backed by a principal with real experience. This
+page answers: "Who is behind this firm and why should I trust them?"
+Layout & Sections
+Section A — Page Header
+Background 	Parchment Cream (#F5F5F0)
+Headline 	"Built for the searches others can't close."
+Subhead 	"Sycamore Creek is a boutique talent advisory built on a single premise:
+the best people aren't applying. Reaching them requires precision,
+discretion, and a principal who understands your technical environment
+as well as your team does."
+Layout 	Left-aligned, max-width: 800px, consistent with Pedigree section styling
+Section B — Founder Profile
+Background 	White (#FFFFFF)
+Layout 	Two-column grid (1fr 1fr), image left, text right. Collapses to stacked on
+mobile.
+Left Column 	Professional headshot placeholder (engineering to use a gray
+placeholder box with text "Headshot" until image is provided)
+Right Column — Label 	OWEN HOWE (uppercase overline label, Lato, bold, letter-spacing)
+Right Column — Title 	"Founder & Principal"
+Right Column — Body 	See editorial copy below
+EDITORIAL COPY — FOUNDER BIO
+Owen Howe is the founder and principal of Sycamore Creek Consulting. Before launching the firm,
+he spent years embedded inside both high-growth startups and globally recognized institutions,
+building and scaling recruiting functions from the ground up. He has hired across the full seniority
+spectrum — from early-career internship cohorts to senior technical leadership — and has
+operated in environments where the margin for error on a hire is effectively zero.
+
+-- 7 of 15 --
+
+Sycamore Creek was founded on the conviction that recruiting consulting should be a craft, not a
+volume game. Owen works directly with every client engagement, bringing the same rigor to a
+five-person startup building its founding team as he does to a legacy enterprise transforming its
+talent strategy.
+Section C — Philosophy
+Background 	Parchment Cream (#F5F5F0)
+Section Title 	"How We Think"
+Layout 	Three-column grid matching the homepage proof-grid pattern. Collapses
+to single column on mobile.
+EDITORIAL COPY — PHILOSOPHY CARDS
+Precision Over Volume
+We don't send you fifty resumes and hope for the best. Every candidate we present has been
+sourced against a detailed technical and cultural scorecard built with you before the search begins.
+Principals, Not Associates
+There is no handoff after the sales call. The person who scopes your search is the same person
+running it, evaluating candidates, and managing your offer negotiations. That continuity is the
+difference between a placed candidate and a retained one.
+Market Intelligence as Standard
+Every engagement produces durable knowledge — compensation benchmarks, competitor org
+charts, talent density maps — that informs your hiring strategy long after the search closes.
+Section D — Proof Points (Optional)
+Background 	British Racing Green (#004225), text in Cream
+Layout 	Horizontal flex row with 3–4 stats, centered
+Guidance 	Only include if Owen provides hard numbers. Suggested format: large
+number + short label (e.g., "14 Days" / "Fastest Placement"). If no stats
+are provided, omit this section entirely — empty stats damage credibility
+more than no stats.
+Section E — Footer
+Identical to homepage footer.
+
+-- 8 of 15 --
+
+4. Page 2: Services
+Page Purpose
+Clearly communicate the distinct engagement models Sycamore Creek offers so that prospective
+clients can self-identify which service fits their situation. This page answers: "What exactly do you
+do and how does working with you actually work?"
+Layout & Sections
+Section A — Page Header
+Background 	Parchment Cream (#F5F5F0)
+Headline 	"Different problems require different engagements."
+Subhead 	"We offer a focused set of services because recruiting challenges are not
+one-size-fits-all. Whether you need a single critical hire or an entire
+talent function built from scratch, we structure the engagement around
+the outcome — not around billing hours."
+Section B — Retained Search
+Background 	British Racing Green (#004225), text in Cream
+Layout 	Full-width block, centered text, matching the homepage block-apex
+pattern
+Service Label 	"RETAINED SEARCH" (uppercase, letter-spaced)
+EDITORIAL COPY
+For roles where a mis-hire is not an option. We own the search end to end — from building the
+market map and defining the candidate scorecard to managing every stage of outreach, evaluation,
+and offer negotiation. Retained engagements are our highest-touch service: fully dedicated
+bandwidth, weekly progress reporting, and a commitment to fill the role.
+Best for: Senior technical leadership, niche engineering roles, confidential replacements, and any
+position where the talent pool is small and the stakes are high.
+Section C — Embedded Recruiting
+Background 	White (#FFFFFF)
+
+-- 9 of 15 --
+
+Layout 	Two-column grid (matching foundation-grid pattern from homepage).
+Left column: service description. Right column: "What's Included" list.
+Service Label 	"EMBEDDED RECRUITING" (uppercase, teal border-bottom underline)
+EDITORIAL COPY — LEFT COLUMN
+We integrate directly into your team for a defined engagement period. We attend your standups,
+work inside your ATS and Slack, run intake sessions with your hiring managers, and operate as a
+seamless extension of your internal recruiting function — without the overhead of a full-time hire.
+Best for: Startups scaling rapidly after a funding round, companies without an internal recruiting
+team, or any organization facing a surge in hiring volume that their current team cannot absorb.
+EDITORIAL COPY — RIGHT COLUMN (WHAT'S INCLUDED)
+• Dedicated sourcing and screening aligned to your technical stack
+• Intake and calibration sessions with every hiring manager
+• Pipeline management inside your existing tools
+• Weekly reporting on pipeline health, conversion rates, and market feedback
+• Offer strategy and negotiation support
+Section D — Strategic Advising
+Background 	Sycamore Teal (#2C4C48), text in Cream
+Layout 	Full-width centered block, matching block-diff pattern
+Service Label 	"STRATEGIC ADVISING" (uppercase, letter-spaced)
+EDITORIAL COPY
+Not every hiring problem is solved by adding a recruiter. Sometimes the problem is the process
+itself — the interviews are too slow, the offers are uncompetitive, or the employer brand isn't
+reaching the right people. We advise leadership on the structural and strategic dimensions of
+talent acquisition: compensation architecture, interview design, employer positioning, and
+organizational planning for teams in transition.
+Best for: Founders losing candidates and unsure why, HR teams seeking an outside perspective,
+and leadership navigating AI-driven workforce restructuring.
+Section E — CTA Block
+Background 	Parchment Cream (#F5F5F0)
+
+-- 10 of 15 --
+
+Layout 	Centered text block with CTA button, matching Closing section pattern
+Headline 	"Not sure which engagement fits? Let's talk."
+CTA Button 	"GET IN TOUCH" — links to Contact page URL. British Racing Green
+button, cream text, consistent with homepage CTA.
+Section F — Footer
+Identical to homepage footer.
+
+-- 11 of 15 --
+
+5. Page 3: Contact
+Page Purpose
+Provide a clean, low-friction way for prospective clients to reach Owen directly. This page
+answers: "How do I start a conversation?"
+Layout & Sections
+Section A — Page Header
+Background 	Parchment Cream (#F5F5F0)
+Headline 	"Every engagement starts with a conversation."
+Subhead 	"Tell us what you're trying to build and we'll tell you how we can help. No
+pitch decks, no pressure — just a direct conversation with the principal."
+Section B — Contact Form + Direct Info
+Background 	White (#FFFFFF)
+Layout 	Two-column grid. Left column: contact form. Right column: direct contact
+information. Collapses to stacked on mobile.
+LEFT COLUMN — CONTACT FORM
+Four fields maximum, vertically stacked:
+• Name (required)
+• Email (required)
+• Company (optional)
+• "How can we help?" — free-text textarea (required)
+Submit button: "SEND MESSAGE" — styled identically to homepage CTA button (British Racing
+Green, cream text, uppercase).
+Form Backend Options (Select One)
+Option A (Recommended) 	Formspree free tier — 50 submissions/month, $0 cost. Submissions
+forward directly to owen@howe.app. Integrate via form action attribute
+or JavaScript fetch.
+
+-- 12 of 15 --
+
+Option B 	Embed a native Google Form directly on the Google Sites page instead of
+inside the iframe. This avoids any backend entirely but sacrifices visual
+consistency with the brand.
+RIGHT COLUMN — DIRECT CONTACT
+For visitors who prefer to reach out directly rather than fill out a form:
+• Email: owen@howe.app (mailto link)
+• LinkedIn: linkedin.com/in/owen-howe-wm2016/ (opens in new tab)
+• Location line: "Based in Washington, D.C. Working with clients nationwide."
+Style the email and LinkedIn as simple text links with hover underline, consistent with footer link
+styling. The location line should use muted gray (#555) body copy.
+Section C — Footer
+Identical to homepage footer.
+
+-- 13 of 15 --
+
+6. Engineering Checklist & Acceptance Criteria
+Pre-Development Checklist
+• Confirm deployment approach: three separate HTML files (about.html, services.html,
+contact.html) in the same repo, or three separate Vite entry points. Either approach is
+acceptable; confirm with product before starting.
+• Confirm shared CSS strategy: all pages import the same index.css for CSS custom
+properties and base styles. Page-specific styles can be scoped within each file.
+• Confirm Formspree account setup and endpoint URL (or decision to use Google Form
+fallback).
+• Confirm that Vercel/Netlify deployment config serves all three pages without restrictive
+iframe headers.
+Acceptance Criteria
+Test Case 1: Visual Consistency
+All three pages must use the exact color palette, typography, and component patterns
+documented in Section 2. A side-by-side comparison with the homepage should show clear visual
+family membership. Fonts (Merriweather + Lato) must load correctly. The footer on every page
+must be pixel-identical to the homepage footer.
+Test Case 2: Google Sites Iframe Embedding
+Each page must render correctly when embedded via Google Sites "Embed by URL" feature. No
+double-scrollbars. No blocked-by-frame-policy errors. The page must fill the iframe container
+fluidly using min-height: 100vh.
+Test Case 3: Responsive Behavior
+All pages must render correctly at desktop (1200px+), tablet (768px–1199px), and mobile (below
+768px). Two-column grids must collapse to single-column stacks. Typography must scale
+appropriately. Navigation and CTAs must remain tappable on mobile.
+Test Case 4: Contact Form Submission
+Submitting the contact form with valid data must deliver the submission to owen@howe.app
+within 60 seconds. The form must show a confirmation state after successful submission (e.g.,
+"Thank you — we'll be in touch within 24 hours."). The form must show a clear error state if
+required fields are empty.
+
+-- 14 of 15 --
+
+Test Case 5: Cross-Browser
+All pages must function correctly in the latest versions of Chrome, Safari, and Firefox. No layout
+breaks, missing fonts, or non-functional form elements.
+Test Case 6: Performance
+Each page must achieve a Lighthouse performance score of 90+ on desktop. Total page weight
+(excluding external font requests) should stay under 200KB per page.
+END OF DOCUMENT
+
+-- 15 of 15 --
+
