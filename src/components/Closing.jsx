@@ -27,7 +27,7 @@ const Closing = () => {
                 </div>
 
                 <div className="cta-container">
-                    <a href="https://www.sycamorecreekconsulting.com/contact" className="cta-button" target="_blank" rel="noopener noreferrer">INITIATE A SEARCH</a>
+                    <a href="contact.html" className="cta-button">INITIATE A SEARCH</a>
                 </div>
             </div>
 
