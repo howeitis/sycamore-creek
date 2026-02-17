@@ -13,7 +13,7 @@ const Hero = () => {
         <h1 className="hero-headline">We find the people who aren't looking.</h1>
 
         <p className="hero-subhead">
-          Sycamore Creek is a boutique talent advisory firm. We extract elite technical talent and architect recruiting engines for high-growth teams.
+          Sycamore Creek is a boutique talent advisory firm. We secure elite talent and architect recruiting engines for high-growth teams.
         </p>
       </div>
 
