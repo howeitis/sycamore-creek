@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="hero-overlay"></div>
       <div className="hero-content">
         <div className="logo-container">
-          <img src="/logo.png" alt="Sycamore Creek Consulting" className="logo-image" />
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Sycamore Creek Consulting" className="logo-image" />
         </div>
 
         <h1 className="hero-headline">We find the people who aren't looking.</h1>
@@ -22,7 +22,7 @@ const Hero = () => {
           position: relative;
           height: 90vh; /* High impact */
           width: 100%;
-          background-image: url('/hero_background.png'); /* Assuming image is in public or assets */
+          background-image: url('${import.meta.env.BASE_URL}hero_background.png'); /* Assuming image is in public or assets */
           background-size: cover;
           background-position: center;
           display: flex;
