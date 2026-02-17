@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="footer-section">
       <div className="footer-container">
         <div className="footer-left">
-          <span className="copyright">Sycamore Creek Consulting © 2026</span>
+          <span className="copyright">Sycamore Creek Consulting</span>
         </div>
 
         <div className="footer-center">
