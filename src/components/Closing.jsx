@@ -28,7 +28,7 @@ const Closing = () => {
 
                 <div className="cta-container">
                     <h3 className="cta-bridge">Tell me who you can't afford to get wrong.</h3>
-                    <a href={mailtoLink} className="cta-button">INITIATE A SEARCH</a>
+                    <a href="https://www.sycamorecreekconsulting.com/contact" className="cta-button">INITIATE A SEARCH</a>
                 </div>
             </div>
 
