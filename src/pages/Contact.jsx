@@ -24,7 +24,7 @@ const Contact = () => {
                     {/* LEFT COLUMN — CONTACT FORM */}
                     <div className="form-column">
                         <form
-                            action="https://formspree.io/f/YOUR_FORM_ID"
+                            action="https://formspree.io/f/xzdaglle"
                             method="POST"
                             className="contact-form"
                         >
