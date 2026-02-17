@@ -56,6 +56,14 @@ const About = () => {
                 </div>
             </section>
 
+            {/* Section D - CTA Block */}
+            <section className="cta-section">
+                <div className="content-container cta-container">
+                    <h3 className="cta-headline">Effective leadership changes everything. Let's find your next principal.</h3>
+                    <a href="contact.html" className="cta-button">START THE CONVERSATION</a>
+                </div>
+            </section>
+
             <Footer />
 
             <style>{`
@@ -148,8 +156,9 @@ const About = () => {
 
                 /* Philosophy Section */
                 .philosophy-section {
-                    background-color: var(--color-bg-base); /* Parchment */
+                    background-color: var(--color-bg-accent); /* Sycamore Teal */
                     padding: 5rem 0;
+                    color: var(--color-text-inverse);
                 }
 
                 .section-title {
@@ -157,7 +166,7 @@ const About = () => {
                     font-size: 2rem;
                     font-weight: 700;
                     margin-bottom: 3rem;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                 }
 
                  /* Reusing Grid Styles */
@@ -165,7 +174,7 @@ const About = () => {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                     gap: 2rem;
-                    border-top: 1px solid rgba(0,0,0,0.1);
+                    border-top: 1px solid rgba(255,255,255,0.2);
                     padding-top: 3rem;
                 }
 
@@ -173,15 +182,49 @@ const About = () => {
                     font-family: var(--font-heading);
                     font-size: 1.2rem;
                     margin-bottom: 0.5rem;
-                    color: var(--color-bg-emphasis);
+                    color: var(--color-bg-base); /* Cream/Parchment for contrast on Teal */
                     font-weight: 700;
                 }
 
                 .proof-desc {
                     font-family: var(--font-body);
                     font-size: 1rem;
-                    color: #555;
+                    color: var(--color-text-inverse);
+                    opacity: 0.9;
                     line-height: 1.5;
+                }
+
+                /* CTA Section */
+                .cta-section {
+                    background-color: var(--color-bg-base);
+                    padding: 5rem 0;
+                    text-align: center;
+                }
+
+                .cta-headline {
+                     font-family: var(--font-heading);
+                     font-size: 1.5rem;
+                     font-weight: 700;
+                     margin-bottom: 2rem;
+                     color: var(--color-text-primary);
+                }
+
+                .cta-button {
+                    display: inline-block;
+                    background-color: var(--color-bg-emphasis); /* British Racing Green */
+                    color: var(--color-text-inverse);
+                    padding: 1rem 2.5rem;
+                    font-family: var(--font-body);
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    border-radius: 4px;
+                    transition: background-color 0.2s;
+                    text-decoration: none;
+                }
+
+                .cta-button:hover {
+                    background-color: #00331b;
                 }
 
                 @media (max-width: 768px) {
@@ -193,8 +236,7 @@ const About = () => {
                         gap: 2rem;
                     }
                 }
-            `}</style>
-        </div>
+            `}</style>        </div>
     );
 };
 
