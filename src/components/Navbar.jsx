@@ -23,8 +23,8 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'About', path: '/about' },
-        { name: 'Services', path: '/services' },
         { name: 'Track Record', path: '/track-record' },
+        { name: 'Services', path: '/services' },
         { name: 'Contact', path: '/contact' },
     ];
 
@@ -32,7 +32,7 @@ const Navbar = () => {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="navbar-container">
                 <Link to="/" className="navbar-brand">
-                    Sycamore Creek
+                    <img src="/logo.png" alt="Sycamore Creek" className="navbar-logo" />
                 </Link>
 
                 <div className={`navbar-links ${mobileMenuOpen ? 'active' : ''}`}>
@@ -87,12 +87,14 @@ const Navbar = () => {
                 }
 
                 .navbar-brand {
-                    font-family: var(--font-heading);
-                    font-weight: 700;
-                    font-size: 1.5rem;
-                    color: var(--color-bg-emphasis); /* British Racing Green */
-                    text-decoration: none;
-                    letter-spacing: -0.5px;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .navbar-logo {
+                    height: 48px; /* Adjust size as needed */
+                    width: auto;
+                    transition: all 0.3s ease;
                 }
 
                 .navbar-links {
@@ -105,18 +107,30 @@ const Navbar = () => {
                     font-family: var(--font-body);
                     font-weight: 500;
                     font-size: 0.95rem;
-                    color: var(--color-text-primary);
+                    color: #ffffff; /* White by default on transparent */
                     text-decoration: none;
                     transition: color 0.2s;
+                    text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* improved readability */
+                }
+
+                .navbar.scrolled .nav-link {
+                    color: var(--color-text-primary); /* Dark on scrolled */
+                    text-shadow: none;
                 }
 
                 .nav-link:hover, .nav-link.current {
-                    color: var(--color-bg-emphasis); /* Green */
+                    opacity: 0.8;
+                }
+
+                .navbar.scrolled .nav-link:hover, 
+                .navbar.scrolled .nav-link.current {
+                    color: var(--color-bg-emphasis); /* Green hover on scrolled */
+                    opacity: 1;
                 }
 
                 .nav-cta-button {
-                    background-color: var(--color-bg-emphasis);
-                    color: var(--color-text-inverse);
+                    background-color: #ffffff; /* White button on transparent */
+                    color: var(--color-bg-emphasis); /* Green text */
                     padding: 0.6rem 1.2rem;
                     border-radius: 4px;
                     text-decoration: none;
@@ -124,12 +138,19 @@ const Navbar = () => {
                     font-size: 0.85rem;
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
-                    transition: background-color 0.2s ease, transform 0.2s ease;
+                    transition: all 0.2s ease;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                }
+
+                .navbar.scrolled .nav-cta-button {
+                    background-color: var(--color-bg-emphasis);
+                    color: var(--color-text-inverse);
+                    box-shadow: none;
                 }
 
                 .nav-cta-button:hover {
-                    background-color: #00331b;
                     transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
                 }
 
                 .mobile-menu-toggle {
@@ -144,8 +165,14 @@ const Navbar = () => {
                     display: block;
                     width: 24px;
                     height: 2px;
-                    background-color: var(--color-text-primary);
+                    background-color: #ffffff; /* White hamburger */
                     position: relative;
+                    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+                }
+
+                .navbar.scrolled .hamburger {
+                    background-color: var(--color-text-primary);
+                    box-shadow: none;
                 }
 
                 .hamburger::before,
@@ -154,8 +181,15 @@ const Navbar = () => {
                     position: absolute;
                     width: 24px;
                     height: 2px;
-                    background-color: var(--color-text-primary);
+                    background-color: #ffffff;
                     transition: all 0.3s ease;
+                    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+                }
+
+                .navbar.scrolled .hamburger::before,
+                .navbar.scrolled .hamburger::after {
+                    background-color: var(--color-text-primary);
+                    box-shadow: none;
                 }
 
                 .hamburger::before { top: -8px; }
@@ -180,14 +214,24 @@ const Navbar = () => {
                         z-index: 999;
                     }
 
+                    .navbar-links .nav-link {
+                         color: var(--color-text-primary); /* Dark text in mobile menu */
+                         text-shadow: none;
+                    }
+
                     .navbar-links.active {
                         transform: translateY(0);
                     }
 
                     .navbar {
-                        background-color: white; /* Always solid on mobile */
+                        background-color: var(--color-bg-emphasis); /* Solid Green on Mobile Header to match brand if not transparent? Or maybe just keep it transparent/transition logic? 
+                        Actually, let's make it solid green for mobile readability if menu is closed, or just handle scroll. 
+                        Let's stick to the scroll logic, but maybe force background on mobile if needed? 
+                        For safety/readability on all pages, let's keep the scroll logic but ensure mobile menu background is white. */
                         padding: 1rem 0;
                     }
+                    
+                    /* Force solid background on mobile if menu is open? No, menu is absolute. */
                 }
             `}</style>
         </nav>

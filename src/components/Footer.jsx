@@ -10,13 +10,6 @@ const Footer = () => {
           <span className="principal">Owen Howe | Principal | Washington, D.C.</span>
         </div>
 
-        <nav className="footer-nav">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/track-record">Track Record</Link>
-          <Link to="/contact">Contact</Link>
-        </nav>
 
         <div className="footer-right">
           <a href="mailto:owen@howe.app" className="footer-link">owen@howe.app</a>
