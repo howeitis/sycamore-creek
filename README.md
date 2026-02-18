@@ -13,7 +13,7 @@ Marketing website for Sycamore Creek Consulting, a boutique talent advisory firm
 | Hosting | Netlify (auto-deploys on push to `main`) |
 | Forms | Formspree (endpoint ID: `xzdaglle`) |
 | Analytics | Google Analytics 4 (ID: `G-GPXQ5ZX30P`) |
-| Domain | `https://sycamorecreek.com` |
+| Domain | `https://sycamorecreekconsulting.com` |
 
 ---
 

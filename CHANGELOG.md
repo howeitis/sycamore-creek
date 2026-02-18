@@ -37,5 +37,5 @@ See `BACKLOG.md` for pending work.
 
 ### Product — High Priority Fixes
 - **Favicon** — Replaced Vite default (`vite.svg`) with `logo.png` in `index.html`.
-- **Meta tags** — Added `<meta name="description">`, Open Graph, and Twitter Card tags to `index.html`. `og:url` set to `https://sycamorecreek.com`.
+- **Meta tags** — Added `<meta name="description">`, Open Graph, and Twitter Card tags to `index.html`. `og:url` set to `https://sycamorecreekconsulting.com`.
 - **Security header** — Fixed invalid `X-Frame-Options: ALLOWALL` → `SAMEORIGIN` in `netlify.toml`. Site is hosted exclusively on Netlify; Google Sites embedding is no longer required.

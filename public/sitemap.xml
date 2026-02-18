@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sycamorecreek.com/</loc>
+    <loc>https://sycamorecreekconsulting.com/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sycamorecreek.com/about</loc>
+    <loc>https://sycamorecreekconsulting.com/about</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sycamorecreek.com/services</loc>
+    <loc>https://sycamorecreekconsulting.com/services</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sycamorecreek.com/track-record</loc>
+    <loc>https://sycamorecreekconsulting.com/track-record</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sycamorecreek.com/contact</loc>
+    <loc>https://sycamorecreekconsulting.com/contact</loc>
     <priority>0.6</priority>
   </url>
 </urlset>
