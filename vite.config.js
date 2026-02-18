@@ -9,7 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/sycamore-creek/',
+  base: './', // Use relative paths for universal deployment (Netlify + GitHub Pages)
   build: {
     rollupOptions: {
       input: {

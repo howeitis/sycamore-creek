@@ -12,7 +12,8 @@ This repository contains the source code for the Sycamore Creek Consulting marke
 ## Project Structure
 The project is a multi-page React app (using Vite's multi-page mode) designed to be embedded as individual components (About, Services, Contact) or viewed as a whole.
 
-*   `src/pages/`: Main page components (`About.jsx`, `Services.jsx`, `Contact.jsx`).
+*   `src/pages/`: Main page components (`About.jsx`, `Services.jsx`, `Contact.jsx`, `TrackRecord.jsx`).
+*   `src/data/`: Data files (`placements.js`).
 *   `src/components/`: Reusable UI blocks (`Footer.jsx`, `Closing.jsx`, `Pedigree.jsx`).
 *   `src/index.css`: Global styles, typography, and animations.
 
