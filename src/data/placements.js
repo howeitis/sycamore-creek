@@ -1,7 +1,7 @@
 export const stats = [
     { label: "Compensation Negotiated", value: "$50M+" },
     { label: "Offer Acceptance Rate", value: "87%" },
-    { label: "Markets Covered", value: "NY • DC • SF" }, // Added a filler to balance the 3-col grid
+    { label: "Primary Markets", value: "DC & NYC" },
 ];
 
 export const placements = [
@@ -34,6 +34,12 @@ export const placements = [
         company: "DARPA Research Lab",
         location: "Arlington, VA",
         type: "Executive"
+    },
+    {
+        role: "Business Development Lead",
+        company: "High-growth Start-up",
+        location: "NYC",
+        type: "Sales"
     },
     {
         role: "Senior Reverse Engineer",

@@ -70,11 +70,12 @@ const TrackRecord = () => {
                     padding: 0 20px;
                 }
 
-                /* Header */
+                /* Header - Block 1 (Green) */
                 .tr-header-section {
-                    background-color: var(--color-bg-base);
+                    background-color: var(--color-bg-emphasis); /* British Racing Green */
                     padding: 6rem 0 4rem;
                     text-align: center;
+                    color: var(--color-text-inverse);
                 }
 
                 .tr-headline {
@@ -82,7 +83,7 @@ const TrackRecord = () => {
                     font-size: 3.5rem;
                     font-weight: 700;
                     margin-bottom: 1.5rem;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                 }
 
                 .tr-subhead {
@@ -92,16 +93,16 @@ const TrackRecord = () => {
                     line-height: 1.6;
                     max-width: 700px;
                     margin: 0 auto;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                     opacity: 0.9;
                 }
 
-                /* Metrics */
+                /* Metrics - Block 2 (Parchment) */
                 .metrics-section {
-                    background-color: var(--color-text-primary); /* Dark Text Color as BG */
-                    color: var(--color-text-inverse);
-                    padding: 3rem 0;
-                    border-bottom: 1px solid rgba(255,255,255,0.1);
+                    background-color: var(--color-bg-base); /* Parchment */
+                    color: var(--color-text-primary);
+                    padding: 4rem 0;
+                    border-bottom: none;
                 }
 
                 .metrics-grid {
@@ -117,7 +118,7 @@ const TrackRecord = () => {
                     font-family: var(--font-heading);
                     font-size: 2.5rem;
                     font-weight: 700;
-                    color: var(--color-bg-accent); /* Teal */
+                    color: var(--color-bg-emphasis); /* Green text on parchment */
                     margin-bottom: 0.5rem;
                 }
 
@@ -127,13 +128,14 @@ const TrackRecord = () => {
                     text-transform: uppercase;
                     letter-spacing: 1px;
                     font-size: 0.85rem;
-                    opacity: 0.8;
+                    opacity: 0.6;
+                    color: var(--color-text-primary);
                 }
 
-                /* Placements */
+                /* Placements - Block 3 (Teal) */
                 .placements-section {
                     padding: 5rem 0;
-                    background-color: #fcfcfc;
+                    background-color: var(--color-bg-accent); /* Sycamore Teal */
                 }
 
                 .placements-grid {
