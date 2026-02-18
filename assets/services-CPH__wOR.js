@@ -197,6 +197,8 @@ import{j as e,F as n,R as i,a as t}from"./Footer-D71RzGy1.js";const r=()=>e.jsxs
 
                 .cta-button:hover {
                     background-color: #00331b;
+                    box-shadow: 0 0 15px var(--color-bg-accent);
+                    transform: translateY(-2px);
                 }
 
                 @media (max-width: 768px) {
