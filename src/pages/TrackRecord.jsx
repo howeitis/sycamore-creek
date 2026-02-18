@@ -5,6 +5,8 @@ import { stats, placements } from '../data/placements';
 const TrackRecord = () => {
     return (
         <div className="page-wrapper">
+            <title>Track Record | Sycamore Creek Consulting</title>
+            <meta name="description" content="$50M+ in compensation negotiated. 87% offer acceptance rate. Placements across stealth research labs, global media organizations, and high-growth startups in DC and NYC." />
             {/* Section A - Header */}
             <section className="tr-header-section">
                 <div className="content-container">

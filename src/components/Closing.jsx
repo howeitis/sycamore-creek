@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Closing = () => {
     const mailtoLink = "mailto:owen@howe.app";
@@ -27,7 +28,7 @@ const Closing = () => {
                 </div>
 
                 <div className="cta-container">
-                    <a href="contact.html" className="cta-button">INITIATE A SEARCH</a>
+                    <Link to="/contact" className="cta-button">INITIATE A SEARCH</Link>
                 </div>
             </div>
 
