@@ -1,4 +1,4 @@
-import{j as e,F as t,R as o,a as n}from"./Footer-vlYrpwm2.js";const c=[{label:"Compensation Negotiated",value:"$50M+"},{label:"Offer Acceptance Rate",value:"87%"},{label:"Markets Covered",value:"NY • DC • SF"}],i=[{role:"Senior FPGA Developer",company:"Stealth",location:"DC Metro",type:"Engineering"},{role:"Principal Research Engineer",company:"Stealth",location:"DC Metro",type:"R&D"},{role:"Senior AI Engineer",company:"Stealth",location:"NYC",type:"Engineering"},{role:"VP of Engineering",company:"Major Media Organization",location:"NYC",type:"Executive"},{role:"Director of Research",company:"DARPA Research Lab",location:"Arlington, VA",type:"Executive"},{role:"Senior Reverse Engineer",company:"Cleared Research Lab",location:"DC Metro",type:"Security"},{role:"Staff Android Engineer",company:"Global Media Organization",location:"NYC",type:"Mobile"},{role:"Product Director",company:"Media Start-up",location:"Remote",type:"Product"}],l=()=>e.jsxs("div",{className:"page-wrapper",children:[e.jsx("section",{className:"tr-header-section",children:e.jsxs("div",{className:"content-container",children:[e.jsx("h1",{className:"tr-headline",children:"The Track Record"}),e.jsx("p",{className:"tr-subhead",children:"We are defined by the offers we close. From stealth research labs to global media organizations, we secure the talent that builds the future."})]})}),e.jsx("section",{className:"metrics-section",children:e.jsx("div",{className:"content-container",children:e.jsx("div",{className:"metrics-grid",children:c.map((a,r)=>e.jsxs("div",{className:"metric-item",children:[e.jsx("span",{className:"metric-value",children:a.value}),e.jsx("span",{className:"metric-label",children:a.label})]},r))})})}),e.jsx("section",{className:"placements-section",children:e.jsx("div",{className:"content-container",children:e.jsx("div",{className:"placements-grid",children:i.map((a,r)=>e.jsxs("div",{className:"placement-card",children:[e.jsx("div",{className:"card-top",children:e.jsx("span",{className:"placement-location",children:a.location})}),e.jsx("h3",{className:"placement-role",children:a.role}),e.jsx("p",{className:"placement-company",children:a.company})]},r))})})}),e.jsx("section",{className:"cta-section",children:e.jsxs("div",{className:"content-container cta-container",children:[e.jsx("h3",{className:"cta-headline",children:"Ready to add to this list?"}),e.jsx("a",{href:"contact.html",className:"cta-button",children:"INITIATE A SEARCH"})]})}),e.jsx(t,{}),e.jsx("style",{children:`
+import{j as e,F as o,R as t,a as n}from"./Footer-vlYrpwm2.js";const c=[{label:"Compensation Negotiated",value:"$50M+"},{label:"Offer Acceptance Rate",value:"87%"},{label:"Primary Markets",value:"DC & NYC"}],i=[{role:"Senior FPGA Developer",company:"Stealth",location:"DC Metro",type:"Engineering"},{role:"Principal Research Engineer",company:"Stealth",location:"DC Metro",type:"R&D"},{role:"Senior AI Engineer",company:"Stealth",location:"NYC",type:"Engineering"},{role:"VP of Engineering",company:"Major Media Organization",location:"NYC",type:"Executive"},{role:"Director of Research",company:"DARPA Research Lab",location:"Arlington, VA",type:"Executive"},{role:"Business Development Lead",company:"High-growth Start-up",location:"NYC",type:"Sales"},{role:"Senior Reverse Engineer",company:"Cleared Research Lab",location:"DC Metro",type:"Security"},{role:"Staff Android Engineer",company:"Global Media Organization",location:"NYC",type:"Mobile"},{role:"Product Director",company:"Media Start-up",location:"Remote",type:"Product"}],l=()=>e.jsxs("div",{className:"page-wrapper",children:[e.jsx("section",{className:"tr-header-section",children:e.jsxs("div",{className:"content-container",children:[e.jsx("h1",{className:"tr-headline",children:"The Track Record"}),e.jsx("p",{className:"tr-subhead",children:"We are defined by the offers we close. From stealth research labs to global media organizations, we secure the talent that builds the future."})]})}),e.jsx("section",{className:"metrics-section",children:e.jsx("div",{className:"content-container",children:e.jsx("div",{className:"metrics-grid",children:c.map((a,r)=>e.jsxs("div",{className:"metric-item",children:[e.jsx("span",{className:"metric-value",children:a.value}),e.jsx("span",{className:"metric-label",children:a.label})]},r))})})}),e.jsx("section",{className:"placements-section",children:e.jsx("div",{className:"content-container",children:e.jsx("div",{className:"placements-grid",children:i.map((a,r)=>e.jsxs("div",{className:"placement-card",children:[e.jsx("div",{className:"card-top",children:e.jsx("span",{className:"placement-location",children:a.location})}),e.jsx("h3",{className:"placement-role",children:a.role}),e.jsx("p",{className:"placement-company",children:a.company})]},r))})})}),e.jsx("section",{className:"cta-section",children:e.jsxs("div",{className:"content-container cta-container",children:[e.jsx("h3",{className:"cta-headline",children:"Ready to add to this list?"}),e.jsx("a",{href:"contact.html",className:"cta-button",children:"INITIATE A SEARCH"})]})}),e.jsx(o,{}),e.jsx("style",{children:`
                 .page-wrapper {
                     background-color: var(--color-bg-base);
                     min-height: 100vh;
@@ -12,11 +12,12 @@ import{j as e,F as t,R as o,a as n}from"./Footer-vlYrpwm2.js";const c=[{label:"C
                     padding: 0 20px;
                 }
 
-                /* Header */
+                /* Header - Block 1 (Green) */
                 .tr-header-section {
-                    background-color: var(--color-bg-base);
+                    background-color: var(--color-bg-emphasis); /* British Racing Green */
                     padding: 6rem 0 4rem;
                     text-align: center;
+                    color: var(--color-text-inverse);
                 }
 
                 .tr-headline {
@@ -24,7 +25,7 @@ import{j as e,F as t,R as o,a as n}from"./Footer-vlYrpwm2.js";const c=[{label:"C
                     font-size: 3.5rem;
                     font-weight: 700;
                     margin-bottom: 1.5rem;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                 }
 
                 .tr-subhead {
@@ -34,16 +35,16 @@ import{j as e,F as t,R as o,a as n}from"./Footer-vlYrpwm2.js";const c=[{label:"C
                     line-height: 1.6;
                     max-width: 700px;
                     margin: 0 auto;
-                    color: var(--color-text-primary);
+                    color: var(--color-text-inverse);
                     opacity: 0.9;
                 }
 
-                /* Metrics */
+                /* Metrics - Block 2 (Parchment) */
                 .metrics-section {
-                    background-color: var(--color-text-primary); /* Dark Text Color as BG */
-                    color: var(--color-text-inverse);
-                    padding: 3rem 0;
-                    border-bottom: 1px solid rgba(255,255,255,0.1);
+                    background-color: var(--color-bg-base); /* Parchment */
+                    color: var(--color-text-primary);
+                    padding: 4rem 0;
+                    border-bottom: none;
                 }
 
                 .metrics-grid {
@@ -59,7 +60,7 @@ import{j as e,F as t,R as o,a as n}from"./Footer-vlYrpwm2.js";const c=[{label:"C
                     font-family: var(--font-heading);
                     font-size: 2.5rem;
                     font-weight: 700;
-                    color: var(--color-bg-accent); /* Teal */
+                    color: var(--color-bg-emphasis); /* Green text on parchment */
                     margin-bottom: 0.5rem;
                 }
 
@@ -69,13 +70,14 @@ import{j as e,F as t,R as o,a as n}from"./Footer-vlYrpwm2.js";const c=[{label:"C
                     text-transform: uppercase;
                     letter-spacing: 1px;
                     font-size: 0.85rem;
-                    opacity: 0.8;
+                    opacity: 0.6;
+                    color: var(--color-text-primary);
                 }
 
-                /* Placements */
+                /* Placements - Block 3 (Teal) */
                 .placements-section {
                     padding: 5rem 0;
-                    background-color: #fcfcfc;
+                    background-color: var(--color-bg-accent); /* Sycamore Teal */
                 }
 
                 .placements-grid {
@@ -170,4 +172,4 @@ import{j as e,F as t,R as o,a as n}from"./Footer-vlYrpwm2.js";const c=[{label:"C
                     .tr-headline { font-size: 2.5rem; }
                     .metrics-grid { flex-direction: column; gap: 3rem; }
                 }
-            `})]});o.createRoot(document.getElementById("root")).render(e.jsx(n.StrictMode,{children:e.jsx(l,{})}));
+            `})]});t.createRoot(document.getElementById("root")).render(e.jsx(n.StrictMode,{children:e.jsx(l,{})}));
