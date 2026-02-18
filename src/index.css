@@ -2,13 +2,18 @@
 
 :root {
   /* Color Palette */
-  --color-bg-base: #F5F5F0;      /* Parchment Cream */
-  --color-bg-accent: #2C4C48;    /* Sycamore Teal */
-  --color-bg-emphasis: #004225;  /* British Racing Green */
-  
-  --color-text-primary: #333333; /* Charcoal / Slate */
-  --color-text-inverse: #F5F5F0; /* Cream / Off-White */
-  
+  --color-bg-base: #F5F5F0;
+  /* Parchment Cream */
+  --color-bg-accent: #2C4C48;
+  /* Sycamore Teal */
+  --color-bg-emphasis: #004225;
+  /* British Racing Green */
+
+  --color-text-primary: #333333;
+  /* Charcoal / Slate */
+  --color-text-inverse: #F5F5F0;
+  /* Cream / Off-White */
+
   /* Fonts */
   --font-heading: 'Merriweather', serif;
   --font-body: 'Lato', sans-serif;
@@ -28,7 +33,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   margin-bottom: 1rem;
@@ -42,4 +52,66 @@ img {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+@media print {
+
+  /* Hide non-essential elements */
+  .hero-overlay,
+  .cta-section,
+  .footer-section,
+  .submit-button,
+  button {
+    display: none !important;
+  }
+
+  /* Ensure background colors/images are not printed by default to save ink, 
+     but text needs to be readable. */
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  /* Reset text colors */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  div {
+    color: black !important;
+    text-shadow: none !important;
+  }
+
+  /* Expand containers */
+  .content-container,
+  .pedigree-container,
+  .closing-container,
+  .hero-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Fix Hero for print */
+  .hero-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 2rem 0 !important;
+    background: none !important;
+  }
+
+  .hero-headline {
+    color: black !important;
+  }
+
+  /* Page breaks */
+  section {
+    page-break-inside: avoid;
+    padding: 1rem 0 !important;
+  }
 }

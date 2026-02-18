@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 
 const Contact = () => {
+    const [status, setStatus] = useState('IDLE'); // IDLE, SUBMITTING, SUCCESS, ERROR
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus('SUBMITTING');
+
+        const form = e.target;
+        const data = new FormData(form);
+
+        try {
+            const response = await fetch("https://formspree.io/f/xzdaglle", {
+                method: "POST",
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                setStatus('SUCCESS');
+                form.reset();
+            } else {
+                setStatus('ERROR');
+            }
+        } catch (error) {
+            setStatus('ERROR');
+        }
+    };
+
     return (
         <div className="page-wrapper">
             {/* Section A - Page Header */}
@@ -20,36 +49,50 @@ const Contact = () => {
 
                     {/* LEFT COLUMN — CONTACT FORM */}
                     <div className="form-column">
-                        <form
-                            action="https://formspree.io/f/xzdaglle"
-                            method="POST"
-                            className="contact-form"
-                        >
-                            <label className="form-group">
-                                <span className="label-text">Name <span className="required">*</span></span>
-                                <input type="text" name="name" required />
-                            </label>
+                        {status === 'SUCCESS' ? (
+                            <div className="success-message">
+                                <h3 className="success-title">Message Received</h3>
+                                <p className="success-body">
+                                    Thank you for reaching out. Owen reviews every inquiry personally and will be in touch shortly.
+                                </p>
+                            </div>
+                        ) : (
+                            <form
+                                onSubmit={handleSubmit}
+                                className="contact-form"
+                            >
+                                <label className="form-group">
+                                    <span className="label-text">Name <span className="required">*</span></span>
+                                    <input type="text" name="name" required disabled={status === 'SUBMITTING'} />
+                                </label>
 
-                            <label className="form-group">
-                                <span className="label-text">Company</span>
-                                <input type="text" name="company" />
-                            </label>
+                                <label className="form-group">
+                                    <span className="label-text">Company</span>
+                                    <input type="text" name="company" disabled={status === 'SUBMITTING'} />
+                                </label>
 
-                            <label className="form-group">
-                                <span className="label-text">Email <span className="required">*</span></span>
-                                <input type="email" name="email" required />
-                            </label>
+                                <label className="form-group">
+                                    <span className="label-text">Email <span className="required">*</span></span>
+                                    <input type="email" name="email" required disabled={status === 'SUBMITTING'} />
+                                </label>
 
-                            <label className="form-group">
-                                <span className="label-text">How can we help? <span className="required">*</span></span>
-                                <textarea name="message" rows="5" required></textarea>
-                            </label>
+                                <label className="form-group">
+                                    <span className="label-text">How can we help? <span className="required">*</span></span>
+                                    <textarea name="message" rows="5" required disabled={status === 'SUBMITTING'}></textarea>
+                                </label>
 
-                            {/* Hidden fields for customization if needed later */}
-                            <input type="hidden" name="_subject" value="New contact from Sycamore Creek Website" />
+                                {/* Hidden fields for customization if needed later */}
+                                <input type="hidden" name="_subject" value="New contact from Sycamore Creek Website" />
 
-                            <button type="submit" className="submit-button">Send</button>
-                        </form>
+                                <button type="submit" className="submit-button" disabled={status === 'SUBMITTING'}>
+                                    {status === 'SUBMITTING' ? 'Sending...' : 'Send'}
+                                </button>
+
+                                {status === 'ERROR' && (
+                                    <p className="error-message">Something went wrong. Please try again or email directly.</p>
+                                )}
+                            </form>
+                        )}
                     </div>
 
                     {/* RIGHT COLUMN — DIRECT CONTACT */}
@@ -245,6 +288,33 @@ const Contact = () => {
                         width: 100%;
                         text-align: center;
                     }
+                }
+
+                .success-message {
+                    background-color: var(--color-bg-base);
+                    padding: 2rem;
+                    border-radius: 4px;
+                    border-left: 4px solid var(--color-bg-emphasis);
+                }
+
+                .success-title {
+                    font-family: var(--font-heading);
+                    color: var(--color-bg-emphasis);
+                    margin-bottom: 1rem;
+                    font-size: 1.5rem;
+                }
+
+                .success-body {
+                    font-family: var(--font-body);
+                    font-size: 1.1rem;
+                    color: var(--color-text-primary);
+                }
+
+                .error-message {
+                    color: #d32f2f;
+                    font-family: var(--font-body);
+                    font-size: 0.9rem;
+                    margin-top: 1rem;
                 }
             `}</style>
         </div>
