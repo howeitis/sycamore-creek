@@ -52,7 +52,34 @@ img {
 a {
   text-decoration: none;
   color: inherit;
+  transition: opacity 0.2s, color 0.2s;
+  /* Global smooth transition */
 }
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to major text elements globally */
+h1,
+h2,
+h3,
+.hero-subhead,
+.pedigree-body {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Stagger animations for paragraphs/subheads if possible, 
+   but for now, a global animation is a huge lift. */
 
 @media print {
 

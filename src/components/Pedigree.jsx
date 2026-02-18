@@ -66,6 +66,19 @@ const Pedigree = () => {
           padding-top: 3rem;
         }
 
+        .proof-item {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          padding: 1.5rem;
+          border-radius: 8px;
+          background-color: transparent; /* or generic */
+        }
+
+        .proof-item:hover {
+           transform: translateY(-5px);
+           background-color: rgba(0,0,0,0.02); /* Subtle highlight */
+           box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
         .proof-title {
           font-family: var(--font-heading);
           font-size: 1.2rem;

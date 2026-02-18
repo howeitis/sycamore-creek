@@ -178,6 +178,17 @@ const About = () => {
                     padding-top: 3rem;
                 }
 
+                .proof-item {
+                     transition: transform 0.3s ease;
+                     padding: 1rem;
+                     border-radius: 4px;
+                }
+
+                .proof-item:hover {
+                    transform: translateY(-5px);
+                    background-color: rgba(255,255,255,0.05); /* Subtle light highlight on teal */
+                }
+
                 .proof-title {
                     font-family: var(--font-heading);
                     font-size: 1.2rem;
