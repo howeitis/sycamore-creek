@@ -34,6 +34,7 @@ const Contact = () => {
         <div className="page-wrapper">
             <title>Contact | Sycamore Creek Consulting</title>
             <meta name="description" content="Start a conversation with Owen Howe. Every engagement begins with a direct conversation with the principal. No pitch decks, no pressure." />
+            <link rel="canonical" href="https://sycamorecreekconsulting.com/contact" />
             {/* Section A - Page Header */}
             <section className="contact-header-section">
                 <div className="content-container">

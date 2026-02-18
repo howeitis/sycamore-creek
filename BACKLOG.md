@@ -40,11 +40,11 @@
 
 | # | Issue | Impact | Complexity | Status | Notes |
 |---|---|---|---|---|---|
-| S1 | Add `robots.txt` | Medium | Low | Pending | No `robots.txt` in `/public`. A basic file explicitly allowing all crawlers is standard hygiene. Should include `Sitemap: https://sycamorecreekconsulting.com/sitemap.xml`. |
-| S2 | Fix heading hierarchy on Services page | Medium | Low | Pending | The three service names (Retained Search, Embedded Recruiting, Strategic Advising) are `<span>` elements, not headings. These are the most important keywords on the page and are invisible to crawlers. Change to `<h2>`. |
-| S3 | Add `llms.txt` | Medium | Low | Pending | A plain-text file at `/llms.txt` per the emerging AI crawler standard. Describes the firm, services, and contact in a format optimized for LLM ingestion. Complements the JSON-LD already in place. |
-| S4 | Submit sitemap to Google Search Console | High | Low | Pending | No code change needed — action only. Log in to Search Console, add the property, and submit `https://sycamorecreekconsulting.com/sitemap.xml`. Required for active Google indexing. |
-| S5 | Improve founder photo alt text | Low | Low | Pending | `alt="Owen Howe"` in `About.jsx:21`. Expand to `"Owen Howe, Founder and Principal of Sycamore Creek Consulting"` for keyword signal and accessibility. |
+| S1 | Add `robots.txt` | Medium | Low | ✅ Done | Created `/public/robots.txt` allowing all crawlers with `Sitemap:` directive. |
+| S2 | Fix heading hierarchy on Services page | Medium | Low | ✅ Done | Service names changed from `<span>` to `<h2>` in `Services.jsx`. Visual appearance unchanged. |
+| S3 | Add `llms.txt` | Medium | Low | ✅ Done | Created `/public/llms.txt` with firm description, services, track record, specializations, and contact. |
+| S4 | Submit sitemap to Google Search Console | High | Low | ✅ Done | Sitemap submitted and crawl requested via GSC. |
+| S5 | Improve founder photo alt text | Low | Low | ✅ Done | Updated to `"Owen Howe, Founder and Principal of Sycamore Creek Consulting"` in `About.jsx`. |
 | S6 | Hero image preload (Core Web Vitals) | Medium | Low | ✅ Done | Resolved by E2. `<link rel="preload">` added to `index.html`. |
 | S7 | Add page-level structured data for Services and About | Medium | Medium | Pending | Current JSON-LD covers the business entity. Adding a `Service` schema on the Services page and a `Person` schema on About gives crawlers and AI tools richer per-page signals. |
-| S8 | Add canonical tags | Low | Low | Pending | Add `<link rel="canonical">` per page to prevent duplicate content issues if the site becomes accessible at multiple URLs (e.g., Netlify subdomain alongside custom domain). |
+| S8 | Add canonical tags | Low | Low | ✅ Done | `<link rel="canonical">` added to all five page components via React 19 metadata hoisting. |

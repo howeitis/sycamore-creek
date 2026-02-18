@@ -6,6 +6,7 @@ const About = () => {
         <div className="page-wrapper">
             <title>About | Sycamore Creek Consulting</title>
             <meta name="description" content="Owen Howe, Founder and Principal of Sycamore Creek Consulting — built for the searches others can't close. Boutique talent advisory in Washington, D.C." />
+            <link rel="canonical" href="https://sycamorecreekconsulting.com/about" />
             {/* Section A - Page Header */}
             <section className="about-header-section">
                 <div className="content-container">
@@ -20,7 +21,7 @@ const About = () => {
             <section className="founder-section">
                 <div className="content-container founder-grid">
                     <div className="founder-image-col">
-                        <img src={`${import.meta.env.BASE_URL}founder.jpg`} alt="Owen Howe" className="founder-image" />
+                        <img src={`${import.meta.env.BASE_URL}founder.jpg`} alt="Owen Howe, Founder and Principal of Sycamore Creek Consulting" className="founder-image" />
                     </div>
                     <div className="founder-text-col">
                         <span className="founder-label">OWEN HOWE</span>

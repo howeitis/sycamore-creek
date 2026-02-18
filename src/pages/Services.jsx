@@ -6,6 +6,7 @@ const Services = () => {
         <div className="page-wrapper">
             <title>Services | Sycamore Creek Consulting</title>
             <meta name="description" content="Retained search, embedded recruiting, and strategic talent advising for high-growth teams. Engagements structured around outcomes, not billable hours." />
+            <link rel="canonical" href="https://sycamorecreekconsulting.com/services" />
             {/* Section A - Page Header */}
             <section className="services-header-section">
                 <div className="content-container">
@@ -19,7 +20,7 @@ const Services = () => {
             {/* Section B - Retained Search */}
             <section className="retained-section">
                 <div className="content-container">
-                    <span className="service-label-inverse">RETAINED SEARCH</span>
+                    <h2 className="service-label-inverse">RETAINED SEARCH</h2>
                     <p className="retained-desc">
                         For roles where a mis-hire is not an option. We own the search end to end — from building the market map and defining the candidate scorecard to managing every stage of outreach, evaluation, and offer negotiation. Retained engagements are our highest-touch service: fully dedicated bandwidth, weekly progress reporting, and a commitment to fill the role.
                     </p>
@@ -33,7 +34,7 @@ const Services = () => {
             <section className="embedded-section">
                 <div className="content-container embedded-grid">
                     <div className="embedded-left">
-                        <span className="service-label-underline">EMBEDDED RECRUITING</span>
+                        <h2 className="service-label-underline">EMBEDDED RECRUITING</h2>
                         <p className="embedded-desc">
                             We integrate directly into your team for a defined engagement period. We attend your standups, work inside your ATS and Slack, run intake sessions with your hiring managers, and operate as a seamless extension of your internal recruiting function — without the overhead of a full-time hire.
                         </p>
@@ -57,7 +58,7 @@ const Services = () => {
             {/* Section D - Strategic Advising */}
             <section className="advising-section">
                 <div className="content-container">
-                    <span className="service-label-inverse">STRATEGIC ADVISING</span>
+                    <h2 className="service-label-inverse">STRATEGIC ADVISING</h2>
                     <p className="advising-desc">
                         Not every hiring problem is solved by adding a recruiter. Sometimes the problem is the process itself — the interviews are too slow, the offers are uncompetitive, or the employer brand isn't reaching the right people. We advise leadership on the structural and strategic dimensions of talent acquisition: compensation architecture, interview design, employer positioning, and organizational planning for teams in transition.
                     </p>

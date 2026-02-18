@@ -1,0 +1,37 @@
+# Sycamore Creek Consulting
+> Boutique talent advisory firm. Washington, D.C.
+
+## About
+Sycamore Creek Consulting is a boutique retained search and talent advisory firm founded and operated by Owen Howe. The firm specializes in sourcing passive talent — candidates who are not actively looking — for high-growth startups and established institutions. Primary markets are Washington, D.C. and New York City.
+
+The firm operates on a principal-led model: Owen Howe personally runs every engagement from scoping through offer close. There is no handoff to junior staff.
+
+## Services
+
+### Retained Search
+End-to-end ownership of critical hires. Includes market mapping, candidate scorecard development, targeted outreach, evaluation, and offer negotiation. Best for senior technical leadership, niche engineering roles, and confidential replacements where the talent pool is small and the stakes are high.
+
+### Embedded Recruiting
+Direct integration into the client's team for a defined engagement period. Operates inside client ATS and Slack, attends standups, and functions as an extension of the internal recruiting function without the overhead of a full-time hire. Best for startups scaling rapidly after a funding round.
+
+### Strategic Talent Advising
+Advisory on compensation architecture, interview design, employer positioning, and organizational planning for teams in transition. Best for founders losing candidates and leadership navigating AI-driven workforce restructuring.
+
+## Track Record
+- $50M+ in total compensation negotiated for placed candidates
+- 87% offer acceptance rate
+- Placements include: Senior FPGA Developer, Principal Research Engineer, Senior AI Engineer, VP of Engineering (Major Media Organization), Director of Research (DARPA Research Lab), Business Development Lead, Senior Reverse Engineer (Cleared Research Lab), Staff Android Engineer (Global Media Organization), Product Director
+
+## Specializations
+- Technical recruiting (FPGA, AI/ML, reverse engineering, mobile, product)
+- Defense and cleared research sector hiring
+- Executive and leadership search
+- Startup team building post-funding
+- LLM-native and AI engineer acquisition
+- Passive candidate sourcing
+
+## Contact
+- Website: https://sycamorecreekconsulting.com
+- Email: owen@howe.app
+- LinkedIn: https://www.linkedin.com/in/owen-howe-wm2016/
+- Location: Washington, D.C. — serving clients nationwide

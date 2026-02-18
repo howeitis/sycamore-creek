@@ -9,6 +9,7 @@ const Home = () => {
         <div className="home-page">
             <title>Sycamore Creek Consulting | Boutique Talent Advisory</title>
             <meta name="description" content="We find the people who aren't looking. Sycamore Creek is a boutique retained search and talent advisory firm serving DC and NYC." />
+            <link rel="canonical" href="https://sycamorecreekconsulting.com/" />
             <Hero />
             <Pedigree />
             <ServiceHierarchy />
