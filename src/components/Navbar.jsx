@@ -67,7 +67,7 @@ const Navbar = () => {
                     width: 100%;
                     z-index: 1000;
                     transition: all 0.3s ease;
-                    background-color: transparent;
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 100%);
                     padding: 1.5rem 0;
                 }
 

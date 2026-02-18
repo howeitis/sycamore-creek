@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCanonical } from '../hooks/useCanonical';
 
 const About = () => {
+    useCanonical('https://sycamorecreekconsulting.com/about');
     return (
         <div className="page-wrapper">
             <title>About | Sycamore Creek Consulting</title>
             <meta name="description" content="Owen Howe, Founder and Principal of Sycamore Creek Consulting — built for the searches others can't close. Boutique talent advisory in Washington, D.C." />
-            <link rel="canonical" href="https://sycamorecreekconsulting.com/about" />
             {/* Section A - Page Header */}
             <section className="about-header-section">
                 <div className="content-container">
