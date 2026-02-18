@@ -7,9 +7,9 @@
 
 ## Product
 
-| # | Issue | Impact | Complexity | Notes |
-|---|---|---|---|---|
-| P1 | Add a 404 / Not Found page | High | Low | Currently a bad URL renders a blank page with nav and footer. Looks broken to any visitor who lands on a dead link. |
+| # | Issue | Impact | Complexity | Status | Notes |
+|---|---|---|---|---|---|
+| P1 | Add a 404 / Not Found page | High | Low | ✅ Done | Resolved by E1. `NotFound.jsx` renders on any unmatched route. |
 | P2 | Unify CTA copy | High | Low | Three different CTAs across the site: "Initiate Search", "Start the Conversation", "Get in Touch". Pick one primary phrase and apply it consistently. |
 | P3 | Enrich Track Record placement cards | High | Medium | Nine cards with only a role, company type, and city. No context for what made the hire hard or meaningful. Even one sentence per card would sharpen credibility significantly. |
 | P4 | Clarify the "$50M+" stat | High | Low | Ambiguous — total comp negotiated for candidates? Saved for clients? A four-word clarifier makes it land harder. |
@@ -22,16 +22,16 @@
 
 ## Engineering
 
-| # | Issue | Impact | Complexity | Notes |
-|---|---|---|---|---|
-| E1 | Add a 404 route in React Router | High | Low | Add a catch-all `<Route path="*">` that renders a simple Not Found page. Pairs with P1. |
-| E2 | Preload the hero background image | Medium | Low | The hero `background-image` is set in CSS, so the browser doesn't discover it until stylesheet parse time. A `<link rel="preload">` in `index.html` improves LCP (Largest Contentful Paint), which is a direct Google ranking signal. |
-| E3 | Remove `pdf-parse` dependency | Low | Low | Listed in `package.json` dependencies but not imported or used anywhere in the codebase. Dead weight in the install. |
-| E4 | Remove unused imports in `vite.config.js` | Low | Low | `resolve` and `__dirname` are imported but never used. Two lines to delete. |
-| E5 | Remove unused `mailtoLink` variable in `Closing.jsx` | Low | Low | `const mailtoLink = "mailto:owen@howe.app"` is defined but never referenced. |
-| E6 | Optimize images to WebP | Medium | Medium | `hero_background.png` and `founder.jpg` are likely large. Converting to WebP with appropriate compression would reduce page weight and improve load times, especially on mobile. |
-| E7 | Extract shared inline styles to a CSS module | Medium | High | Every page and component has a large `<style>` block with duplicated rules (`.cta-button`, `.content-container`, `.page-wrapper`, etc.). Consolidating into a shared stylesheet would reduce bundle size and make design changes a single-file edit. |
-| E8 | Add an error boundary | Low | Medium | No React error boundary exists. An unhandled render error currently crashes the entire app to a blank page with no recovery path. |
+| # | Issue | Impact | Complexity | Status | Notes |
+|---|---|---|---|---|---|
+| E1 | Add a 404 route in React Router | High | Low | ✅ Done | `NotFound.jsx` created. Catch-all `<Route path="*">` added to `App.jsx`. |
+| E2 | Preload the hero background image | Medium | Low | ✅ Done | `<link rel="preload">` for `hero_background.png` added to `index.html`. |
+| E3 | Remove `pdf-parse` dependency | Low | Low | ✅ Done | Uninstalled via `npm uninstall pdf-parse`. Removed from `package.json`. |
+| E4 | Remove unused imports in `vite.config.js` | Low | Low | ✅ Done | Removed `resolve`, `fileURLToPath`, `dirname`, and `__dirname`. |
+| E5 | Remove unused `mailtoLink` variable in `Closing.jsx` | Low | Low | ✅ Done | Removed unused `const mailtoLink` declaration. |
+| E6 | Optimize images to WebP | Medium | Medium | Pending | `hero_background.png` and `founder.jpg` are likely large. Converting to WebP with appropriate compression would reduce page weight and improve load times, especially on mobile. |
+| E7 | Extract shared inline styles to a CSS module | Medium | High | Pending | Every page and component has a large `<style>` block with duplicated rules (`.cta-button`, `.content-container`, `.page-wrapper`, etc.). Consolidating into a shared stylesheet would reduce bundle size and make design changes a single-file edit. |
+| E8 | Add an error boundary | Low | Medium | Pending | No React error boundary exists. An unhandled render error currently crashes the entire app to a blank page with no recovery path. |
 
 ---
 

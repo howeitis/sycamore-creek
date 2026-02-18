@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Closing = () => {
-    const mailtoLink = "mailto:owen@howe.app";
-
     return (
         <section className="closing-section">
             <div className="closing-container">

@@ -7,6 +7,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import TrackRecord from './pages/TrackRecord';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 function App() {
@@ -20,8 +21,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/track-record" element={<TrackRecord />} />
           <Route path="/contact" element={<Contact />} />
-          {/* Fallback for legacy .html links if they get hit directly? 
-              Actually, Netlify rewrites should handle it, but good to have handy */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       <Footer />
