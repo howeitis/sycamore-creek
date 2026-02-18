@@ -228,6 +228,8 @@ const Contact = () => {
 
                 .submit-button:hover {
                     background-color: #00331b;
+                    box-shadow: 0 0 15px var(--color-bg-accent);
+                    transform: translateY(-2px);
                 }
 
                 /* Direct Info Column */

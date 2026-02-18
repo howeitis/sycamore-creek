@@ -114,6 +114,8 @@ const Closing = () => {
 
         .cta-button:hover {
             background-color: #00331b; /* Darker Green */
+            box-shadow: 0 0 15px var(--color-bg-accent);
+            transform: translateY(-2px);
         }
         
         @media (max-width: 768px) {
