@@ -7,9 +7,11 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-left">
           <span className="brand">Sycamore Creek</span>
-          <span className="principal">Owen Howe | Principal | Washington, D.C.</span>
         </div>
 
+        <div className="footer-center">
+          <span className="principal">Owen Howe | Principal | Washington, D.C.</span>
+        </div>
 
         <div className="footer-right">
           <a href="mailto:owen@howe.app" className="footer-link">owen@howe.app</a>
