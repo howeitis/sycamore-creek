@@ -3,15 +3,9 @@
   command = "npm run build"
 
 [[redirects]]
-  # Handle SPA fallback (though we use MPAs, this is good practice generally, 
-  # but strictly simpler for us since we have specific HTML files)
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false  # Only redirect if file not found. 
-  # Actually for MPAs we want real 404s or specific redirects.
-  # But since we are embedding specific pages, we usually don't need this.
-  # Let's keep it simple.
 
 [[headers]]
   for = "/*"

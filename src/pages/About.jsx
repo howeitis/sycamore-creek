@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const About = () => {
     return (
@@ -60,11 +60,10 @@ const About = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Effective leadership changes everything. Let's find your next principal.</h3>
-                    <a href="contact.html" className="cta-button">START THE CONVERSATION</a>
+                    <Link to="/contact" className="cta-button">START THE CONVERSATION</Link>
                 </div>
             </section>
 
-            <Footer />
 
             <style>{`
                 .page-wrapper {

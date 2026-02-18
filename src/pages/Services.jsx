@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
     return (
@@ -69,11 +69,10 @@ const Services = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Not sure which engagement fits? Let's talk.</h3>
-                    <a href="contact.html" className="cta-button">GET IN TOUCH</a>
+                    <Link to="/contact" className="cta-button">GET IN TOUCH</Link>
                 </div>
             </section>
 
-            <Footer />
 
             <style>{`
                 .page-wrapper {

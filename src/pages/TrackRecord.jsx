@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 import { stats, placements } from '../data/placements';
 
 const TrackRecord = () => {
@@ -50,11 +50,10 @@ const TrackRecord = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Ready to add to this list?</h3>
-                    <a href="contact.html" className="cta-button">INITIATE A SEARCH</a>
+                    <Link to="/contact" className="cta-button">INITIATE A SEARCH</Link>
                 </div>
             </section>
 
-            <Footer />
 
             <style>{`
                 .page-wrapper {

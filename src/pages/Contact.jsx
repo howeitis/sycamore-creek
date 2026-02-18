@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Footer from '../components/Footer';
 
 const Contact = () => {
     const [status, setStatus] = useState('IDLE'); // IDLE, SUBMITTING, SUCCESS, ERROR
@@ -113,7 +112,6 @@ const Contact = () => {
                 </div>
             </section>
 
-            <Footer />
 
             <style>{`
                 .page-wrapper {

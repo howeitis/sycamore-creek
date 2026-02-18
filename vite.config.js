@@ -11,14 +11,6 @@ export default defineConfig({
   plugins: [react()],
   base: './', // Use relative paths for universal deployment (Netlify + GitHub Pages)
   build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        about: resolve(__dirname, 'about.html'),
-        services: resolve(__dirname, 'services.html'),
-        contact: resolve(__dirname, 'contact.html'),
-        track_record: resolve(__dirname, 'track-record.html'),
-      },
-    },
+    // defaults are fine for SPA
   },
 })
