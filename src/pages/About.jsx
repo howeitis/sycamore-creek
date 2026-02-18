@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const About = () => {
     return (
         <div className="page-wrapper">
-            <title>About Owen Howe | Sycamore Creek Consulting</title>
+            <title>About | Sycamore Creek Consulting</title>
             <meta name="description" content="Owen Howe, Founder and Principal of Sycamore Creek Consulting — built for the searches others can't close. Boutique talent advisory in Washington, D.C." />
             {/* Section A - Page Header */}
             <section className="about-header-section">
