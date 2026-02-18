@@ -1,4 +1,4 @@
-import{j as e,F as i,c as r,r as t}from"./Footer-DH1bEy_T.js";const o=()=>e.jsxs("section",{className:"hero-section",children:[e.jsx("div",{className:"hero-overlay"}),e.jsxs("div",{className:"hero-content",children:[e.jsx("div",{className:"logo-container",children:e.jsx("img",{src:"/sycamore-creek/logo.png",alt:"Sycamore Creek Consulting",className:"logo-image"})}),e.jsx("h1",{className:"hero-headline",children:"We find the people who aren't looking."}),e.jsx("p",{className:"hero-subhead",children:"Sycamore Creek is a boutique talent advisory firm. We secure elite talent and architect recruiting engines for high-growth teams."})]}),e.jsx("style",{children:`
+import{j as e,F as r,c as i,r as o}from"./Footer-D71RzGy1.js";const t=()=>e.jsxs("section",{className:"hero-section",children:[e.jsx("div",{className:"hero-overlay"}),e.jsxs("div",{className:"hero-content",children:[e.jsx("div",{className:"logo-container",children:e.jsx("img",{src:"/sycamore-creek/logo.png",alt:"Sycamore Creek Consulting",className:"logo-image"})}),e.jsx("h1",{className:"hero-headline",children:"We find the people who aren't looking."}),e.jsx("p",{className:"hero-subhead",children:"Sycamore Creek is a boutique talent advisory firm. We secure elite talent and architect recruiting engines for high-growth teams."})]}),e.jsx("style",{children:`
         .hero-section {
           position: relative;
           height: 90vh; /* High impact */
@@ -106,6 +106,19 @@ import{j as e,F as i,c as r,r as t}from"./Footer-DH1bEy_T.js";const o=()=>e.jsxs
           gap: 2rem;
           border-top: 1px solid rgba(0,0,0,0.1);
           padding-top: 3rem;
+        }
+
+        .proof-item {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          padding: 1.5rem;
+          border-radius: 8px;
+          background-color: transparent; /* or generic */
+        }
+
+        .proof-item:hover {
+           transform: translateY(-5px);
+           background-color: rgba(0,0,0,0.02); /* Subtle highlight */
+           box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .proof-title {
@@ -299,4 +312,4 @@ import{j as e,F as i,c as r,r as t}from"./Footer-DH1bEy_T.js";const o=()=>e.jsxs
                 text-align: center;
             }
         }
-      `})]});function c(){return e.jsxs("div",{className:"app-container",children:[e.jsx(o,{}),e.jsx(a,{}),e.jsx(n,{}),e.jsx(s,{}),e.jsx(i,{})]})}r.createRoot(document.getElementById("root")).render(e.jsx(t.StrictMode,{children:e.jsx(c,{})}));
+      `})]});function c(){return e.jsxs("div",{className:"app-container",children:[e.jsx(t,{}),e.jsx(a,{}),e.jsx(n,{}),e.jsx(s,{}),e.jsx(r,{})]})}i.createRoot(document.getElementById("root")).render(e.jsx(o.StrictMode,{children:e.jsx(c,{})}));
