@@ -59,7 +59,15 @@ const Closing = () => {
         }
 
         .step-item {
-            padding: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .step-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(0,0,0,0.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .step-number {
