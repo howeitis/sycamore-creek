@@ -1,16 +1,54 @@
-# React + Vite
+# Sycamore Creek Consulting Website (v1.0)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the source code for the Sycamore Creek Consulting marketing website.
 
-Currently, two official plugins are available:
+## Overview
+*   **Type**: Static React Application (SPA)
+*   **Framework**: React 18 + Vite
+*   **Hosting**: GitHub Pages
+*   **Integration**: Embedded into Google Sites via iframe
+*   **Form Backend**: Formspree (AJAX submission)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
+The project is a multi-page React app (using Vite's multi-page mode) designed to be embedded as individual components (About, Services, Contact) or viewed as a whole.
 
-## React Compiler
+*   `src/pages/`: Main page components (`About.jsx`, `Services.jsx`, `Contact.jsx`).
+*   `src/components/`: Reusable UI blocks (`Footer.jsx`, `Closing.jsx`, `Pedigree.jsx`).
+*   `src/index.css`: Global styles, typography, and animations.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local Development
 
-## Expanding the ESLint configuration
+1.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2.  **Start Dev Server**:
+    ```bash
+    npm run dev
+    ```
+    Visit `http://localhost:5173/` (or the port shown in terminal).
+
+## Deployment
+
+The site is hosted on GitHub Pages. To deploy updates:
+
+1.  **Commit your changes**:
+    ```bash
+    git add .
+    git commit -m "Description of changes"
+    git push
+    ```
+
+2.  **Deploy**:
+    ```bash
+    npm run deploy
+    ```
+    This command runs the build script (`vite build`) and pushes the `dist` folder to the `gh-pages` branch.
+
+## Key Features (v1.0)
+*   **Design System**: "Modern Heritage" theme (British Racing Green, Parchment, Teal).
+*   **Performance**: Preconnected fonts, optimized build.
+*   **Animations**: `fadeInUp` entrance animations and hover effects.
+*   **Contact Form**: integrated with Formspree (ID: `xzdaglle`).
+*   **Print Friendly**: CSS print styles included.

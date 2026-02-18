@@ -12,9 +12,14 @@ const Footer = () => {
           <span className="principal">Owen Howe | Principal | Washington, D.C.</span>
         </div>
 
+        <nav className="footer-nav">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="track-record.html">Track Record</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
         <div className="footer-right">
-          <a href="contact.html" className="footer-link">Initiate a Search</a>
-          <span className="separator">|</span>
           <a href="mailto:owen@howe.app" className="footer-link">owen@howe.app</a>
           <span className="separator">|</span>
           <a href="https://www.linkedin.com/in/owen-howe-wm2016/" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
