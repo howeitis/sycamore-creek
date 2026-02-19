@@ -80,7 +80,7 @@ Visit `http://localhost:5173`.
 
 Auto-deploys to `https://sycamorecreekconsulting.com` on every push to `main` when Netlify auto-deploy is enabled.
 
-Build command: `npm run build` — output directory: `dist`.
+Build command: `npm run build` — output directory: `dist` (includes `404.html` hack for GH Pages routing).
 
 > **Note:** Netlify builds without env vars set. `VITE_BASE_PATH` defaults to `/` (absolute root paths) and `VITE_ROUTER_BASENAME` defaults to `/` (correct for a root-domain deployment).
 
