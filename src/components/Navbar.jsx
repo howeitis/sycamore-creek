@@ -92,7 +92,7 @@ const Navbar = () => {
                 }
 
                 .navbar-logo {
-                    height: 48px; /* Adjust size as needed */
+                    height: 48px;
                     width: auto;
                     transition: all 0.3s ease;
                 }
@@ -107,14 +107,14 @@ const Navbar = () => {
                     font-family: var(--font-body);
                     font-weight: 500;
                     font-size: 0.95rem;
-                    color: #ffffff; /* White by default on transparent */
+                    color: #ffffff;
                     text-decoration: none;
                     transition: color 0.2s;
-                    text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* improved readability */
+                    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
                 }
 
                 .navbar.scrolled .nav-link {
-                    color: var(--color-text-primary); /* Dark on scrolled */
+                    color: var(--color-text-primary);
                     text-shadow: none;
                 }
 
@@ -122,15 +122,15 @@ const Navbar = () => {
                     opacity: 0.8;
                 }
 
-                .navbar.scrolled .nav-link:hover, 
+                .navbar.scrolled .nav-link:hover,
                 .navbar.scrolled .nav-link.current {
-                    color: var(--color-bg-emphasis); /* Green hover on scrolled */
+                    color: var(--color-bg-emphasis);
                     opacity: 1;
                 }
 
                 .nav-cta-button {
-                    background-color: #ffffff; /* White button on transparent */
-                    color: var(--color-bg-emphasis); /* Green text */
+                    background-color: #ffffff;
+                    color: var(--color-bg-emphasis);
                     padding: 0.6rem 1.2rem;
                     border-radius: 4px;
                     text-decoration: none;
@@ -165,7 +165,7 @@ const Navbar = () => {
                     display: block;
                     width: 24px;
                     height: 2px;
-                    background-color: #ffffff; /* White hamburger */
+                    background-color: #ffffff;
                     position: relative;
                     box-shadow: 0 1px 2px rgba(0,0,0,0.5);
                 }
@@ -200,6 +200,10 @@ const Navbar = () => {
                         display: block;
                     }
 
+                    .navbar {
+                        padding: 1rem 0;
+                    }
+
                     .navbar-links {
                         position: absolute;
                         top: 100%;
@@ -215,23 +219,13 @@ const Navbar = () => {
                     }
 
                     .navbar-links .nav-link {
-                         color: var(--color-text-primary); /* Dark text in mobile menu */
-                         text-shadow: none;
+                        color: var(--color-text-primary);
+                        text-shadow: none;
                     }
 
                     .navbar-links.active {
                         transform: translateY(0);
                     }
-
-                    .navbar {
-                        background-color: var(--color-bg-emphasis); /* Solid Green on Mobile Header to match brand if not transparent? Or maybe just keep it transparent/transition logic? 
-                        Actually, let's make it solid green for mobile readability if menu is closed, or just handle scroll. 
-                        Let's stick to the scroll logic, but maybe force background on mobile if needed? 
-                        For safety/readability on all pages, let's keep the scroll logic but ensure mobile menu background is white. */
-                        padding: 1rem 0;
-                    }
-                    
-                    /* Force solid background on mobile if menu is open? No, menu is absolute. */
                 }
             `}</style>
         </nav>
