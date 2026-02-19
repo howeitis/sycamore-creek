@@ -29,7 +29,7 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}>
             <div className="navbar-container">
                 <Link to="/" className="navbar-brand">
                     <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Sycamore Creek" className="navbar-logo" />
@@ -202,6 +202,18 @@ const Navbar = () => {
 
                     .navbar {
                         padding: 1rem 0;
+                    }
+
+                    .navbar.menu-open {
+                        background: white;
+                        box-shadow: none;
+                    }
+
+                    .navbar.menu-open .hamburger,
+                    .navbar.menu-open .hamburger::before,
+                    .navbar.menu-open .hamburger::after {
+                        background-color: var(--color-text-primary);
+                        box-shadow: none;
                     }
 
                     .navbar-links {
