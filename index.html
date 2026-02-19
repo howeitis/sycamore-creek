@@ -101,6 +101,19 @@
     }
   }
   </script>
+  <!-- GitHub Pages SPA: restore path from 404.html redirect -->
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var p = params.get('p');
+      if (p != null) {
+        var q = params.get('q');
+        var url = window.location.pathname + '/' + decodeURIComponent(p) +
+          (q ? '?' + decodeURIComponent(q) : '') + window.location.hash;
+        window.history.replaceState(null, null, url);
+      }
+    })();
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPXQ5ZX30P"></script>
   <script>

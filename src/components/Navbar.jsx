@@ -32,7 +32,7 @@ const Navbar = () => {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="navbar-container">
                 <Link to="/" className="navbar-brand">
-                    <img src="/logo.png" alt="Sycamore Creek" className="navbar-logo" />
+                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Sycamore Creek" className="navbar-logo" />
                 </Link>
 
                 <div className={`navbar-links ${mobileMenuOpen ? 'active' : ''}`}>

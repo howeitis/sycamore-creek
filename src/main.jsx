@@ -6,7 +6,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.VITE_ROUTER_BASENAME || '/'}>
       <App />
     </BrowserRouter>
   </StrictMode>,
