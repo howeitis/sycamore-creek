@@ -13,6 +13,14 @@ See `BACKLOG.md` for pending work.
 ## 2026-02-18 (latest)
 
 ### Bug Fixes
+- **Hero images break on return navigation** — With `base: './'`, Vite generated relative asset URLs (`./logo.png`, `./hero_background.png`). Browsers resolve relative CSS `url()` values against the URL context active when the `<style>` tag was first parsed, not the current URL — causing images to 404 after SPA navigation away and back. Fixed by reading `VITE_BASE_PATH` in `vite.config.js` (defaults to `/` for Netlify). The GitHub Actions workflow sets `VITE_BASE_PATH=/sycamore-creek/`, producing absolute paths that are URL-independent across all SPA navigation.
+- **Mobile navbar bar stays transparent when menu opens** — When the hamburger menu was opened, the top bar remained transparent (showing the gradient) while the dropdown below it was white, creating a visual mismatch. Fixed by adding a `menu-open` class to `<nav>` when `mobileMenuOpen` is true. On mobile, `.navbar.menu-open` overrides the gradient with `background: white` to match the dropdown panel. Hamburger lines also switch to dark to remain visible on the white background.
+
+---
+
+## 2026-02-18
+
+### Bug Fixes
 - **Favicon regression** — React 19's `<link>` metadata hoisting was interfering with the static `<link rel="icon">` in `index.html`, causing the browser tab favicon to disappear. Replaced all JSX `<link rel="canonical">` tags with a `useCanonical()` hook (`src/hooks/useCanonical.js`) that sets the canonical tag via `useEffect` + direct DOM manipulation, bypassing React 19's hoisting entirely.
 - **Navbar invisible on Services page** — Navbar was `background: transparent` with white text. The Services page header uses a parchment background, making white nav links invisible. Fixed by replacing the transparent background with a subtle dark-to-transparent gradient (`linear-gradient(rgba(0,0,0,0.35), transparent)`), ensuring readability over any page background.
 - **Navbar logo broken on GitHub Pages** — Logo `src` was hardcoded as `/logo.png` (absolute path). On the `/sycamore-creek/` subdirectory, this resolved to the wrong URL. Fixed to use `${import.meta.env.BASE_URL}logo.png` (relative), consistent with the hero image.

@@ -55,7 +55,7 @@ sycamore-creek/
 │   ├── main.jsx               # React entry point (reads VITE_ROUTER_BASENAME)
 │   └── index.css              # Global CSS variables, typography, animations
 ├── index.html                 # HTML entry — meta tags, OG tags, JSON-LD, GA4
-├── vite.config.js             # Vite config (base: './' for universal deployment)
+├── vite.config.js             # Vite config (base path set via VITE_BASE_PATH env var)
 ├── netlify.toml               # Netlify build config, SPA redirect, security headers
 ├── eslint.config.js           # ESLint flat config (React hooks + refresh)
 └── package.json
@@ -82,13 +82,18 @@ Auto-deploys to `https://sycamorecreekconsulting.com` on every push to `main` wh
 
 Build command: `npm run build` — output directory: `dist`.
 
-> **Note:** Netlify builds without `VITE_ROUTER_BASENAME` set, so the React Router basename defaults to `/` (correct for a root-domain deployment).
+> **Note:** Netlify builds without env vars set. `VITE_BASE_PATH` defaults to `/` (absolute root paths) and `VITE_ROUTER_BASENAME` defaults to `/` (correct for a root-domain deployment).
 
 ### Preview (GitHub Pages)
 
 GitHub Actions builds and deploys to `https://howeitis.github.io/sycamore-creek/` on every push to `main`.
 
-The workflow (`.github/workflows/deploy.yml`) sets `VITE_ROUTER_BASENAME=/sycamore-creek` so React Router resolves routes correctly under the subdirectory path.
+The workflow (`.github/workflows/deploy.yml`) sets two env vars for the build:
+
+| Var | Value | Effect |
+|---|---|---|
+| `VITE_BASE_PATH` | `/sycamore-creek/` | Vite generates absolute asset paths (`/sycamore-creek/logo.png`, etc.) — required to prevent images from 404ing after SPA navigation |
+| `VITE_ROUTER_BASENAME` | `/sycamore-creek` | React Router resolves routes under the subdirectory path |
 
 To trigger a deploy manually: go to the **Actions** tab on GitHub → **Deploy to GitHub Pages** → **Run workflow**.
 
