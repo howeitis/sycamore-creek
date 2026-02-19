@@ -30,6 +30,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          VITE_BASE_PATH: /sycamore-creek/
           VITE_ROUTER_BASENAME: /sycamore-creek
 
       - uses: actions/upload-pages-artifact@v3
