@@ -10,6 +10,20 @@ See `BACKLOG.md` for pending work.
 
 ---
 
+## 2026-02-18 (latest)
+
+### Bug Fixes
+- **Favicon regression** — React 19's `<link>` metadata hoisting was interfering with the static `<link rel="icon">` in `index.html`, causing the browser tab favicon to disappear. Replaced all JSX `<link rel="canonical">` tags with a `useCanonical()` hook (`src/hooks/useCanonical.js`) that sets the canonical tag via `useEffect` + direct DOM manipulation, bypassing React 19's hoisting entirely.
+- **Navbar invisible on Services page** — Navbar was `background: transparent` with white text. The Services page header uses a parchment background, making white nav links invisible. Fixed by replacing the transparent background with a subtle dark-to-transparent gradient (`linear-gradient(rgba(0,0,0,0.35), transparent)`), ensuring readability over any page background.
+- **Navbar logo broken on GitHub Pages** — Logo `src` was hardcoded as `/logo.png` (absolute path). On the `/sycamore-creek/` subdirectory, this resolved to the wrong URL. Fixed to use `${import.meta.env.BASE_URL}logo.png` (relative), consistent with the hero image.
+
+### Engineering
+- **GitHub Pages deployment** — Added `.github/workflows/deploy.yml`. On every push to `main`, GitHub Actions builds the project (with `VITE_ROUTER_BASENAME=/sycamore-creek`) and deploys to GitHub Pages. Manual trigger available via the Actions tab.
+- **SPA routing on GitHub Pages** — Added `public/404.html` and a decode script in `index.html` to handle direct URL access and page-refresh on any route. Without this, navigating to `https://howeitis.github.io/sycamore-creek/about` would return a GitHub Pages 404.
+- **BrowserRouter basename** — `main.jsx` now reads `VITE_ROUTER_BASENAME` env var for the React Router basename (defaults to `/`). GitHub Pages build sets this to `/sycamore-creek`; Netlify build leaves it unset.
+
+---
+
 ## 2026-02-18
 
 ### Engineering

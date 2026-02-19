@@ -10,10 +10,11 @@ Marketing website for Sycamore Creek Consulting, a boutique talent advisory firm
 |---|---|
 | Framework | React 19 + Vite 7 |
 | Routing | React Router DOM v7 (SPA, client-side) |
-| Hosting | Netlify (auto-deploys on push to `main`) |
+| Hosting (production) | Netlify — `https://sycamorecreekconsulting.com` |
+| Hosting (preview) | GitHub Pages — `https://howeitis.github.io/sycamore-creek/` |
+| CI/CD | GitHub Actions (`.github/workflows/deploy.yml`) |
 | Forms | Formspree (endpoint ID: `xzdaglle`) |
 | Analytics | Google Analytics 4 (ID: `G-GPXQ5ZX30P`) |
-| Domain | `https://sycamorecreekconsulting.com` |
 
 ---
 
@@ -27,6 +28,9 @@ sycamore-creek/
 │   ├── founder.jpg            # Founder photo (About page)
 │   ├── sitemap.xml            # Submitted to Google Search Console
 │   └── vite.svg               # Unused default asset (safe to delete)
+├── .github/
+│   └── workflows/
+│       └── deploy.yml         # GitHub Actions: build + deploy to GitHub Pages
 ├── src/
 │   ├── pages/
 │   │   ├── Home.jsx           # Landing page (Hero + Pedigree + ServiceHierarchy + Closing)
@@ -42,14 +46,16 @@ sycamore-creek/
 │   │   ├── Pedigree.jsx       # Capability highlights (Home page)
 │   │   ├── ServiceHierarchy.jsx # Service blocks (Home page)
 │   │   └── Closing.jsx        # "How We Work" process + CTA (Home page)
+│   ├── hooks/
+│   │   └── useCanonical.js    # Sets <link rel="canonical"> via DOM (avoids React 19 hoisting)
 │   ├── data/
 │   │   └── placements.js      # Track Record stats and placement card data
 │   ├── App.jsx                # Route definitions
 │   ├── App.css                # App-level layout styles
-│   ├── main.jsx               # React entry point
+│   ├── main.jsx               # React entry point (reads VITE_ROUTER_BASENAME)
 │   └── index.css              # Global CSS variables, typography, animations
 ├── index.html                 # HTML entry — meta tags, OG tags, JSON-LD, GA4
-├── vite.config.js             # Vite config (relative base path for Netlify)
+├── vite.config.js             # Vite config (base: './' for universal deployment)
 ├── netlify.toml               # Netlify build config, SPA redirect, security headers
 ├── eslint.config.js           # ESLint flat config (React hooks + refresh)
 └── package.json
@@ -70,14 +76,21 @@ Visit `http://localhost:5173`.
 
 ## Deployment
 
-Netlify auto-deploys on every push to `main`. No manual deploy step required.
+### Production (Netlify)
 
-To trigger a deploy manually:
-```bash
-git push origin main
-```
+Auto-deploys to `https://sycamorecreekconsulting.com` on every push to `main` when Netlify auto-deploy is enabled.
 
 Build command: `npm run build` — output directory: `dist`.
+
+> **Note:** Netlify builds without `VITE_ROUTER_BASENAME` set, so the React Router basename defaults to `/` (correct for a root-domain deployment).
+
+### Preview (GitHub Pages)
+
+GitHub Actions builds and deploys to `https://howeitis.github.io/sycamore-creek/` on every push to `main`.
+
+The workflow (`.github/workflows/deploy.yml`) sets `VITE_ROUTER_BASENAME=/sycamore-creek` so React Router resolves routes correctly under the subdirectory path.
+
+To trigger a deploy manually: go to the **Actions** tab on GitHub → **Deploy to GitHub Pages** → **Run workflow**.
 
 ---
 
@@ -101,10 +114,13 @@ Fonts are loaded via Google Fonts CDN in `index.css`.
 
 The following SEO infrastructure is in place:
 
-- **Per-page titles and meta descriptions** — set via React 19 document metadata hoisting in each page component
+- **Per-page titles and meta descriptions** — set via React 19 native document metadata hoisting (`<title>` and `<meta>` in page components)
+- **Canonical tags** — managed by `useCanonical()` hook (`src/hooks/useCanonical.js`) via `useEffect` + direct DOM manipulation. JSX `<link rel="canonical">` is intentionally avoided: React 19's `<link>` hoisting interferes with the static `<link rel="icon">` in `index.html`.
 - **Open Graph + Twitter Card tags** — in `index.html` for social sharing previews
 - **JSON-LD structured data** — `ProfessionalService` schema in `index.html` covering the business entity, founder, services, and geography
 - **Sitemap** — `/public/sitemap.xml`, submitted to Google Search Console
+- **robots.txt** — `/public/robots.txt`, allows all crawlers
+- **llms.txt** — `/public/llms.txt`, plain-text AI crawler file
 - **Security header** — `X-Frame-Options: SAMEORIGIN` set in `netlify.toml`
 - **Hero image preload** — `<link rel="preload">` in `index.html` for LCP
 
