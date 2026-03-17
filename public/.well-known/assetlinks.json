@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.sycamorecreek.sonoswidget",
+      "sha256_cert_fingerprints": ["15:FC:48:8B:FB:06:A1:28:2A:23:16:CD:CD:7C:F0:58:FE:82:83:59:C7:F8:00:4A:E9:B2:9C:1A:CB:E8:CC:E4"]
+    }
+  }
+]
