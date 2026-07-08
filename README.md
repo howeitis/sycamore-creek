@@ -10,9 +10,8 @@ Marketing website for Sycamore Creek Consulting, a boutique talent advisory firm
 |---|---|
 | Framework | React 19 + Vite 7 |
 | Routing | React Router DOM v7 (SPA, client-side) |
-| Hosting (production) | Netlify — `https://sycamorecreekconsulting.com` |
-| Hosting (preview) | GitHub Pages — `https://howeitis.github.io/sycamore-creek/` |
-| CI/CD | GitHub Actions (`.github/workflows/deploy.yml`) |
+| Hosting | Vercel — `https://sycamorecreekconsulting.com` |
+| CI/CD | Vercel Git integration (auto-deploy on push to `main`) |
 | Forms | Formspree (endpoint ID: `xzdaglle`) |
 | Analytics | Google Analytics 4 (ID: `G-GPXQ5ZX30P`) |
 
@@ -23,14 +22,16 @@ Marketing website for Sycamore Creek Consulting, a boutique talent advisory firm
 ```
 sycamore-creek/
 ├── public/
-│   ├── logo.png               # Primary brand logo
-│   ├── hero_background.png    # Hero section background image
-│   ├── founder.jpg            # Founder photo (About page)
+│   ├── logo.png               # Favicon / OpenGraph / Twitter / schema.org logo (optimized PNG)
+│   ├── logo.webp              # On-page brand logo (navbar + hero)
+│   ├── hero_background.webp   # Hero section background image
+│   ├── founder.webp           # Founder photo (About page)
 │   ├── sitemap.xml            # Submitted to Google Search Console
+│   ├── robots.txt             # Crawler directives
+│   ├── llms.txt               # Plain-text AI crawler file
+│   ├── callback.html          # OAuth callback (Sonos widget deep link)
+│   ├── .well-known/           # Android App Links verification (assetlinks.json)
 │   └── vite.svg               # Unused default asset (safe to delete)
-├── .github/
-│   └── workflows/
-│       └── deploy.yml         # GitHub Actions: build + deploy to GitHub Pages
 ├── src/
 │   ├── pages/
 │   │   ├── Home.jsx           # Landing page (Hero + Pedigree + ServiceHierarchy + Closing)
@@ -52,11 +53,11 @@ sycamore-creek/
 │   │   └── placements.js      # Track Record stats and placement card data
 │   ├── App.jsx                # Route definitions
 │   ├── App.css                # App-level layout styles
-│   ├── main.jsx               # React entry point (reads VITE_ROUTER_BASENAME)
+│   ├── main.jsx               # React entry point (reads VITE_ROUTER_BASENAME, defaults to /)
 │   └── index.css              # Global CSS variables, typography, animations
 ├── index.html                 # HTML entry — meta tags, OG tags, JSON-LD, GA4
-├── vite.config.js             # Vite config (base path set via VITE_BASE_PATH env var)
-├── netlify.toml               # Netlify build config, SPA redirect, security headers
+├── vite.config.js             # Vite config (base path via VITE_BASE_PATH, defaults to /)
+├── vercel.json                # SPA rewrites, /callback rewrite, security headers
 ├── eslint.config.js           # ESLint flat config (React hooks + refresh)
 └── package.json
 ```
@@ -76,26 +77,39 @@ Visit `http://localhost:5173`.
 
 ## Deployment
 
-### Production (Netlify)
+Hosted on **Vercel**, which auto-deploys `https://sycamorecreekconsulting.com` on every push to `main` via the Git integration. Preview deployments are created automatically for pull requests.
 
-Auto-deploys to `https://sycamorecreekconsulting.com` on every push to `main` when Netlify auto-deploy is enabled.
+- **Build command:** `npm run build` (Vite default)
+- **Output directory:** `dist`
+- **Framework preset:** Vite (auto-detected)
 
-Build command: `npm run build` — output directory: `dist` (includes `404.html` hack for GH Pages routing).
+No build-time env vars are set on Vercel: `VITE_BASE_PATH` and `VITE_ROUTER_BASENAME` both default to `/`, which is correct for a root-domain deployment.
 
-> **Note:** Netlify builds without env vars set. `VITE_BASE_PATH` defaults to `/` (absolute root paths) and `VITE_ROUTER_BASENAME` defaults to `/` (correct for a root-domain deployment).
+### Routing, redirects & headers (`vercel.json`)
 
-### Preview (GitHub Pages)
+- **SPA fallback** — all non-file routes rewrite to `/index.html` so React Router handles client-side navigation and deep-link refreshes.
+- **`/callback`** — rewrites to `/callback.html` (OAuth callback for the Sonos widget deep link).
+- **`/.well-known/*`** — served with `Content-Type: application/json` and `Access-Control-Allow-Origin: *` (Android App Links verification).
+- **Security header** — `X-Frame-Options: SAMEORIGIN` on all routes.
 
-GitHub Actions builds and deploys to `https://howeitis.github.io/sycamore-creek/` on every push to `main`.
+### DNS
 
-The workflow (`.github/workflows/deploy.yml`) sets two env vars for the build:
+Domain registered at Squarespace; DNS is delegated to Vercel's nameservers. Vercel manages the apex (`sycamorecreekconsulting.com`, primary) and `www` (308 redirect to apex), and auto-provisions TLS.
 
-| Var | Value | Effect |
+---
+
+## Images
+
+All on-page images are served as **WebP** for fast loading:
+
+| File | Use | Notes |
 |---|---|---|
-| `VITE_BASE_PATH` | `/sycamore-creek/` | Vite generates absolute asset paths (`/sycamore-creek/logo.png`, etc.) — required to prevent images from 404ing after SPA navigation |
-| `VITE_ROUTER_BASENAME` | `/sycamore-creek` | React Router resolves routes under the subdirectory path |
+| `hero_background.webp` | Hero background (CSS) + LCP preload | Downscaled to 2560px wide |
+| `logo.webp` | Navbar + hero logo (`<img>`) | 512×512 |
+| `founder.webp` | About page portrait | 1440×1080 |
+| `logo.png` | Favicon, OpenGraph, Twitter, schema.org logo | Kept as PNG (512×512) — WebP is unreliable for social-share previews and favicons |
 
-To trigger a deploy manually: go to the **Actions** tab on GitHub → **Deploy to GitHub Pages** → **Run workflow**.
+> **Why the logo has both formats:** Facebook, LinkedIn, and iMessage link-preview scrapers do not reliably render WebP OpenGraph images, and favicons are safest as PNG. On-page `<img>`/CSS references use `logo.webp`; social/favicon/schema references in `index.html` use the optimized `logo.png`.
 
 ---
 
@@ -126,7 +140,7 @@ The following SEO infrastructure is in place:
 - **Sitemap** — `/public/sitemap.xml`, submitted to Google Search Console
 - **robots.txt** — `/public/robots.txt`, allows all crawlers
 - **llms.txt** — `/public/llms.txt`, plain-text AI crawler file
-- **Security header** — `X-Frame-Options: SAMEORIGIN` set in `netlify.toml`
+- **Security header** — `X-Frame-Options: SAMEORIGIN` set in `vercel.json`
 - **Hero image preload** — `<link rel="preload">` in `index.html` for LCP
 
 ---
@@ -134,7 +148,7 @@ The following SEO infrastructure is in place:
 ## Known Issues
 
 ### npm audit vulnerabilities
-Running `npm audit` reports 7 vulnerabilities (3 moderate, 4 high) in `ajv` and `minimatch`, both transitive dependencies of ESLint. These are **dev-only** — they are not included in the production build and do not affect site visitors. ESLint 9.39.2 is already the latest version; upstream fixes have not been released. No action required until ESLint ships an update.
+Running `npm audit` reports vulnerabilities in `ajv` and `minimatch`, both transitive dependencies of ESLint. These are **dev-only** — they are not included in the production build and do not affect site visitors. No action required until ESLint ships an update.
 
 ---
 

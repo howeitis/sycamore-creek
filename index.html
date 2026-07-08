@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Preload hero background image for LCP -->
-  <link rel="preload" as="image" href="/hero_background.png" />
+  <link rel="preload" as="image" type="image/webp" href="/hero_background.webp" />
   <!-- Structured Data: JSON-LD -->
   <script type="application/ld+json">
   {
@@ -100,19 +100,6 @@
       ]
     }
   }
-  </script>
-  <!-- GitHub Pages SPA: restore path from 404.html redirect -->
-  <script>
-    (function () {
-      var params = new URLSearchParams(window.location.search);
-      var p = params.get('p');
-      if (p != null) {
-        var q = params.get('q');
-        var url = window.location.pathname + '/' + decodeURIComponent(p) +
-          (q ? '?' + decodeURIComponent(q) : '') + window.location.hash;
-        window.history.replaceState(null, null, url);
-      }
-    })();
   </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPXQ5ZX30P"></script>
