@@ -9,21 +9,21 @@ const Pedigree = () => {
         </h3>
 
         <p className="pedigree-body">
-          We specialize in navigating complex hiring environments and scaling pipelines with world class talent.
+          From stealth defense startups to global institutions, we navigate complex, high-stakes hiring — reaching the specialists other firms can't, across the full seniority spectrum from early-career cohorts to executive leadership.
         </p>
 
         <div className="proof-grid">
           <div className="proof-item">
-            <h4 className="proof-title">Start-up Scaling</h4>
-            <p className="proof-desc">Rapid hiring that builds new teams and launches new products.</p>
+            <h4 className="proof-title">Cleared &amp; Defense Talent</h4>
+            <p className="proof-desc">Deep fluency in the cleared and defense ecosystem — from FPGA and reverse engineering to research leadership.</p>
           </div>
           <div className="proof-item">
-            <h4 className="proof-title">Enterprise Adaptation</h4>
-            <p className="proof-desc">Architected and scaled hiring strategies for global institutions from early-career to senior leadership.</p>
+            <h4 className="proof-title">AI-Native Hiring</h4>
+            <p className="proof-desc">We know where LLM-native engineers actually are, and how to bring them to the teams building the frontier.</p>
           </div>
           <div className="proof-item">
-            <h4 className="proof-title">Unicorn Hunting</h4>
-            <p className="proof-desc">Specialized in finding passive talent others can't reach — and closing them.</p>
+            <h4 className="proof-title">Hard-to-Reach Talent</h4>
+            <p className="proof-desc">The best people aren't applying. We reach them discreetly, treat them well, and earn the conversation.</p>
           </div>
         </div>
       </div>

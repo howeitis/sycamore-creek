@@ -17,15 +17,20 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Close mobile menu when route changes
-    useEffect(() => {
+    // Close the mobile menu when the route changes. Render-phase update
+    // (React's recommended replacement for a setState-in-effect): when the
+    // path differs from the one the menu was last synced to, close it.
+    const [menuPath, setMenuPath] = useState(location.pathname);
+    if (location.pathname !== menuPath) {
+        setMenuPath(location.pathname);
         setMobileMenuOpen(false);
-    }, [location]);
+    }
 
     const navLinks = [
         { name: 'About', path: '/about' },
-        { name: 'Track Record', path: '/track-record' },
         { name: 'Services', path: '/services' },
+        { name: 'Process', path: '/process' },
+        { name: 'Track Record', path: '/track-record' },
         { name: 'Contact', path: '/contact' },
     ];
 

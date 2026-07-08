@@ -59,7 +59,7 @@ const Services = () => {
                         For roles where a mis-hire is not an option. We own the search end to end — from building the market map and defining the candidate scorecard to managing every stage of outreach, evaluation, and offer negotiation. Retained engagements are our highest-touch service: fully dedicated bandwidth, weekly progress reporting, and a commitment to fill the role.
                     </p>
                     <p className="best-for-inverse">
-                        <strong>Best for:</strong> Senior technical leadership, niche engineering roles, confidential replacements, and any position where the talent pool is small and the stakes are high.
+                        <strong>Best for:</strong> Cleared and defense engineering leads, AI-native specialists, senior technical leadership, confidential replacements, and any position where the talent pool is small and the stakes are high.
                     </p>
                 </div>
             </section>

@@ -20,7 +20,13 @@ Advisory on compensation architecture, interview design, employer positioning, a
 ## Track Record
 - $50M+ in total compensation negotiated for placed candidates
 - 87% offer acceptance rate
-- Placements include: Senior FPGA Developer, Principal Research Engineer, Senior AI Engineer, VP of Engineering (Major Media Organization), Director of Research (DARPA Research Lab), Business Development Lead, Senior Reverse Engineer (Cleared Research Lab), Staff Android Engineer (Global Media Organization), Product Director
+- Placements include: Senior FPGA Developer, Principal Research Engineer, Senior AI Engineer, VP of Engineering (Major Media Organization), Director of Research (Federal Research Lab), Business Development Lead, Senior Reverse Engineer (Cleared Research Lab), Staff Android Engineer (Global Media Organization), Product Director
+
+## Process
+Every engagement runs as a partnership through seven stages: (1) Discovery & Intake — understanding the business, team, and success criteria; (2) The Scorecard — a technical and cultural evaluation standard; (3) Market Map — mapping where the right talent is, plus compensation benchmarks and competitor org structures; (4) Outreach & Engagement — discreet, high-touch contact with passive candidates; (5) Evaluation — structured assessment against the scorecard with written write-ups; (6) Offer & Close — negotiation and close management; (7) Follow-Through — onboarding support and handover of market intelligence. Detail: https://sycamorecreekconsulting.com/process
+
+## For Candidates
+Sycamore Creek maintains a confidential network of exceptional engineers and leaders, particularly in cleared/defense engineering and AI. Candidates work directly with the principal, conversations are confidential, and candidates are represented honestly rather than pushed toward ill-fitting roles. Introductions and referrals: https://sycamorecreekconsulting.com/for-candidates
 
 ## Specializations
 - Technical recruiting (FPGA, AI/ML, reverse engineering, mobile, product)

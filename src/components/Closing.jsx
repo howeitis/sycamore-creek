@@ -21,12 +21,13 @@ const Closing = () => {
                     </div>
                     <div className="step-item">
                         <span className="step-number">03</span>
-                        <h4 className="step-title">Extraction</h4>
-                        <p className="step-desc">We run a discreet, high-touch outreach campaign, delivering fully vetted finalists ready to close.</p>
+                        <h4 className="step-title">Delivery</h4>
+                        <p className="step-desc">A discreet, high-touch outreach effort — we present a shortlist of fully vetted finalists, engaged and ready to move.</p>
                     </div>
                 </div>
 
                 <div className="cta-container">
+                    <Link to="/process" className="process-link">See our full process →</Link>
                     <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'home_closing' })}>INITIATE A SEARCH</Link>
                 </div>
             </div>
@@ -98,6 +99,23 @@ const Closing = () => {
             padding-top: 2rem;
             border-top: 1px solid #eee;
             margin-top: 2rem;
+        }
+
+        .process-link {
+            display: block;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            color: var(--color-bg-emphasis);
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid transparent;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .process-link:hover {
+            border-bottom-color: var(--color-bg-emphasis);
         }
 
         .cta-bridge {

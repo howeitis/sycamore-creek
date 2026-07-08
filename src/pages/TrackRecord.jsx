@@ -31,6 +31,7 @@ const TrackRecord = () => {
                             </div>
                         ))}
                     </div>
+                    <p className="metrics-caption">Rooted in DC and NYC — placing talent nationwide.</p>
                 </div>
             </section>
 
@@ -134,6 +135,16 @@ const TrackRecord = () => {
                     font-size: 0.85rem;
                     opacity: 0.6;
                     color: var(--color-text-primary);
+                }
+
+                .metrics-caption {
+                    text-align: center;
+                    margin-top: 2.5rem;
+                    font-family: var(--font-body);
+                    font-size: 1rem;
+                    font-style: italic;
+                    color: var(--color-text-primary);
+                    opacity: 0.7;
                 }
 
                 /* Placements - Block 3 (Teal) */

@@ -39,7 +39,7 @@ const About = () => {
                 <div className="content-container">
                     <h1 className="about-headline">Built for the searches others can't close.</h1>
                     <p className="about-subhead">
-                        Sycamore Creek is a boutique talent advisory built on a single premise: the best people aren't applying. Reaching them requires precision, discretion, and a principal who understands your technical environment as well as your team does.
+                        Sycamore Creek is a boutique talent advisory built on a single premise: the best people aren't applying. That's especially true in the cleared, defense, and AI-native engineering world, where the talent pool is small and the margin for error is zero. Reaching those people requires precision, discretion, and a principal who understands your technical environment as well as your team does.
                     </p>
                 </div>
             </section>

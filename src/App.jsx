@@ -6,7 +6,9 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
+import Process from './pages/Process';
 import TrackRecord from './pages/TrackRecord';
+import ForCandidates from './pages/ForCandidates';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import './App.css';
@@ -21,7 +23,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/process" element={<Process />} />
             <Route path="/track-record" element={<TrackRecord />} />
+            <Route path="/for-candidates" element={<ForCandidates />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

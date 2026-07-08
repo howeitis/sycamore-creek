@@ -15,7 +15,7 @@ const Hero = () => {
         <h1 className="hero-headline">We find the people who aren't looking.</h1>
 
         <p className="hero-subhead">
-          Sycamore Creek is a boutique talent advisory firm. We secure elite talent and architect recruiting engines for high-growth teams.
+          A boutique talent advisory firm for high-stakes technical hiring — cleared, defense, and AI-native engineering, and the leaders who build those teams. We reach the specialists others can't, from DC and NYC to nationwide.
         </p>
 
         <Link
