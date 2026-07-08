@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { trackEvent } from '../utils/analytics';
 
 const Closing = () => {
     return (
@@ -26,7 +27,7 @@ const Closing = () => {
                 </div>
 
                 <div className="cta-container">
-                    <Link to="/contact" className="cta-button">INITIATE A SEARCH</Link>
+                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'home_closing' })}>INITIATE A SEARCH</Link>
                 </div>
             </div>
 

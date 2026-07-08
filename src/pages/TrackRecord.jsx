@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { stats, placements } from '../data/placements';
 import { useCanonical } from '../hooks/useCanonical';
+import { trackEvent } from '../utils/analytics';
 
 const TrackRecord = () => {
     useCanonical('https://sycamorecreekconsulting.com/track-record');
@@ -54,7 +55,7 @@ const TrackRecord = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Ready to add to this list?</h3>
-                    <Link to="/contact" className="cta-button">INITIATE A SEARCH</Link>
+                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'track_record' })}>INITIATE A SEARCH</Link>
                 </div>
             </section>
 

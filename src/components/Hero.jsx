@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { trackEvent } from '../utils/analytics';
 import '../index.css';
 
 const Hero = () => {
@@ -15,6 +17,14 @@ const Hero = () => {
         <p className="hero-subhead">
           Sycamore Creek is a boutique talent advisory firm. We secure elite talent and architect recruiting engines for high-growth teams.
         </p>
+
+        <Link
+          to="/contact"
+          className="hero-cta"
+          onClick={() => trackEvent('cta_click', { location: 'hero' })}
+        >
+          Initiate a Search
+        </Link>
       </div>
 
       <style>{`
@@ -80,7 +90,29 @@ const Hero = () => {
           margin: 0 auto;
           opacity: 0.9;
         }
-        
+
+        .hero-cta {
+          display: inline-block;
+          margin-top: 2.5rem;
+          background-color: #ffffff;
+          color: var(--color-bg-emphasis);
+          padding: 1rem 2.5rem;
+          font-family: var(--font-body);
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          border-radius: 4px;
+          text-decoration: none;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+          transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+
+        .hero-cta:hover {
+          transform: translateY(-2px);
+          background-color: var(--color-bg-base);
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+        }
+
         @media (max-width: 768px) {
           .hero-headline {
             font-size: 2.5rem; // Scale down for mobile

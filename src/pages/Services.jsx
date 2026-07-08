@@ -1,9 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCanonical } from '../hooks/useCanonical';
+import { useJsonLd } from '../hooks/useJsonLd';
+import { trackEvent } from '../utils/analytics';
+
+// Module-scoped so the reference is stable across renders (useJsonLd dependency).
+const servicesSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Sycamore Creek Consulting — Talent Advisory Services',
+    itemListElement: [
+        {
+            '@type': 'Service',
+            name: 'Retained Search',
+            provider: { '@type': 'Organization', name: 'Sycamore Creek Consulting' },
+            description:
+                'End-to-end search ownership for critical hires: market mapping, candidate scorecard, outreach, evaluation, and offer negotiation. Best for senior technical leadership, niche engineering roles, and confidential replacements.',
+        },
+        {
+            '@type': 'Service',
+            name: 'Embedded Recruiting',
+            provider: { '@type': 'Organization', name: 'Sycamore Creek Consulting' },
+            description:
+                "Direct integration into the client's team for a defined engagement period, operating inside the client ATS as an extension of the internal recruiting function. Best for startups scaling rapidly after a funding round.",
+        },
+        {
+            '@type': 'Service',
+            name: 'Strategic Advising',
+            provider: { '@type': 'Organization', name: 'Sycamore Creek Consulting' },
+            description:
+                'Advisory on compensation architecture, interview design, employer positioning, and organizational planning for teams in transition. Best for founders losing candidates and leadership navigating AI-driven workforce restructuring.',
+        },
+    ],
+};
 
 const Services = () => {
     useCanonical('https://sycamorecreekconsulting.com/services');
+    useJsonLd('jsonld-services', servicesSchema);
     return (
         <div className="page-wrapper">
             <title>Services | Sycamore Creek Consulting</title>
@@ -73,7 +106,7 @@ const Services = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Not sure which engagement fits? Let's talk.</h3>
-                    <Link to="/contact" className="cta-button">GET IN TOUCH</Link>
+                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'services' })}>GET IN TOUCH</Link>
                 </div>
             </section>
 

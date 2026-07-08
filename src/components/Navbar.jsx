@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { trackEvent } from '../utils/analytics';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -45,7 +46,11 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <Link to="/contact" className="nav-cta-button">
+                    <Link
+                        to="/contact"
+                        className="nav-cta-button"
+                        onClick={() => trackEvent('cta_click', { location: 'navbar' })}
+                    >
                         Initiate Search
                     </Link>
                 </div>
@@ -54,6 +59,7 @@ const Navbar = () => {
                     className="mobile-menu-toggle"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label="Toggle navigation"
+                    aria-expanded={mobileMenuOpen}
                 >
                     <span className="hamburger"></span>
                 </button>
