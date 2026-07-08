@@ -30,7 +30,7 @@ const Hero = () => {
       <style>{`
         .hero-section {
           position: relative;
-          height: 90vh; /* High impact */
+          min-height: 90vh; /* min-height so tall content grows instead of sliding under the fixed navbar */
           width: 100%;
           background-image: url('${import.meta.env.BASE_URL}hero_background.webp'); /* Assuming image is in public or assets */
           background-size: cover;
@@ -40,7 +40,8 @@ const Hero = () => {
           justify-content: center;
           text-align: center;
           color: var(--color-text-inverse);
-          padding: 0 20px;
+          /* Top padding clears the fixed navbar so it never overlaps the hero logo */
+          padding: 120px 20px 56px;
         }
 
         .hero-overlay {
@@ -118,7 +119,8 @@ const Hero = () => {
             font-size: 2.5rem; // Scale down for mobile
           }
           .hero-section {
-            height: 80vh;
+            min-height: 80vh;
+            padding-top: 100px;
           }
         }
       `}</style>
