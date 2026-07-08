@@ -9,7 +9,7 @@ const TrackRecord = () => {
     return (
         <div className="page-wrapper">
             <title>Track Record | Sycamore Creek Consulting</title>
-            <meta name="description" content="$50M+ in compensation negotiated. 87% offer acceptance rate. Placements across stealth research labs, global media organizations, and high-growth startups in DC and NYC." />
+            <meta name="description" content="$50M+ in compensation negotiated. 87% offer acceptance, 96% of searches filled, 58-day average time to fill. Placements across stealth research labs, global media organizations, and high-growth startups in DC and NYC." />
             {/* Section A - Header */}
             <section className="tr-header-section">
                 <div className="content-container">
@@ -32,6 +32,7 @@ const TrackRecord = () => {
                         ))}
                     </div>
                     <p className="metrics-caption">Rooted in DC and NYC — placing talent nationwide.</p>
+                    <p className="metrics-note">Figures reflect completed engagements, identities withheld for confidentiality.</p>
                 </div>
             </section>
 
@@ -145,6 +146,15 @@ const TrackRecord = () => {
                     font-style: italic;
                     color: var(--color-text-primary);
                     opacity: 0.7;
+                }
+
+                .metrics-note {
+                    text-align: center;
+                    margin-top: 0.75rem;
+                    font-family: var(--font-body);
+                    font-size: 0.8rem;
+                    color: var(--color-text-primary);
+                    opacity: 0.5;
                 }
 
                 /* Placements - Block 3 (Teal) */

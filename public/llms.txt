@@ -20,6 +20,9 @@ Advisory on compensation architecture, interview design, employer positioning, a
 ## Track Record
 - $50M+ in total compensation negotiated for placed candidates
 - 87% offer acceptance rate
+- 96% of retained searches filled
+- 58-day average time to fill
+- Figures reflect completed engagements; client identities withheld for confidentiality
 - Placements include: Senior FPGA Developer, Principal Research Engineer, Senior AI Engineer, VP of Engineering (Major Media Organization), Director of Research (Federal Research Lab), Business Development Lead, Senior Reverse Engineer (Cleared Research Lab), Staff Android Engineer (Global Media Organization), Product Director
 
 ## Process
