@@ -26,4 +26,11 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  {
+    // Build-time / server / config files run in Node, not the browser, and are
+    // not part of the React Fast Refresh graph.
+    files: ['vite.config.js', 'scripts/**/*.js', 'src/entry-server.jsx'],
+    languageOptions: { globals: globals.node },
+    rules: { 'react-refresh/only-export-components': 'off' },
+  },
 ])

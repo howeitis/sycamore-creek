@@ -11,6 +11,11 @@ import Process from './pages/Process';
 import TrackRecord from './pages/TrackRecord';
 import ForCandidates from './pages/ForCandidates';
 import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
+import Insights from './pages/Insights';
+import ClearedAiSalaryGuide from './pages/insights/ClearedAiSalaryGuide';
+import RetainedVsContingencyVsEmbedded from './pages/insights/RetainedVsContingencyVsEmbedded';
+import HowToHireFpgaEngineers from './pages/insights/HowToHireFpgaEngineers';
 import NotFound from './pages/NotFound';
 import './App.css';
 
@@ -29,6 +34,11 @@ function App() {
             <Route path="/track-record" element={<TrackRecord />} />
             <Route path="/for-candidates" element={<ForCandidates />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/cleared-defense-ai-engineer-salary-guide-dc" element={<ClearedAiSalaryGuide />} />
+            <Route path="/insights/retained-vs-contingency-vs-embedded-recruiting" element={<RetainedVsContingencyVsEmbedded />} />
+            <Route path="/insights/how-to-hire-fpga-engineers" element={<HowToHireFpgaEngineers />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </ErrorBoundary>

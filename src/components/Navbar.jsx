@@ -31,6 +31,7 @@ const Navbar = () => {
         { name: 'Services', path: '/services' },
         { name: 'Process', path: '/process' },
         { name: 'Track Record', path: '/track-record' },
+        { name: 'Insights', path: '/insights' },
         { name: 'Contact', path: '/contact' },
     ];
 

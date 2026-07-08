@@ -107,9 +107,10 @@ All on-page images are served as **WebP** for fast loading:
 | `hero_background.webp` | Hero background (CSS) + LCP preload | Downscaled to 2560px wide |
 | `logo.webp` | Navbar + hero logo (`<img>`) | 512×512 |
 | `founder.webp` | About page portrait | 1440×1080 |
-| `logo.png` | Favicon, OpenGraph, Twitter, schema.org logo | Kept as PNG (512×512) — WebP is unreliable for social-share previews and favicons |
+| `logo.png` | Favicon + schema.org logo | Kept as PNG (512×512) — favicons are safest as PNG |
+| `og-image.jpg` | OpenGraph + Twitter social share card | 1200×630 — hero canopy, logo, and tagline; referenced absolutely in `index.html` |
 
-> **Why the logo has both formats:** Facebook, LinkedIn, and iMessage link-preview scrapers do not reliably render WebP OpenGraph images, and favicons are safest as PNG. On-page `<img>`/CSS references use `logo.webp`; social/favicon/schema references in `index.html` use the optimized `logo.png`.
+> **Why the logo has both formats:** On-page `<img>`/CSS references use `logo.webp`; the favicon and schema.org logo use the optimized `logo.png` (favicons are safest as PNG). The social-share preview (OpenGraph/Twitter) is a dedicated 1200×630 card, `og-image.jpg`, because Facebook, LinkedIn, and iMessage scrapers do not reliably render WebP.
 
 ---
 
@@ -133,15 +134,32 @@ Fonts are loaded via Google Fonts CDN in `index.css`.
 
 The following SEO infrastructure is in place:
 
-- **Per-page titles and meta descriptions** — set via React 19 native document metadata hoisting (`<title>` and `<meta>` in page components)
-- **Canonical tags** — managed by `useCanonical()` hook (`src/hooks/useCanonical.js`) via `useEffect` + direct DOM manipulation. JSX `<link rel="canonical">` is intentionally avoided: React 19's `<link>` hoisting interferes with the static `<link rel="icon">` in `index.html`.
-- **Open Graph + Twitter Card tags** — in `index.html` for social sharing previews
-- **JSON-LD structured data** — `ProfessionalService` schema in `index.html` covering the business entity, founder, services, and geography
-- **Sitemap** — `/public/sitemap.xml`, submitted to Google Search Console
-- **robots.txt** — `/public/robots.txt`, allows all crawlers
-- **llms.txt** — `/public/llms.txt`, plain-text AI crawler file
-- **Security header** — `X-Frame-Options: SAMEORIGIN` set in `vercel.json`
-- **Hero image preload** — `<link rel="preload">` in `index.html` for LCP
+- **Static prerendering** — every route is rendered to content-complete HTML at build time (see below), so search crawlers **and AI answer engines that don't execute JavaScript** (GPTBot, ClaudeBot, PerplexityBot, Google-Extended) see the full page in the initial response, not an empty `<div id="root">`.
+- **Per-page titles and meta descriptions** — authored via React 19 native document metadata (`<title>`/`<meta>` in page components); the prerender step lifts them into `<head>` in the static HTML.
+- **Per-page Open Graph + Twitter tags** — the base tags live in `index.html`; the prerender step overrides `og:title`/`og:description`/`og:url` and Twitter equivalents per route.
+- **Canonical tags** — `useCanonical()` hook at runtime; the prerender step also writes a per-route `<link rel="canonical">` into the static `<head>`.
+- **JSON-LD structured data**:
+  - `ProfessionalService` (business entity) — static in `index.html`, present on every page.
+  - `FAQPage` (`/faq`), `CollectionPage` (`/insights`), and `BlogPosting` (each article) — defined once in `src/seo/seoData.js` and injected into the static `<head>` by the prerender step. The client `useJsonLd()` hook reuses the same element `id`, so nothing is duplicated after boot.
+- **Sitemap** — `/public/sitemap.xml`, includes all content routes with `lastmod` on articles.
+- **robots.txt** — `/public/robots.txt`, allows all crawlers.
+- **llms.txt** — `/public/llms.txt`, plain-text AI crawler file (lists Insights + FAQ).
+- **Security header** — `X-Frame-Options: SAMEORIGIN` set in `vercel.json`.
+- **Hero image preload** — `<link rel="preload">` in `index.html` for LCP.
+
+### Static prerendering
+
+`npm run build` runs three steps:
+
+1. `vite build` — the normal client bundle.
+2. `vite build --ssr src/entry-server.jsx` — a Node bundle exporting a `render(url)` function (`StaticRouter` + `renderToStaticMarkup`) plus the SEO manifest, emitted to `.prerender-ssr/` (git-ignored, deleted at the end).
+3. `node scripts/prerender.js` — renders each route in `prerenderRoutes` (from `src/seo/seoData.js`) into `dist/<route>/index.html`, using the client `dist/index.html` as the template (so all pages share the hashed asset references).
+
+The client still boots normally via `main.jsx` (`createRoot`, which replaces the prerendered markup — no hydration to manage). On Vercel, an existing static file is served **before** the SPA rewrite in `vercel.json` (`rewrites` are filesystem-aware), so `/faq` resolves to `dist/faq/index.html` while unknown deep links still fall back to the SPA.
+
+To rebuild only the client bundle without prerendering: `npm run build:client`.
+
+**Content is centralized to prevent drift:** FAQ Q&A lives in `src/data/faqs.js` (and derives the `FAQPage` schema); article metadata lives in `src/data/insights.js` (and derives `BlogPosting` schema); article bodies live in `src/pages/insights/*.jsx` behind the shared `src/components/ArticleLayout.jsx`.
 
 ---
 

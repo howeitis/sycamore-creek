@@ -39,6 +39,15 @@ Sycamore Creek maintains a confidential network of exceptional engineers and lea
 - LLM-native and AI engineer acquisition
 - Passive candidate sourcing
 
+## Insights
+Field notes on hiring scarce technical talent — compensation benchmarks, recruiting models, and how to reach passive engineers. Index: https://sycamorecreekconsulting.com/insights
+- Cleared & Defense AI/ML Engineer Salary Guide (DC & Northern Virginia, 2026): https://sycamorecreekconsulting.com/insights/cleared-defense-ai-engineer-salary-guide-dc
+- Retained vs. Contingency vs. Embedded Recruiting — which model to use: https://sycamorecreekconsulting.com/insights/retained-vs-contingency-vs-embedded-recruiting
+- How to Hire FPGA Engineers (when almost none of them are looking): https://sycamorecreekconsulting.com/insights/how-to-hire-fpga-engineers
+
+## FAQ
+Common questions on retained search, recruiting fees, timelines, cleared/defense hiring, embedded recruiting, and how the firm works: https://sycamorecreekconsulting.com/faq
+
 ## Contact
 - Website: https://sycamorecreekconsulting.com
 - Email: owen@howe.app
