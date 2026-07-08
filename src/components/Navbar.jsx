@@ -84,8 +84,9 @@ const Navbar = () => {
                 }
 
                 .navbar.scrolled {
-                    background-color: rgba(255, 255, 255, 0.98);
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                    background-color: rgba(251, 249, 244, 0.97);
+                    backdrop-filter: saturate(1.1) blur(6px);
+                    box-shadow: 0 1px 0 var(--hair-on-light), 0 6px 24px rgba(7,20,15,0.06);
                     padding: 0.75rem 0;
                 }
 
@@ -118,10 +119,13 @@ const Navbar = () => {
                 .nav-link {
                     font-family: var(--font-body);
                     font-weight: 500;
-                    font-size: 0.95rem;
+                    font-size: 0.9rem;
+                    letter-spacing: 0.01em;
                     color: #ffffff;
                     text-decoration: none;
-                    transition: color 0.2s;
+                    padding-bottom: 3px;
+                    border-bottom: 1px solid transparent;
+                    transition: color 0.2s var(--ease), border-color 0.2s var(--ease), opacity 0.2s var(--ease);
                     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
                 }
 
@@ -130,39 +134,48 @@ const Navbar = () => {
                     text-shadow: none;
                 }
 
-                .nav-link:hover, .nav-link.current {
-                    opacity: 0.8;
+                .nav-link:hover {
+                    opacity: 0.82;
+                }
+
+                .nav-link.current {
+                    border-bottom-color: var(--color-brass);
                 }
 
                 .navbar.scrolled .nav-link:hover,
                 .navbar.scrolled .nav-link.current {
-                    color: var(--color-bg-emphasis);
+                    color: var(--color-teal);
                     opacity: 1;
                 }
 
                 .nav-cta-button {
                     background-color: #ffffff;
-                    color: var(--color-bg-emphasis);
-                    padding: 0.6rem 1.2rem;
-                    border-radius: 4px;
+                    color: var(--color-pine);
+                    padding: 0.6rem 1.3rem;
+                    border-radius: var(--radius);
                     text-decoration: none;
                     font-weight: 700;
-                    font-size: 0.85rem;
+                    font-size: 0.78rem;
                     text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    transition: all 0.2s ease;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                    letter-spacing: 0.12em;
+                    border-bottom: none;
+                    transition: transform 0.2s var(--ease), background-color 0.2s var(--ease), color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+                    box-shadow: 0 2px 10px rgba(7,20,15,0.22);
                 }
 
                 .navbar.scrolled .nav-cta-button {
-                    background-color: var(--color-bg-emphasis);
+                    background-color: var(--color-teal);
                     color: var(--color-text-inverse);
                     box-shadow: none;
                 }
 
                 .nav-cta-button:hover {
                     transform: translateY(-1px);
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                    box-shadow: 0 6px 16px rgba(7,20,15,0.28);
+                }
+
+                .navbar.scrolled .nav-cta-button:hover {
+                    background-color: var(--color-pine);
                 }
 
                 .mobile-menu-toggle {

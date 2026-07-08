@@ -13,9 +13,10 @@ const TrackRecord = () => {
             {/* Section A - Header */}
             <section className="tr-header-section">
                 <div className="content-container">
-                    <h1 className="tr-headline">The Track Record</h1>
+                    <p className="eyebrow tr-eyebrow">The Track Record</p>
+                    <h1 className="tr-headline">We are defined by the offers we <em>close.</em></h1>
                     <p className="tr-subhead">
-                        We are defined by the offers we close. From stealth research labs to global media organizations, we secure the talent that builds the future.
+                        From stealth research labs to global media organizations, we secure the talent that builds the future.
                     </p>
                 </div>
             </section>
@@ -31,7 +32,7 @@ const TrackRecord = () => {
                             </div>
                         ))}
                     </div>
-                    <p className="metrics-caption">Rooted in DC and NYC — placing talent nationwide.</p>
+                    <p className="metrics-caption">Rooted in DC and NYC &mdash; placing talent nationwide.</p>
                     <p className="metrics-note">Figures reflect completed engagements, identities withheld for confidentiality.</p>
                 </div>
             </section>
@@ -39,13 +40,15 @@ const TrackRecord = () => {
             {/* Section C - Placements Grid */}
             <section className="placements-section">
                 <div className="content-container">
+                    <p className="eyebrow placements-eyebrow">Selected Placements</p>
                     <div className="placements-grid">
                         {placements.map((job, index) => (
                             <div key={index} className="placement-card">
                                 <div className="card-top">
+                                    <span className="placement-type">{job.type}</span>
                                     <span className="placement-location">{job.location}</span>
                                 </div>
-                                <h3 className="placement-role">{job.role}</h3>
+                                <h2 className="placement-role">{job.role}</h2>
                                 <p className="placement-company">{job.company}</p>
                             </div>
                         ))}
@@ -56,8 +59,8 @@ const TrackRecord = () => {
             {/* Section D - CTA */}
             <section className="cta-section">
                 <div className="content-container cta-container">
-                    <h3 className="cta-headline">Ready to add to this list?</h3>
-                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'track_record' })}>INITIATE A SEARCH</Link>
+                    <h2 className="cta-headline">Ready to add to this list?</h2>
+                    <Link to="/contact" className="btn-primary" onClick={() => trackEvent('cta_click', { location: 'track_record' })}>Initiate a Search <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link>
                 </div>
             </section>
 
@@ -71,189 +74,207 @@ const TrackRecord = () => {
                 }
 
                 .content-container {
-                    max-width: 1000px;
+                    max-width: 1080px;
                     margin: 0 auto;
-                    padding: 0 20px;
+                    padding: 0 24px;
                 }
 
-                /* Header - Block 1 (Green) */
+                /* Header - Deep Pine */
                 .tr-header-section {
-                    background-color: var(--color-bg-emphasis); /* British Racing Green */
-                    padding: 6rem 0 4rem;
-                    text-align: center;
+                    background-color: var(--color-pine);
+                    padding: clamp(7rem, 12vw, 9rem) 0 clamp(3.5rem, 6vw, 5rem);
                     color: var(--color-text-inverse);
+                }
+
+                .tr-eyebrow {
+                    color: var(--color-brass-lite);
+                    margin-bottom: 1.5rem;
                 }
 
                 .tr-headline {
                     font-family: var(--font-heading);
-                    font-size: 3.5rem;
-                    font-weight: 700;
+                    font-size: clamp(2.6rem, 5.5vw, 4rem);
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
+                    line-height: 1.06;
                     margin-bottom: 1.5rem;
+                    max-width: 16ch;
                     color: var(--color-text-inverse);
+                }
+
+                .tr-headline em {
+                    font-style: italic;
+                    font-weight: 400;
+                    color: var(--color-brass-lite);
                 }
 
                 .tr-subhead {
                     font-family: var(--font-body);
-                    font-size: 1.25rem;
+                    font-size: 1.2rem;
                     font-weight: 300;
-                    line-height: 1.6;
-                    max-width: 700px;
-                    margin: 0 auto;
-                    color: var(--color-text-inverse);
-                    opacity: 0.9;
+                    line-height: 1.65;
+                    max-width: 52ch;
+                    color: rgba(244, 239, 230, 0.86);
                 }
 
-                /* Metrics - Block 2 (Parchment) */
+                /* Metrics - Parchment */
                 .metrics-section {
-                    background-color: var(--color-bg-base); /* Parchment */
+                    background-color: var(--color-bg-base);
                     color: var(--color-text-primary);
-                    padding: 4rem 0;
-                    border-bottom: none;
+                    padding: clamp(4rem, 7vw, 6rem) 0;
                 }
 
                 .metrics-grid {
-                    display: flex;
-                    justify-content: space-around;
-                    flex-wrap: wrap;
-                    gap: 2rem;
-                    text-align: center;
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    border-top: 1px solid var(--hair-on-light);
+                    border-bottom: 1px solid var(--hair-on-light);
+                }
+
+                .metric-item {
+                    padding: 2.5rem 1.5rem;
+                    text-align: left;
+                }
+
+                .metric-item + .metric-item {
+                    border-left: 1px solid var(--hair-on-light);
                 }
 
                 .metric-value {
                     display: block;
                     font-family: var(--font-heading);
-                    font-size: 2.5rem;
-                    font-weight: 700;
-                    color: var(--color-bg-emphasis); /* Green text on parchment */
-                    margin-bottom: 0.5rem;
+                    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+                    font-weight: 400;
+                    line-height: 1;
+                    color: var(--color-teal);
+                    letter-spacing: -0.02em;
+                    font-variant-numeric: tabular-nums;
+                    margin-bottom: 0.9rem;
                 }
 
                 .metric-label {
                     font-family: var(--font-body);
                     font-weight: 700;
                     text-transform: uppercase;
-                    letter-spacing: 1px;
-                    font-size: 0.85rem;
-                    opacity: 0.6;
-                    color: var(--color-text-primary);
+                    letter-spacing: 0.12em;
+                    font-size: 0.72rem;
+                    color: var(--color-sage);
+                    line-height: 1.4;
                 }
 
                 .metrics-caption {
                     text-align: center;
                     margin-top: 2.5rem;
-                    font-family: var(--font-body);
-                    font-size: 1rem;
+                    font-family: var(--font-heading);
                     font-style: italic;
-                    color: var(--color-text-primary);
-                    opacity: 0.7;
+                    font-size: 1.15rem;
+                    color: var(--color-ink-soft);
                 }
 
                 .metrics-note {
                     text-align: center;
                     margin-top: 0.75rem;
                     font-family: var(--font-body);
-                    font-size: 0.8rem;
-                    color: var(--color-text-primary);
-                    opacity: 0.5;
+                    font-size: 0.85rem;
+                    color: var(--color-sage);
                 }
 
-                /* Placements - Block 3 (Teal) */
+                /* Placements - Teal (company color) */
                 .placements-section {
-                    padding: 5rem 0;
-                    background-color: var(--color-bg-accent); /* Sycamore Teal */
+                    padding: clamp(4.5rem, 8vw, 7rem) 0;
+                    background-color: var(--color-teal);
+                }
+
+                .placements-eyebrow {
+                    color: var(--color-brass-lite);
+                    margin-bottom: 2.5rem;
                 }
 
                 .placements-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-                    gap: 1.5rem;
+                    gap: 1.25rem;
                 }
 
                 .placement-card {
-                    background-color: #ffffff;
-                    border: 1px solid #eee;
+                    background-color: var(--color-surface);
+                    border: 1px solid transparent;
                     padding: 2rem;
-                    border-radius: 4px;
-                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    border-radius: var(--radius);
+                    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
-                    min-height: 180px;
+                    min-height: 190px;
                 }
 
-                /* Modern Card Hover Effect */
                 .placement-card:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-                    border-color: var(--color-bg-accent); /* Teal Border on hover */
+                    transform: translateY(-4px);
+                    box-shadow: var(--shadow-md);
                 }
 
                 .card-top {
-                    margin-bottom: 1rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    gap: 1rem;
+                    margin-bottom: auto;
+                    padding-bottom: 1.5rem;
+                }
+
+                .placement-type {
+                    font-family: var(--font-mono);
+                    font-size: 0.7rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    color: var(--color-brass-deep);
                 }
 
                 .placement-location {
                     font-family: var(--font-body);
-                    font-size: 0.75rem;
+                    font-size: 0.72rem;
                     text-transform: uppercase;
-                    letter-spacing: 1px;
-                    color: #999;
+                    letter-spacing: 0.1em;
+                    color: var(--color-sage);
                     font-weight: 700;
                 }
 
                 .placement-role {
                     font-family: var(--font-heading);
-                    font-size: 1.25rem;
-                    font-weight: 700;
-                    margin-bottom: 0.5rem;
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    letter-spacing: -0.01em;
+                    margin-bottom: 0.35rem;
                     color: var(--color-text-primary);
-                    line-height: 1.3;
+                    line-height: 1.2;
                 }
 
                 .placement-company {
                     font-family: var(--font-body);
-                    font-size: 1rem;
-                    color: #555;
+                    font-size: 0.98rem;
+                    color: var(--color-ink-soft);
+                    margin: 0;
                 }
 
-                /* CTA Section */
+                /* CTA */
                 .cta-section {
                     background-color: var(--color-bg-base);
-                    padding: 6rem 0;
+                    padding: clamp(5rem, 8vw, 7rem) 0;
                     text-align: center;
                 }
 
                 .cta-headline {
                      font-family: var(--font-heading);
-                     font-size: 2rem;
-                     font-weight: 700;
+                     font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+                     font-weight: 500;
+                     letter-spacing: -0.015em;
                      margin-bottom: 2rem;
                      color: var(--color-text-primary);
                 }
 
-                .cta-button {
-                    display: inline-block;
-                    background-color: var(--color-bg-emphasis); /* British Racing Green */
-                    color: var(--color-text-inverse);
-                    padding: 1rem 2.5rem;
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    border-radius: 4px;
-                    transition: background-color 0.2s;
-                    text-decoration: none;
-                }
-
-                .cta-button:hover {
-                    background-color: #00331b;
-                    box-shadow: 0 0 15px var(--color-bg-accent);
-                    transform: translateY(-2px);
-                }
-
-                @media (max-width: 768px) {
-                    .tr-headline { font-size: 2.5rem; }
-                    .metrics-grid { flex-direction: column; gap: 3rem; }
+                @media (max-width: 720px) {
+                    .metrics-grid { grid-template-columns: 1fr 1fr; }
+                    .metric-item:nth-child(odd) { border-left: none; }
+                    .metric-item:nth-child(n+3) { border-top: 1px solid var(--hair-on-light); }
                 }
             `}</style>
         </div>

@@ -6,9 +6,10 @@ const ServiceHierarchy = () => {
             {/* Block A: Retained Search (lead service) */}
             <div className="hierarchy-block block-apex">
                 <div className="block-content">
-                    <h3 className="block-headline">RETAINED SEARCH</h3>
+                    <p className="eyebrow block-eyebrow">Lead Service</p>
+                    <h2 className="block-headline">Retained Search</h2>
                     <p className="block-body">
-                        Dedicated, end-to-end ownership of your most critical hires. When a mis-hire isn't an option — cleared engineering leads, AI-native specialists, confidential replacements — we run the search from market map to signed offer.
+                        Dedicated, end-to-end ownership of your most critical hires. When a mis-hire isn&rsquo;t an option &mdash; cleared engineering leads, AI-native specialists, confidential replacements &mdash; we run the search from market map to signed offer.
                     </p>
                 </div>
             </div>
@@ -17,15 +18,15 @@ const ServiceHierarchy = () => {
             <div className="hierarchy-block block-foundation">
                 <div className="foundation-grid">
                     <div className="foundation-col">
-                        <h4 className="foundation-headline">EMBEDDED RECRUITING</h4>
+                        <h3 className="foundation-headline">Embedded Recruiting</h3>
                         <p className="foundation-body">
-                            We integrate directly into your team for a defined engagement — inside your ATS and standups — building pipeline and scaling hiring without the overhead of a full-time recruiter.
+                            We integrate directly into your team for a defined engagement &mdash; inside your ATS and standups &mdash; building pipeline and scaling hiring without the overhead of a full-time recruiter.
                         </p>
                     </div>
                     <div className="foundation-col">
-                        <h4 className="foundation-headline">STRATEGIC ADVISING</h4>
+                        <h3 className="foundation-headline">Strategic Advising</h3>
                         <p className="foundation-body">
-                            When the problem is the process — slow interviews, uncompetitive offers, an org navigating AI-driven change — we advise leadership on compensation, interview design, and talent strategy.
+                            When the problem is the process &mdash; slow interviews, uncompetitive offers, an org navigating AI-driven change &mdash; we advise leadership on compensation, interview design, and talent strategy.
                         </p>
                     </div>
                 </div>
@@ -34,9 +35,10 @@ const ServiceHierarchy = () => {
             {/* Block C: Our focus / niche */}
             <div className="hierarchy-block block-diff">
                 <div className="block-content">
-                    <h3 className="block-headline">OUR FOCUS: CLEARED, DEFENSE &amp; AI-NATIVE TALENT</h3>
+                    <p className="eyebrow block-eyebrow block-eyebrow--light">Our Focus</p>
+                    <h2 className="block-headline">Cleared, Defense &amp; AI-Native Talent</h2>
                     <p className="block-body">
-                        AI is rewriting the org chart, and the cleared world is racing to keep up. We specialize in the hardest technical searches — LLM-native engineers, FPGA and reverse-engineering talent, research leadership — and the leaders who build those teams. From early-career cohorts to executive leadership, across DC, NYC, and nationwide.
+                        AI is rewriting the org chart, and the cleared world is racing to keep up. We specialize in the hardest technical searches &mdash; LLM-native engineers, FPGA and reverse-engineering talent, research leadership &mdash; and the leaders who build those teams. From early-career cohorts to executive leadership, across DC, NYC, and nationwide.
                     </p>
                 </div>
             </div>
@@ -48,7 +50,7 @@ const ServiceHierarchy = () => {
         }
 
         .hierarchy-block {
-          padding: 5rem 20px;
+          padding: clamp(4.5rem, 8vw, 7rem) 24px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -56,34 +58,48 @@ const ServiceHierarchy = () => {
         }
 
         .block-content {
-          max-width: 800px;
+          max-width: 760px;
+        }
+
+        .block-eyebrow {
+          justify-content: center;
+          margin-bottom: 1.4rem;
+        }
+
+        .block-eyebrow--light {
+          color: var(--color-brass-lite);
         }
 
         .block-headline {
           font-family: var(--font-heading);
-          font-size: 2rem; /* Consistent H2/H3 size */
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 500;
           margin-bottom: 1.5rem;
-          text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: -0.02em;
+          line-height: 1.08;
         }
 
         .block-body {
           font-family: var(--font-body);
-          font-size: 1.25rem;
-          line-height: 1.6;
+          font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+          line-height: 1.65;
           font-weight: 300;
         }
 
-        /* Block A: Apex */
+        /* Block A: Apex — Deep Pine */
         .block-apex {
-          background-color: var(--color-bg-emphasis); /* British Racing Green */
-          color: var(--color-text-inverse); /* Cream */
+          background-color: var(--color-pine);
+          color: var(--color-text-inverse);
         }
 
-        /* Block B: Foundation */
+        .block-apex .block-body {
+          color: rgba(244, 239, 230, 0.85);
+        }
+
+        /* Block B: Foundation — Parchment */
         .block-foundation {
-          background-color: var(--color-bg-base); /* Parchment */
-          color: var(--color-text-primary); /* Charcoal */
+          background-color: var(--color-bg-base);
+          color: var(--color-text-primary);
         }
 
         .foundation-grid {
@@ -96,34 +112,47 @@ const ServiceHierarchy = () => {
 
         .foundation-headline {
           font-family: var(--font-heading);
-          font-size: 1.1rem;
-          text-transform: uppercase;
+          font-size: 1.6rem;
+          font-weight: 500;
+          letter-spacing: -0.01em;
           color: var(--color-text-primary);
-          border-bottom: 2px solid var(--color-bg-accent);
-          padding-bottom: 0.5rem;
-          margin-bottom: 1rem;
-          display: inline-block;
+          padding-bottom: 0.75rem;
+          margin-bottom: 1.1rem;
+          display: block;
+          position: relative;
+        }
+
+        .foundation-headline::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 2.5rem;
+          height: 2px;
+          background: var(--color-teal);
         }
 
         .foundation-body {
           font-family: var(--font-body);
-          font-size: 1rem;
-          color: #555;
+          font-size: 1.05rem;
+          color: var(--color-ink-soft);
+          line-height: 1.65;
         }
 
-        /* Block C: Differentiator */
+        /* Block C: Differentiator — Teal (company color) */
         .block-diff {
-          background-color: var(--color-bg-accent); /* Teal */
-          color: var(--color-text-inverse); /* Cream */
+          background-color: var(--color-teal);
+          color: var(--color-text-inverse);
+        }
+
+        .block-diff .block-body {
+          color: rgba(244, 239, 230, 0.88);
         }
 
         @media (max-width: 768px) {
           .foundation-grid {
             grid-template-columns: 1fr;
             gap: 3rem;
-          }
-          .hierarchy-block {
-             padding: 4rem 20px;
           }
         }
       `}</style>

@@ -48,10 +48,10 @@ const FAQ = () => {
                     <h2 className="faq-cta-headline">Still have a question?</h2>
                     <Link
                         to="/contact"
-                        className="faq-cta-button"
+                        className="btn-inverse"
                         onClick={() => trackEvent('cta_click', { location: 'faq' })}
                     >
-                        Get in Touch
+                        Get in Touch <span className="btn-arrow" aria-hidden="true">&rarr;</span>
                     </Link>
                 </div>
             </section>
@@ -73,9 +73,10 @@ const FAQ = () => {
                 }
                 .faq-headline {
                     font-family: var(--font-heading);
-                    font-size: 3.25rem;
-                    font-weight: 700;
-                    line-height: 1.1;
+                    font-size: clamp(2.5rem, 5vw, 3.5rem);
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
+                    line-height: 1.06;
                     margin-bottom: 1.25rem;
                     color: var(--color-text-inverse);
                 }
@@ -86,16 +87,17 @@ const FAQ = () => {
                     line-height: 1.6;
                     opacity: 0.92;
                 }
-                .faq-inline-link { color: #ffffff; text-decoration: underline; }
-                .faq-list-section { padding: 3.5rem 0; }
+                .faq-inline-link { color: var(--color-brass-lite); text-decoration: underline; text-underline-offset: 3px; }
+                .faq-list-section { padding: clamp(3rem, 6vw, 4.5rem) 0; }
                 .faq-item {
-                    border-bottom: 1px solid #e2e2dc;
+                    border-bottom: 1px solid var(--hair-on-light);
                     padding: 0.5rem 0;
                 }
                 .faq-question {
                     font-family: var(--font-heading);
-                    font-size: 1.2rem;
-                    font-weight: 700;
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    letter-spacing: -0.01em;
                     color: var(--color-text-primary);
                     cursor: pointer;
                     list-style: none;
@@ -121,7 +123,7 @@ const FAQ = () => {
                     font-family: var(--font-body);
                     font-size: 1.08rem;
                     line-height: 1.7;
-                    color: #444;
+                    color: var(--color-ink-soft);
                     padding: 0 2.5rem 1.25rem 0;
                     margin: 0;
                 }
@@ -132,8 +134,9 @@ const FAQ = () => {
                 .faq-cta-inner { text-align: center; }
                 .faq-cta-headline {
                     font-family: var(--font-heading);
-                    font-size: 1.6rem;
-                    font-weight: 700;
+                    font-size: clamp(1.6rem, 3vw, 2.2rem);
+                    font-weight: 500;
+                    letter-spacing: -0.015em;
                     color: var(--color-text-inverse);
                     margin-bottom: 1.75rem;
                 }

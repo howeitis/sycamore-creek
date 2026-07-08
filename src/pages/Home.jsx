@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from '../components/Hero';
 import Pedigree from '../components/Pedigree';
 import ServiceHierarchy from '../components/ServiceHierarchy';
+import Metrics from '../components/Metrics';
 import Closing from '../components/Closing';
 import { useCanonical } from '../hooks/useCanonical';
 
@@ -14,6 +15,7 @@ const Home = () => {
             <Hero />
             <Pedigree />
             <ServiceHierarchy />
+            <Metrics />
             <Closing />
         </div>
     );

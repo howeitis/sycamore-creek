@@ -37,7 +37,8 @@ const About = () => {
             {/* Section A - Page Header */}
             <section className="about-header-section">
                 <div className="content-container">
-                    <h1 className="about-headline">Built for the searches others can't close.</h1>
+                    <p className="eyebrow about-eyebrow">About the Firm</p>
+                    <h1 className="about-headline">Built for the searches others <em>can&rsquo;t close.</em></h1>
                     <p className="about-subhead">
                         Sycamore Creek is a boutique talent advisory built on a single premise: the best people aren't applying. That's especially true in the cleared, defense, and AI-native engineering world, where the talent pool is small and the margin for error is zero. Reaching those people requires precision, discretion, and a principal who understands your technical environment as well as your team does.
                     </p>
@@ -90,7 +91,7 @@ const About = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Effective leadership changes everything. Let's find your next principal.</h3>
-                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'about' })}>START THE CONVERSATION</Link>
+                    <Link to="/contact" className="btn-primary" onClick={() => trackEvent('cta_click', { location: 'about' })}>Start the Conversation <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link>
                 </div>
             </section>
 
@@ -116,14 +117,26 @@ const About = () => {
                     color: var(--color-text-inverse);
                 }
 
+                .about-eyebrow {
+                    color: var(--color-brass-lite);
+                    margin-bottom: 1.5rem;
+                }
+
                 .about-headline {
                     font-family: var(--font-heading);
-                    font-size: 3.5rem;
-                    font-weight: 700;
+                    font-size: clamp(2.6rem, 5.5vw, 4rem);
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
                     margin-bottom: 1.5rem;
-                    line-height: 1.1;
-                    max-width: 800px;
+                    line-height: 1.06;
+                    max-width: 16ch;
                     color: var(--color-text-inverse);
+                }
+
+                .about-headline em {
+                    font-style: italic;
+                    font-weight: 400;
+                    color: var(--color-brass-lite);
                 }
 
                 .about-subhead {
@@ -178,8 +191,8 @@ const About = () => {
                 .founder-bio p {
                     font-family: var(--font-body);
                     font-size: 1.1rem;
-                    line-height: 1.6;
-                    color: #444;
+                    line-height: 1.7;
+                    color: var(--color-ink-soft);
                     margin-bottom: 1.5rem;
                 }
 
@@ -192,8 +205,9 @@ const About = () => {
 
                 .section-title {
                     font-family: var(--font-heading);
-                    font-size: 2rem;
-                    font-weight: 700;
+                    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+                    font-weight: 500;
+                    letter-spacing: -0.015em;
                     margin-bottom: 3rem;
                     color: var(--color-text-inverse);
                 }
@@ -243,30 +257,13 @@ const About = () => {
 
                 .cta-headline {
                      font-family: var(--font-heading);
-                     font-size: 1.5rem;
-                     font-weight: 700;
-                     margin-bottom: 2rem;
+                     font-size: clamp(1.6rem, 3vw, 2.2rem);
+                     font-weight: 500;
+                     letter-spacing: -0.015em;
+                     line-height: 1.15;
+                     max-width: 24ch;
+                     margin: 0 auto 2rem;
                      color: var(--color-text-primary);
-                }
-
-                .cta-button {
-                    display: inline-block;
-                    background-color: var(--color-bg-emphasis); /* British Racing Green */
-                    color: var(--color-text-inverse);
-                    padding: 1rem 2.5rem;
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    border-radius: 4px;
-                    transition: background-color 0.2s;
-                    text-decoration: none;
-                }
-
-                .cta-button:hover {
-                    background-color: #00331b;
-                    box-shadow: 0 0 15px var(--color-bg-accent);
-                    transform: translateY(-2px);
                 }
 
                 @media (max-width: 768px) {

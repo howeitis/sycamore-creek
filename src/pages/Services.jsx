@@ -44,7 +44,8 @@ const Services = () => {
             {/* Section A - Page Header */}
             <section className="services-header-section">
                 <div className="content-container">
-                    <h1 className="services-headline">Different problems require different engagements.</h1>
+                    <p className="eyebrow services-eyebrow">Our Services</p>
+                    <h1 className="services-headline">Different problems require <em>different engagements.</em></h1>
                     <p className="services-subhead">
                         We offer a focused set of services because recruiting challenges are not one-size-fits-all. Whether you need a single critical hire or an entire talent function built from scratch, we structure the engagement around the outcome — not around billing hours.
                     </p>
@@ -106,7 +107,7 @@ const Services = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Not sure which engagement fits? Let's talk.</h3>
-                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'services' })}>GET IN TOUCH</Link>
+                    <Link to="/contact" className="btn-primary" onClick={() => trackEvent('cta_click', { location: 'services' })}>Get in Touch <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link>
                 </div>
             </section>
 
@@ -131,14 +132,25 @@ const Services = () => {
                     padding: 6rem 0 4rem;
                 }
 
+                .services-eyebrow {
+                    margin-bottom: 1.5rem;
+                }
+
                 .services-headline {
                     font-family: var(--font-heading);
-                    font-size: 3.5rem;
-                    font-weight: 700;
+                    font-size: clamp(2.6rem, 5.5vw, 4rem);
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
                     margin-bottom: 1.5rem;
-                    line-height: 1.1;
-                    max-width: 800px;
+                    line-height: 1.06;
+                    max-width: 18ch;
                     color: var(--color-text-primary);
+                }
+
+                .services-headline em {
+                    font-style: italic;
+                    font-weight: 400;
+                    color: var(--color-teal);
                 }
 
                 .services-subhead {
@@ -217,13 +229,13 @@ const Services = () => {
                     font-size: 1.1rem;
                     line-height: 1.6;
                     margin-bottom: 1.5rem;
-                    color: #444;
+                    color: var(--color-ink-soft);
                 }
                 
                 .best-for {
                      font-family: var(--font-body);
                      font-size: 1rem;
-                     color: #666;
+                     color: var(--color-sage);
                 }
 
                 .whats-included {
@@ -233,7 +245,7 @@ const Services = () => {
                     text-transform: uppercase;
                     letter-spacing: 1px;
                     margin-bottom: 1rem;
-                    color: #666;
+                    color: var(--color-sage);
                     font-size: 0.85rem;
                 }
                 
@@ -249,12 +261,12 @@ const Services = () => {
                     margin-bottom: 0.75rem;
                     padding-left: 1.5rem;
                     position: relative;
-                    color: #444;
+                    color: var(--color-ink-soft);
                 }
                 
                 .included-list li::before {
-                    content: "•";
-                    color: var(--color-bg-emphasis);
+                    content: "—";
+                    color: var(--color-brass-deep);
                     position: absolute;
                     left: 0;
                     font-weight: 700;
@@ -288,30 +300,11 @@ const Services = () => {
 
                 .cta-headline {
                      font-family: var(--font-heading);
-                     font-size: 1.5rem;
-                     font-weight: 700;
+                     font-size: clamp(1.6rem, 3vw, 2.2rem);
+                     font-weight: 500;
+                     letter-spacing: -0.015em;
                      margin-bottom: 2rem;
                      color: var(--color-text-primary);
-                }
-
-                .cta-button {
-                    display: inline-block;
-                    background-color: var(--color-bg-emphasis); /* British Racing Green */
-                    color: var(--color-text-inverse);
-                    padding: 1rem 2.5rem;
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    border-radius: 4px;
-                    transition: background-color 0.2s;
-                    text-decoration: none;
-                }
-
-                .cta-button:hover {
-                    background-color: #00331b;
-                    box-shadow: 0 0 15px var(--color-bg-accent);
-                    transform: translateY(-2px);
                 }
 
                 @media (max-width: 768px) {

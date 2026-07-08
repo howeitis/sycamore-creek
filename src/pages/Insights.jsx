@@ -58,9 +58,10 @@ const Insights = () => {
                 }
                 .insights-headline {
                     font-family: var(--font-heading);
-                    font-size: 3.5rem;
-                    font-weight: 700;
-                    line-height: 1.1;
+                    font-size: clamp(2.6rem, 5vw, 3.6rem);
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
+                    line-height: 1.06;
                     margin-bottom: 1.25rem;
                     color: var(--color-text-inverse);
                 }
@@ -82,14 +83,15 @@ const Insights = () => {
                     gap: 1.5rem;
                 }
                 .insight-card {
-                    background: #ffffff;
-                    border: 1px solid #e6e6e0;
-                    border-radius: 10px;
-                    transition: transform 0.2s, box-shadow 0.2s;
+                    background: var(--color-surface);
+                    border: 1px solid var(--hair-on-light);
+                    border-radius: var(--radius-lg);
+                    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
                 }
                 .insight-card:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+                    transform: translateY(-4px);
+                    box-shadow: var(--shadow-md);
+                    border-color: var(--hair-brass);
                 }
                 .insight-card-link {
                     display: block;
@@ -101,29 +103,31 @@ const Insights = () => {
                     font-family: var(--font-body);
                     font-weight: 700;
                     text-transform: uppercase;
-                    letter-spacing: 1.5px;
+                    letter-spacing: 0.15em;
                     font-size: 0.7rem;
-                    color: var(--color-bg-accent);
+                    color: var(--color-brass-deep);
                 }
                 .insight-card-title {
                     font-family: var(--font-heading);
-                    font-size: 1.35rem;
-                    font-weight: 700;
-                    line-height: 1.25;
+                    font-size: 1.45rem;
+                    font-weight: 500;
+                    letter-spacing: -0.01em;
+                    line-height: 1.2;
                     margin: 0.6rem 0 0.75rem;
                     color: var(--color-text-primary);
                 }
                 .insight-card-excerpt {
                     font-family: var(--font-body);
                     font-size: 1rem;
-                    line-height: 1.6;
-                    color: #555;
+                    line-height: 1.65;
+                    color: var(--color-ink-soft);
                     margin-bottom: 1rem;
                 }
                 .insight-card-meta {
-                    font-family: var(--font-body);
-                    font-size: 0.85rem;
-                    color: #8a8a8a;
+                    font-family: var(--font-mono);
+                    font-size: 0.78rem;
+                    letter-spacing: 0.03em;
+                    color: var(--color-sage);
                 }
                 @media (max-width: 768px) {
                     .insights-headline { font-size: 2.5rem; }

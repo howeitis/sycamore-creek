@@ -51,7 +51,8 @@ const Process = () => {
             {/* Header */}
             <section className="process-header-section">
                 <div className="content-container">
-                    <h1 className="process-headline">How we work.</h1>
+                    <p className="eyebrow process-eyebrow">Our Process</p>
+                    <h1 className="process-headline">How a search <em>actually runs.</em></h1>
                     <p className="process-subhead">
                         A retained search is a partnership, not a transaction. Here is exactly how an engagement runs — from the first conversation to the weeks after your new hire starts.
                     </p>
@@ -79,7 +80,7 @@ const Process = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Have a search in mind? Let's start with a conversation.</h3>
-                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'process' })}>START THE CONVERSATION</Link>
+                    <Link to="/contact" className="btn-primary" onClick={() => trackEvent('cta_click', { location: 'process' })}>Start the Conversation <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link>
                 </div>
             </section>
 
@@ -104,13 +105,26 @@ const Process = () => {
                     color: var(--color-text-inverse);
                 }
 
+                .process-eyebrow {
+                    color: var(--color-brass-lite);
+                    margin-bottom: 1.5rem;
+                }
+
                 .process-headline {
                     font-family: var(--font-heading);
-                    font-size: 3.5rem;
-                    font-weight: 700;
+                    font-size: clamp(2.6rem, 5.5vw, 4rem);
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
                     margin-bottom: 1.5rem;
-                    line-height: 1.1;
+                    line-height: 1.06;
+                    max-width: 16ch;
                     color: var(--color-text-inverse);
+                }
+
+                .process-headline em {
+                    font-style: italic;
+                    font-weight: 400;
+                    color: var(--color-brass-lite);
                 }
 
                 .process-subhead {
@@ -139,9 +153,9 @@ const Process = () => {
                 .process-step {
                     display: grid;
                     grid-template-columns: 4rem 1fr;
-                    gap: 1.5rem;
-                    padding: 2rem 0;
-                    border-top: 1px solid #ececec;
+                    gap: 1.75rem;
+                    padding: 2.25rem 0;
+                    border-top: 1px solid var(--hair-on-light);
                 }
 
                 .process-step:first-child {
@@ -150,18 +164,19 @@ const Process = () => {
                 }
 
                 .process-num {
-                    font-family: var(--font-heading);
-                    font-size: 1.75rem;
-                    font-weight: 900;
-                    color: var(--color-bg-emphasis);
-                    opacity: 0.35;
-                    line-height: 1.2;
+                    font-family: var(--font-mono);
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    letter-spacing: 0.05em;
+                    color: var(--color-brass-deep);
+                    line-height: 2;
                 }
 
                 .process-step-title {
                     font-family: var(--font-heading);
-                    font-size: 1.4rem;
-                    font-weight: 700;
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    letter-spacing: -0.01em;
                     margin-bottom: 0.6rem;
                     color: var(--color-text-primary);
                 }
@@ -169,8 +184,8 @@ const Process = () => {
                 .process-step-body {
                     font-family: var(--font-body);
                     font-size: 1.05rem;
-                    line-height: 1.6;
-                    color: #444;
+                    line-height: 1.7;
+                    color: var(--color-ink-soft);
                 }
 
                 /* CTA */
@@ -182,30 +197,13 @@ const Process = () => {
 
                 .cta-headline {
                     font-family: var(--font-heading);
-                    font-size: 1.5rem;
-                    font-weight: 700;
-                    margin-bottom: 2rem;
+                    font-size: clamp(1.6rem, 3vw, 2.2rem);
+                    font-weight: 500;
+                    letter-spacing: -0.015em;
+                    line-height: 1.15;
+                    max-width: 24ch;
+                    margin: 0 auto 2rem;
                     color: var(--color-text-primary);
-                }
-
-                .cta-button {
-                    display: inline-block;
-                    background-color: var(--color-bg-emphasis);
-                    color: var(--color-text-inverse);
-                    padding: 1rem 2.5rem;
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    border-radius: 4px;
-                    transition: background-color 0.2s;
-                    text-decoration: none;
-                }
-
-                .cta-button:hover {
-                    background-color: #00331b;
-                    box-shadow: 0 0 15px var(--color-bg-accent);
-                    transform: translateY(-2px);
                 }
 
                 @media (max-width: 768px) {

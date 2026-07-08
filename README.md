@@ -34,7 +34,7 @@ sycamore-creek/
 │   └── vite.svg               # Unused default asset (safe to delete)
 ├── src/
 │   ├── pages/
-│   │   ├── Home.jsx           # Landing page (Hero + Pedigree + ServiceHierarchy + Closing)
+│   │   ├── Home.jsx           # Landing page (Hero + Pedigree + ServiceHierarchy + Metrics + Closing)
 │   │   ├── About.jsx          # Founder profile and firm philosophy
 │   │   ├── Services.jsx       # Retained Search, Embedded Recruiting, Strategic Advising
 │   │   ├── TrackRecord.jsx    # Stats and placement cards
@@ -46,6 +46,7 @@ sycamore-creek/
 │   │   ├── Hero.jsx           # Full-bleed hero section
 │   │   ├── Pedigree.jsx       # Capability highlights (Home page)
 │   │   ├── ServiceHierarchy.jsx # Service blocks (Home page)
+│   │   ├── Metrics.jsx        # Track-record proof strip (Home page; reads src/data/placements.js)
 │   │   └── Closing.jsx        # "How We Work" process + CTA (Home page)
 │   ├── hooks/
 │   │   └── useCanonical.js    # Sets <link rel="canonical"> via DOM (avoids React 19 hoisting)
@@ -116,17 +117,25 @@ All on-page images are served as **WebP** for fast loading:
 
 ## Design System
 
+Tokens live in `src/index.css` under `:root`. Legacy aliases (`--color-bg-emphasis`, `--color-bg-accent`) are retained and point at the new values so components inherit the palette automatically.
+
 | Token | Value | Usage |
 |---|---|---|
-| British Racing Green | `#004225` | Primary backgrounds, CTAs, headings |
-| Sycamore Teal | `#2C4C48` | Secondary backgrounds, accents |
-| Parchment | `#F5F5F0` | Page base background |
-| Charcoal | `#333333` | Body text, footer |
-| Cream | `#F5F5F0` | Inverse text on dark backgrounds |
-| Heading font | Merriweather (serif) | All `h1`–`h6` |
+| Sycamore Teal (`--color-teal`) | `#2C4C48` | Company color — nav CTA, feature bands, buttons, accents |
+| Deep Pine (`--color-pine`) | `#0B2F24` | Richest dark ground — hero, headers, proof band |
+| Deepest Pine (`--color-pine-deep`) | `#071C16` | Footer, vignettes |
+| Sycamore Shade (`--color-shade`) | `#123A2D` | Layering / cards on dark |
+| Warm Parchment (`--color-bg-base`) | `#F4EFE6` | Page base background |
+| Warm Surface (`--color-surface`) | `#FBF9F4` | Cards, forms, light sections |
+| Warm Ink (`--color-text-primary`) | `#1C2620` | Body text |
+| Ink Soft (`--color-ink-soft`) | `#47544C` | Secondary body text |
+| Sage (`--color-sage`) | `#7C8E80` | Captions, metadata |
+| Brass (`--color-brass`) | `#C6A15B` | Restrained accent — hairlines, eyebrows, key figures |
+| Heading font | **Newsreader** (editorial serif) | All `h1`–`h6`; italics carry emphasis |
 | Body font | Lato (sans-serif) | All body copy |
+| Mono font | system mono stack | Labels, step numbers, metadata |
 
-Fonts are loaded via Google Fonts CDN in `index.css`.
+Buttons use a shared language defined in `index.css`: `.btn-primary` (teal fill), `.btn-inverse` (cream fill for dark/photo grounds), and `.btn-ghost` (editorial underlined link). Fonts are loaded via Google Fonts CDN in `index.css`.
 
 ---
 

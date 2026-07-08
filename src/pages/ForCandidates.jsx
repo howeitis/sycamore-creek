@@ -12,7 +12,8 @@ const ForCandidates = () => {
             {/* Header */}
             <section className="cand-header-section">
                 <div className="content-container">
-                    <h1 className="cand-headline">The best conversations start before there's a job.</h1>
+                    <p className="eyebrow cand-eyebrow">For Candidates</p>
+                    <h1 className="cand-headline">The best conversations start <em>before there&rsquo;s a job.</em></h1>
                     <p className="cand-subhead">
                         Most of the people we place were never on the market. If you're exceptional at what you do — in cleared and defense engineering, AI, or technical leadership — it's worth knowing us before you ever need to.
                     </p>
@@ -83,14 +84,26 @@ const ForCandidates = () => {
                     color: var(--color-text-inverse);
                 }
 
+                .cand-eyebrow {
+                    color: var(--color-brass-lite);
+                    margin-bottom: 1.5rem;
+                }
+
                 .cand-headline {
                     font-family: var(--font-heading);
-                    font-size: 3rem;
-                    font-weight: 700;
+                    font-size: clamp(2.4rem, 5vw, 3.4rem);
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
                     margin-bottom: 1.5rem;
-                    line-height: 1.15;
-                    max-width: 800px;
+                    line-height: 1.08;
+                    max-width: 18ch;
                     color: var(--color-text-inverse);
+                }
+
+                .cand-headline em {
+                    font-style: italic;
+                    font-weight: 400;
+                    color: var(--color-brass-lite);
                 }
 
                 .cand-subhead {
@@ -127,8 +140,9 @@ const ForCandidates = () => {
 
                 .cand-item-title {
                     font-family: var(--font-heading);
-                    font-size: 1.3rem;
-                    font-weight: 700;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    letter-spacing: -0.01em;
                     margin-bottom: 0.6rem;
                     color: var(--color-text-primary);
                 }
@@ -136,23 +150,25 @@ const ForCandidates = () => {
                 .cand-item-body {
                     font-family: var(--font-body);
                     font-size: 1.05rem;
-                    line-height: 1.6;
-                    color: #444;
+                    line-height: 1.7;
+                    color: var(--color-ink-soft);
                 }
 
                 /* CTA card */
                 .cand-cta-card {
                     background-color: var(--color-bg-base);
-                    border-left: 4px solid var(--color-bg-accent);
-                    border-radius: 4px;
-                    padding: 2rem;
+                    border-left: 3px solid var(--color-brass);
+                    border-radius: var(--radius);
+                    padding: 2.25rem;
                     position: sticky;
                     top: 6rem;
                 }
 
                 .cand-cta-title {
                     font-family: var(--font-heading);
-                    font-size: 1.4rem;
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    letter-spacing: -0.01em;
                     margin-bottom: 0.75rem;
                     color: var(--color-text-primary);
                 }
@@ -160,29 +176,31 @@ const ForCandidates = () => {
                 .cand-cta-body {
                     font-family: var(--font-body);
                     font-size: 1rem;
-                    line-height: 1.5;
-                    color: #555;
+                    line-height: 1.6;
+                    color: var(--color-ink-soft);
                     margin-bottom: 1.5rem;
                 }
 
                 .cand-cta-button {
-                    display: block;
+                    display: flex;
+                    justify-content: center;
                     text-align: center;
-                    background-color: var(--color-bg-emphasis);
+                    background-color: var(--color-teal);
                     color: var(--color-text-inverse);
                     padding: 0.9rem 1.5rem;
                     font-family: var(--font-body);
                     font-weight: 700;
                     text-transform: uppercase;
-                    letter-spacing: 1px;
-                    border-radius: 4px;
+                    letter-spacing: 0.12em;
+                    font-size: 0.82rem;
+                    border-radius: var(--radius);
                     text-decoration: none;
-                    transition: background-color 0.2s, transform 0.2s;
+                    transition: background-color 0.2s var(--ease), transform 0.2s var(--ease);
                     margin-bottom: 1rem;
                 }
 
                 .cand-cta-button:hover {
-                    background-color: #00331b;
+                    background-color: var(--color-pine);
                     transform: translateY(-2px);
                 }
 
@@ -192,7 +210,7 @@ const ForCandidates = () => {
                     font-family: var(--font-body);
                     font-weight: 700;
                     font-size: 0.95rem;
-                    color: var(--color-bg-emphasis);
+                    color: var(--color-teal);
                 }
 
                 .cand-cta-link:hover {

@@ -50,10 +50,10 @@ const ArticleLayout = ({ slug, children }) => {
                     </p>
                     <Link
                         to="/contact"
-                        className="article-cta-button"
+                        className="btn-inverse"
                         onClick={() => trackEvent('cta_click', { location: `article:${slug}` })}
                     >
-                        Start a Conversation
+                        Start a Conversation <span className="btn-arrow" aria-hidden="true">&rarr;</span>
                     </Link>
                 </aside>
             </article>
@@ -72,55 +72,57 @@ const ArticleLayout = ({ slug, children }) => {
                     font-family: var(--font-body);
                     font-size: 0.9rem;
                     font-weight: 600;
-                    color: var(--color-bg-emphasis);
+                    color: var(--color-teal);
                     text-decoration: none;
                     letter-spacing: 0.3px;
                 }
-                .article-back:hover { opacity: 0.7; }
+                .article-back:hover { color: var(--color-brass-deep); }
                 .article-category {
                     display: block;
                     margin-top: 2rem;
                     font-family: var(--font-body);
                     font-weight: 700;
                     text-transform: uppercase;
-                    letter-spacing: 1.5px;
+                    letter-spacing: 0.15em;
                     font-size: 0.75rem;
-                    color: var(--color-bg-accent);
+                    color: var(--color-brass-deep);
                 }
                 .article-title {
                     font-family: var(--font-heading);
-                    font-size: 2.6rem;
-                    font-weight: 700;
-                    line-height: 1.15;
+                    font-size: clamp(2.1rem, 4.5vw, 3rem);
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
+                    line-height: 1.1;
                     margin: 0.75rem 0 1rem;
                     color: var(--color-text-primary);
                 }
                 .article-meta {
                     font-family: var(--font-body);
                     font-size: 0.95rem;
-                    color: #6b6b6b;
+                    color: var(--color-sage);
                     margin-bottom: 2.5rem;
                     padding-bottom: 2.5rem;
-                    border-bottom: 1px solid #e2e2dc;
+                    border-bottom: 1px solid var(--hair-on-light);
                 }
                 .article-prose {
                     font-family: var(--font-body);
                     font-size: 1.15rem;
-                    line-height: 1.7;
-                    color: #2c2c2c;
+                    line-height: 1.75;
+                    color: var(--color-text-primary);
                 }
                 .article-prose h2 {
                     font-family: var(--font-heading);
-                    font-size: 1.7rem;
-                    font-weight: 700;
+                    font-size: 1.75rem;
+                    font-weight: 500;
+                    letter-spacing: -0.015em;
                     line-height: 1.25;
                     margin: 2.75rem 0 1rem;
                     color: var(--color-text-primary);
                 }
                 .article-prose h3 {
                     font-family: var(--font-heading);
-                    font-size: 1.25rem;
-                    font-weight: 700;
+                    font-size: 1.3rem;
+                    font-weight: 500;
                     margin: 2rem 0 0.75rem;
                     color: var(--color-text-primary);
                 }
@@ -132,14 +134,17 @@ const ArticleLayout = ({ slug, children }) => {
                 .article-prose li { margin-bottom: 0.6rem; }
                 .article-prose strong { color: var(--color-text-primary); }
                 .article-prose a {
-                    color: var(--color-bg-emphasis);
+                    color: var(--color-teal);
                     text-decoration: underline;
-                    text-underline-offset: 2px;
+                    text-decoration-color: var(--color-brass);
+                    text-underline-offset: 3px;
                 }
                 .article-prose .lede {
-                    font-size: 1.3rem;
-                    line-height: 1.6;
-                    color: #444;
+                    font-family: var(--font-heading);
+                    font-size: 1.4rem;
+                    line-height: 1.5;
+                    color: var(--color-ink-soft);
+                    font-style: italic;
                     font-weight: 300;
                 }
                 .article-prose table {
@@ -151,40 +156,45 @@ const ArticleLayout = ({ slug, children }) => {
                 .article-prose th, .article-prose td {
                     text-align: left;
                     padding: 0.7rem 0.9rem;
-                    border-bottom: 1px solid #e2e2dc;
+                    border-bottom: 1px solid var(--hair-on-light);
                 }
                 .article-prose th {
                     font-family: var(--font-body);
                     font-weight: 700;
-                    background: rgba(0,66,37,0.04);
+                    background: rgba(44,76,72,0.06);
                     color: var(--color-text-primary);
                 }
                 .article-prose blockquote {
                     margin: 2rem 0;
                     padding: 0.5rem 0 0.5rem 1.5rem;
-                    border-left: 3px solid var(--color-bg-accent);
+                    border-left: 3px solid var(--color-brass);
+                    font-family: var(--font-heading);
                     font-style: italic;
-                    color: #444;
+                    font-size: 1.25rem;
+                    line-height: 1.5;
+                    color: var(--color-ink-soft);
                 }
                 .article-prose .callout {
-                    background: rgba(0,66,37,0.05);
-                    border-radius: 8px;
+                    background: var(--color-bg-alt);
+                    border-left: 3px solid var(--color-teal);
+                    border-radius: var(--radius);
                     padding: 1.25rem 1.5rem;
                     margin: 2rem 0;
                     font-size: 1.02rem;
                 }
                 .article-cta {
                     margin-top: 4rem;
-                    padding: 2.5rem;
-                    background: var(--color-bg-emphasis);
-                    border-radius: 10px;
+                    padding: 2.75rem;
+                    background: var(--color-pine);
+                    border-radius: var(--radius-lg);
                     text-align: center;
                     color: var(--color-text-inverse);
                 }
                 .article-cta-headline {
                     font-family: var(--font-heading);
-                    font-size: 1.5rem;
-                    font-weight: 700;
+                    font-size: 1.7rem;
+                    font-weight: 500;
+                    letter-spacing: -0.015em;
                     margin-bottom: 0.75rem;
                     color: var(--color-text-inverse);
                 }

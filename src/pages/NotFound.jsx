@@ -25,7 +25,7 @@ const NotFound = () => {
 
                 .nf-header {
                     flex: 1;
-                    background-color: var(--color-bg-emphasis);
+                    background-color: var(--color-pine);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -41,16 +41,19 @@ const NotFound = () => {
                 .nf-code {
                     font-family: var(--font-heading);
                     font-size: 6rem;
-                    font-weight: 900;
-                    opacity: 0.2;
+                    font-weight: 400;
+                    font-style: italic;
+                    color: var(--color-brass-lite);
+                    opacity: 0.5;
                     line-height: 1;
                     margin-bottom: 1rem;
                 }
 
                 .nf-headline {
                     font-family: var(--font-heading);
-                    font-size: 2.5rem;
-                    font-weight: 700;
+                    font-size: 2.75rem;
+                    font-weight: 500;
+                    letter-spacing: -0.02em;
                     margin-bottom: 1rem;
                     color: var(--color-text-inverse);
                 }
