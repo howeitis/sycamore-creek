@@ -1,7 +1,8 @@
 export const stats = [
     { label: "Compensation Negotiated", value: "$50M+" },
     { label: "Offer Acceptance Rate", value: "87%" },
-    { label: "Primary Markets", value: "DC & NYC" },
+    { label: "Searches Filled", value: "96%" },
+    { label: "Avg. Time to Fill", value: "58 days" },
 ];
 
 export const placements = [
@@ -31,7 +32,7 @@ export const placements = [
     },
     {
         role: "Director of Research",
-        company: "DARPA Research Lab",
+        company: "Federal Research Lab",
         location: "Arlington, VA",
         type: "Executive"
     },

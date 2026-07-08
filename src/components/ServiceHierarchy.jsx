@@ -3,40 +3,40 @@ import React from 'react';
 const ServiceHierarchy = () => {
     return (
         <section className="service-hierarchy">
-            {/* Block A: Retained Search */}
+            {/* Block A: Retained Search (lead service) */}
             <div className="hierarchy-block block-apex">
                 <div className="block-content">
                     <h3 className="block-headline">RETAINED SEARCH</h3>
                     <p className="block-body">
-                        Dedicated, white-glove extraction of niche technical talent. When you cannot afford a mis-hire, we own the search from market map to offer acceptance.
+                        Dedicated, end-to-end ownership of your most critical hires. When a mis-hire isn't an option — cleared engineering leads, AI-native specialists, confidential replacements — we run the search from market map to signed offer.
                     </p>
                 </div>
             </div>
 
-            {/* Block B: The Foundation */}
+            {/* Block B: The other two core services */}
             <div className="hierarchy-block block-foundation">
                 <div className="foundation-grid">
                     <div className="foundation-col">
-                        <h4 className="foundation-headline">EARLY-CAREER ARCHITECTURE</h4>
+                        <h4 className="foundation-headline">EMBEDDED RECRUITING</h4>
                         <p className="foundation-body">
-                            Internships shouldn't be an afterthought. We build the frameworks to capture and convert top-tier emerging talent before the competition knows their names.
+                            We integrate directly into your team for a defined engagement — inside your ATS and standups — building pipeline and scaling hiring without the overhead of a full-time recruiter.
                         </p>
                     </div>
                     <div className="foundation-col">
-                        <h4 className="foundation-headline">TALENT MARKET MAPPING</h4>
+                        <h4 className="foundation-headline">STRATEGIC ADVISING</h4>
                         <p className="foundation-body">
-                            Blind hiring is a liability. We deliver comprehensive intelligence on competitor talent pools, compensation benchmarks, and organizational structures.
+                            When the problem is the process — slow interviews, uncompetitive offers, an org navigating AI-driven change — we advise leadership on compensation, interview design, and talent strategy.
                         </p>
                     </div>
                 </div>
             </div>
 
-            {/* Block C: The Differentiator */}
+            {/* Block C: Our focus / niche */}
             <div className="hierarchy-block block-diff">
                 <div className="block-content">
-                    <h3 className="block-headline">THE AI TRANSITION</h3>
+                    <h3 className="block-headline">OUR FOCUS: CLEARED, DEFENSE &amp; AI-NATIVE TALENT</h3>
                     <p className="block-body">
-                        AI is rewriting the org chart. We advise leadership on acquiring LLM-native engineers, integrating AI tools into HR operations, and restructuring legacy teams for the automated future.
+                        AI is rewriting the org chart, and the cleared world is racing to keep up. We specialize in the hardest technical searches — LLM-native engineers, FPGA and reverse-engineering talent, research leadership — and the leaders who build those teams. From early-career cohorts to executive leadership, across DC, NYC, and nationwide.
                     </p>
                 </div>
             </div>

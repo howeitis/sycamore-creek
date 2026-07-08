@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { stats, placements } from '../data/placements';
 import { useCanonical } from '../hooks/useCanonical';
+import { trackEvent } from '../utils/analytics';
 
 const TrackRecord = () => {
     useCanonical('https://sycamorecreekconsulting.com/track-record');
     return (
         <div className="page-wrapper">
             <title>Track Record | Sycamore Creek Consulting</title>
-            <meta name="description" content="$50M+ in compensation negotiated. 87% offer acceptance rate. Placements across stealth research labs, global media organizations, and high-growth startups in DC and NYC." />
+            <meta name="description" content="$50M+ in compensation negotiated. 87% offer acceptance, 96% of searches filled, 58-day average time to fill. Placements across stealth research labs, global media organizations, and high-growth startups in DC and NYC." />
             {/* Section A - Header */}
             <section className="tr-header-section">
                 <div className="content-container">
@@ -30,6 +31,8 @@ const TrackRecord = () => {
                             </div>
                         ))}
                     </div>
+                    <p className="metrics-caption">Rooted in DC and NYC — placing talent nationwide.</p>
+                    <p className="metrics-note">Figures reflect completed engagements, identities withheld for confidentiality.</p>
                 </div>
             </section>
 
@@ -54,7 +57,7 @@ const TrackRecord = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Ready to add to this list?</h3>
-                    <Link to="/contact" className="cta-button">INITIATE A SEARCH</Link>
+                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'track_record' })}>INITIATE A SEARCH</Link>
                 </div>
             </section>
 
@@ -133,6 +136,25 @@ const TrackRecord = () => {
                     font-size: 0.85rem;
                     opacity: 0.6;
                     color: var(--color-text-primary);
+                }
+
+                .metrics-caption {
+                    text-align: center;
+                    margin-top: 2.5rem;
+                    font-family: var(--font-body);
+                    font-size: 1rem;
+                    font-style: italic;
+                    color: var(--color-text-primary);
+                    opacity: 0.7;
+                }
+
+                .metrics-note {
+                    text-align: center;
+                    margin-top: 0.75rem;
+                    font-family: var(--font-body);
+                    font-size: 0.8rem;
+                    color: var(--color-text-primary);
+                    opacity: 0.5;
                 }
 
                 /* Placements - Block 3 (Teal) */

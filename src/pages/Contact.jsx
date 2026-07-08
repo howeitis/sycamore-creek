@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCanonical } from '../hooks/useCanonical';
+import { trackEvent } from '../utils/analytics';
 
 const Contact = () => {
     useCanonical('https://sycamorecreekconsulting.com/contact');
@@ -23,11 +24,12 @@ const Contact = () => {
 
             if (response.ok) {
                 setStatus('SUCCESS');
+                trackEvent('generate_lead', { form: 'contact' });
                 form.reset();
             } else {
                 setStatus('ERROR');
             }
-        } catch (error) {
+        } catch {
             setStatus('ERROR');
         }
     };
@@ -51,7 +53,7 @@ const Contact = () => {
                 <div className="content-container contact-grid">
 
                     {/* LEFT COLUMN — CONTACT FORM */}
-                    <div className="form-column">
+                    <div className="form-column" aria-live="polite">
                         {status === 'SUCCESS' ? (
                             <div className="success-message">
                                 <h3 className="success-title">Message Received</h3>
@@ -92,7 +94,7 @@ const Contact = () => {
                                 </button>
 
                                 {status === 'ERROR' && (
-                                    <p className="error-message">Something went wrong. Please try again or email directly.</p>
+                                    <p className="error-message" role="alert">Something went wrong. Please try again or email directly.</p>
                                 )}
                             </form>
                         )}

@@ -1,9 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCanonical } from '../hooks/useCanonical';
+import { useJsonLd } from '../hooks/useJsonLd';
+import { trackEvent } from '../utils/analytics';
+
+// Module-scoped so the reference is stable across renders (useJsonLd dependency).
+const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Owen Howe',
+    jobTitle: 'Founder & Principal',
+    email: 'owen@howe.app',
+    url: 'https://sycamorecreekconsulting.com/about',
+    worksFor: {
+        '@type': 'Organization',
+        name: 'Sycamore Creek Consulting',
+        url: 'https://sycamorecreekconsulting.com',
+    },
+    knowsAbout: [
+        'Retained executive search',
+        'Technical recruiting',
+        'Passive candidate sourcing',
+        'AI and LLM engineer hiring',
+        'Compensation benchmarking',
+    ],
+    sameAs: ['https://www.linkedin.com/in/owen-howe-wm2016/'],
+};
 
 const About = () => {
     useCanonical('https://sycamorecreekconsulting.com/about');
+    useJsonLd('jsonld-about-person', personSchema);
     return (
         <div className="page-wrapper">
             <title>About | Sycamore Creek Consulting</title>
@@ -13,7 +39,7 @@ const About = () => {
                 <div className="content-container">
                     <h1 className="about-headline">Built for the searches others can't close.</h1>
                     <p className="about-subhead">
-                        Sycamore Creek is a boutique talent advisory built on a single premise: the best people aren't applying. Reaching them requires precision, discretion, and a principal who understands your technical environment as well as your team does.
+                        Sycamore Creek is a boutique talent advisory built on a single premise: the best people aren't applying. That's especially true in the cleared, defense, and AI-native engineering world, where the talent pool is small and the margin for error is zero. Reaching those people requires precision, discretion, and a principal who understands your technical environment as well as your team does.
                     </p>
                 </div>
             </section>
@@ -64,7 +90,7 @@ const About = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h3 className="cta-headline">Effective leadership changes everything. Let's find your next principal.</h3>
-                    <Link to="/contact" className="cta-button">START THE CONVERSATION</Link>
+                    <Link to="/contact" className="cta-button" onClick={() => trackEvent('cta_click', { location: 'about' })}>START THE CONVERSATION</Link>
                 </div>
             </section>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { trackEvent } from '../utils/analytics';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -16,15 +17,20 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Close mobile menu when route changes
-    useEffect(() => {
+    // Close the mobile menu when the route changes. Render-phase update
+    // (React's recommended replacement for a setState-in-effect): when the
+    // path differs from the one the menu was last synced to, close it.
+    const [menuPath, setMenuPath] = useState(location.pathname);
+    if (location.pathname !== menuPath) {
+        setMenuPath(location.pathname);
         setMobileMenuOpen(false);
-    }, [location]);
+    }
 
     const navLinks = [
         { name: 'About', path: '/about' },
-        { name: 'Track Record', path: '/track-record' },
         { name: 'Services', path: '/services' },
+        { name: 'Process', path: '/process' },
+        { name: 'Track Record', path: '/track-record' },
         { name: 'Contact', path: '/contact' },
     ];
 
@@ -45,7 +51,11 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <Link to="/contact" className="nav-cta-button">
+                    <Link
+                        to="/contact"
+                        className="nav-cta-button"
+                        onClick={() => trackEvent('cta_click', { location: 'navbar' })}
+                    >
                         Initiate Search
                     </Link>
                 </div>
@@ -54,6 +64,7 @@ const Navbar = () => {
                     className="mobile-menu-toggle"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label="Toggle navigation"
+                    aria-expanded={mobileMenuOpen}
                 >
                     <span className="hamburger"></span>
                 </button>
