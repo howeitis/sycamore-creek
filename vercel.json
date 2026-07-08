@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    { "source": "/callback", "destination": "/callback.html" },
+    { "source": "/((?!\\.well-known/).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [{ "key": "X-Frame-Options", "value": "SAMEORIGIN" }]
+    },
+    {
+      "source": "/.well-known/(.*)",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ]
+}
