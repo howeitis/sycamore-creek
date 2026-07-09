@@ -149,6 +149,7 @@ const ArticleLayout = ({ slug, children }) => {
                 }
                 .article-prose table {
                     width: 100%;
+                    table-layout: fixed;
                     border-collapse: collapse;
                     margin: 0 0 1.6rem;
                     font-size: 1rem;
@@ -157,12 +158,21 @@ const ArticleLayout = ({ slug, children }) => {
                     text-align: left;
                     padding: 0.7rem 0.9rem;
                     border-bottom: 1px solid var(--hair-on-light);
+                    overflow-wrap: break-word;
                 }
                 .article-prose th {
                     font-family: var(--font-body);
                     font-weight: 700;
                     background: rgba(44,76,72,0.06);
                     color: var(--color-text-primary);
+                }
+                @media (max-width: 640px) {
+                    .article-prose table {
+                        font-size: 0.82rem;
+                    }
+                    .article-prose th, .article-prose td {
+                        padding: 0.5rem 0.5rem;
+                    }
                 }
                 .article-prose blockquote {
                     margin: 2rem 0;

@@ -129,8 +129,16 @@ const Navbar = () => {
                 }
 
                 @media (max-width: 480px) {
+                    .navbar-logo {
+                        height: 36px;
+                    }
+
                     .navbar-brand-name {
-                        display: none;
+                        margin-left: 0.5rem;
+                        font-size: 0.85rem;
+                        white-space: normal;
+                        line-height: 1.15;
+                        max-width: 150px;
                     }
                 }
 
