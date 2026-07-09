@@ -104,7 +104,7 @@ const Contact = () => {
                     {/* RIGHT COLUMN — DIRECT CONTACT */}
                     <div className="info-column">
                         <div className="principal-card">
-                            <img src={`${import.meta.env.BASE_URL}founder.webp`} alt="Owen Howe, Principal" className="principal-photo" loading="lazy" />
+                            <img src={`${import.meta.env.BASE_URL}hero_profile.webp`} alt="Owen Howe, Principal" className="principal-photo" loading="lazy" />
                             <p className="principal-quote">&ldquo;I read every inquiry myself. Expect a direct, considered reply &mdash; never a form response.&rdquo;</p>
                             <p className="principal-name">Owen Howe <span>&mdash; Principal</span></p>
                         </div>

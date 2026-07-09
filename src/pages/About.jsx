@@ -49,7 +49,7 @@ const About = () => {
             <section className="founder-section">
                 <div className="content-container founder-grid">
                     <div className="founder-image-col">
-                        <img src={`${import.meta.env.BASE_URL}founder.webp`} alt="Owen Howe, Founder and Principal of Sycamore Creek Consulting" className="founder-image" />
+                        <img src={`${import.meta.env.BASE_URL}hero_profile.webp`} alt="Owen Howe, Founder and Principal of Sycamore Creek Consulting" className="founder-image" />
                     </div>
                     <div className="founder-text-col">
                         <span className="founder-label">OWEN HOWE</span>

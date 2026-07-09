@@ -41,6 +41,8 @@ Sycamore Creek maintains a confidential network of exceptional engineers and lea
 
 ## Insights
 Field notes on hiring scarce technical talent — compensation benchmarks, recruiting models, and how to reach passive engineers. Index: https://sycamorecreekconsulting.com/insights
+- How to Hire Executives — running a VP and C-level search that sticks: https://sycamorecreekconsulting.com/insights/how-to-hire-executives
+- How to Hire Product Leaders — staff PMs, principal designers, and directors of product: https://sycamorecreekconsulting.com/insights/how-to-hire-product-leaders
 - Cleared & Defense AI/ML Engineer Salary Guide (DC & Northern Virginia, 2026): https://sycamorecreekconsulting.com/insights/cleared-defense-ai-engineer-salary-guide-dc
 - Retained vs. Contingency vs. Embedded Recruiting — which model to use: https://sycamorecreekconsulting.com/insights/retained-vs-contingency-vs-embedded-recruiting
 - How to Hire FPGA Engineers (when almost none of them are looking): https://sycamorecreekconsulting.com/insights/how-to-hire-fpga-engineers

@@ -16,6 +16,8 @@ import Insights from './pages/Insights';
 import ClearedAiSalaryGuide from './pages/insights/ClearedAiSalaryGuide';
 import RetainedVsContingencyVsEmbedded from './pages/insights/RetainedVsContingencyVsEmbedded';
 import HowToHireFpgaEngineers from './pages/insights/HowToHireFpgaEngineers';
+import HowToHireProductLeaders from './pages/insights/HowToHireProductLeaders';
+import HowToHireExecutives from './pages/insights/HowToHireExecutives';
 import NotFound from './pages/NotFound';
 import './App.css';
 
@@ -39,6 +41,8 @@ function App() {
             <Route path="/insights/cleared-defense-ai-engineer-salary-guide-dc" element={<ClearedAiSalaryGuide />} />
             <Route path="/insights/retained-vs-contingency-vs-embedded-recruiting" element={<RetainedVsContingencyVsEmbedded />} />
             <Route path="/insights/how-to-hire-fpga-engineers" element={<HowToHireFpgaEngineers />} />
+            <Route path="/insights/how-to-hire-product-leaders" element={<HowToHireProductLeaders />} />
+            <Route path="/insights/how-to-hire-executives" element={<HowToHireExecutives />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </ErrorBoundary>

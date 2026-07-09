@@ -21,6 +21,28 @@ export const AUTHOR = {
 
 export const insights = [
     {
+        slug: 'how-to-hire-executives',
+        title: 'How to Hire Executives: Running a VP and C-Level Search That Actually Sticks',
+        description:
+            'A practical guide to executive search — hiring a VP of Engineering, General Counsel, or other senior leader: how it differs from every other hire, how to define the role, where the candidates are, and how to evaluate and close them.',
+        excerpt:
+            'An executive hire is the highest-leverage and highest-risk decision a company makes. The wrong VP sets a team back a year; the right one compounds for years. Here is how to run a senior search deliberately — and why the usual hiring playbook breaks at this level.',
+        category: 'Executive Search',
+        date: '2026-07-08',
+        readingTime: '10 min read',
+    },
+    {
+        slug: 'how-to-hire-product-leaders',
+        title: 'How to Hire Product Leaders: Staff PMs, Principal Designers, and Directors of Product',
+        description:
+            'A hiring manager’s guide to recruiting senior product talent — staff and principal product managers and designers, and directors of product: how to scope the role, read judgment on a résumé, and evaluate leaders whose main output is decisions, not artifacts.',
+        excerpt:
+            'Senior product roles are where hiring goes wrong quietly. The résumés all look strong, everyone interviews well, and the gap between a good staff PM and a great one is almost invisible until the work ships. Here is how to hire product leaders on judgment, not polish.',
+        category: 'Product Leadership',
+        date: '2026-07-01',
+        readingTime: '9 min read',
+    },
+    {
         slug: 'cleared-defense-ai-engineer-salary-guide-dc',
         title: 'Cleared & Defense AI/ML Engineer Salary Guide (DC & Northern Virginia, 2026)',
         description:
