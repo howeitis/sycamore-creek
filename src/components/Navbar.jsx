@@ -130,15 +130,15 @@ const Navbar = () => {
 
                 @media (max-width: 480px) {
                     .navbar-logo {
-                        height: 36px;
+                        height: 48px;
                     }
 
                     .navbar-brand-name {
-                        margin-left: 0.5rem;
-                        font-size: 0.85rem;
+                        margin-left: 0.6rem;
+                        font-size: 1.05rem;
                         white-space: normal;
                         line-height: 1.15;
-                        max-width: 150px;
+                        max-width: 180px;
                     }
                 }
 
