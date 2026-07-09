@@ -40,6 +40,7 @@ const Navbar = () => {
             <div className="navbar-container">
                 <Link to="/" className="navbar-brand">
                     <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="Sycamore Creek" className="navbar-logo" />
+                    <span className="navbar-brand-name">Sycamore Creek Consulting</span>
                 </Link>
 
                 <div className={`navbar-links ${mobileMenuOpen ? 'active' : ''}`}>
@@ -108,6 +109,29 @@ const Navbar = () => {
                     height: 48px;
                     width: auto;
                     transition: all 0.3s ease;
+                }
+
+                .navbar-brand-name {
+                    margin-left: 0.75rem;
+                    font-family: var(--font-heading);
+                    font-size: 1.05rem;
+                    font-weight: 500;
+                    letter-spacing: 0.01em;
+                    color: #ffffff;
+                    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+                    transition: color 0.3s ease;
+                    white-space: nowrap;
+                }
+
+                .navbar.scrolled .navbar-brand-name {
+                    color: var(--color-text-primary);
+                    text-shadow: none;
+                }
+
+                @media (max-width: 480px) {
+                    .navbar-brand-name {
+                        display: none;
+                    }
                 }
 
                 .navbar-links {

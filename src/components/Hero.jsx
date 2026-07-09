@@ -11,7 +11,7 @@ const Hero = () => {
       <div className="hero-grain" aria-hidden="true"></div>
 
       <div className="hero-content">
-        <p className="hero-eyebrow">Cleared&nbsp;&middot;&nbsp;Defense&nbsp;&middot;&nbsp;AI-Native</p>
+        <p className="hero-eyebrow">Cleared&nbsp;&middot;&nbsp;R&amp;D&nbsp;&middot;&nbsp;AI-Native Engineering</p>
 
         <h1 className="hero-headline">We find the people who <em>aren&rsquo;t looking.</em></h1>
 
