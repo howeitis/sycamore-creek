@@ -19,6 +19,9 @@ const Insights = () => {
                         Field notes on hiring scarce technical talent — compensation, recruiting
                         models, and how to reach the engineers who aren’t looking.
                     </p>
+                    <a href="/feed.xml" className="insights-rss" type="application/rss+xml">
+                        Subscribe via RSS
+                    </a>
                 </div>
             </section>
 

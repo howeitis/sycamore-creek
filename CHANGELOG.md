@@ -10,6 +10,16 @@ See `BACKLOG.md` for pending work.
 
 ---
 
+## 2026-09-15 — Insights: social cards, author box, related notes, RSS
+
+- **Social cards** — `scripts/og-cards.js` (`npm run og`) renders a branded 1200×630 JPEG per article with satori + sharp (Newsreader/Lato as paths; fonts vendored in `scripts/fonts/`). Cards are committed under `public/og/` and set as `og:image` / `twitter:image` / `og:image:alt` per article by the prerender.
+- **Structured data** — `BlogPosting` now carries the `image` Google requires for Article rich results and an author linked to `/about` (with LinkedIn `sameAs`); a `BreadcrumbList` is emitted alongside it in the same JSON-LD block.
+- **Author box** — photo, name/title, a short bio (`AUTHOR.bio` in `src/data/insights.js`), and links to About and LinkedIn at the foot of every article.
+- **Related field notes** — two cards after the CTA: same category first, then most recent (`relatedInsights()` in `src/data/insights.js`).
+- **RSS** — `dist/feed.xml` generated at build (newest first, with card enclosures); `<link rel="alternate">` in `<head>` and a "Subscribe via RSS" link on `/insights`.
+
+---
+
 ## 2026-09-15 — Review pass 3 (finish the system on interior pages)
 
 ### Design

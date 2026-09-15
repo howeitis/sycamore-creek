@@ -88,14 +88,20 @@ async function buildPage(route) {
         extra.push(`<link rel="canonical" href="${canonical}" />`);
     }
 
+    if (seo.image) {
+        head = setMetaContent(head, 'property="og:image"', seo.image);
+        head = setMetaContent(head, 'name="twitter:image"', seo.image);
+        if (seo.imageAlt) head = setMetaContent(head, 'property="og:image:alt"', seo.imageAlt);
+    }
+
     if (isArticle) {
         head = setMetaContent(head, 'property="og:type"', 'article');
         if (seo.lastmod)
             extra.push(`<meta property="article:published_time" content="${seo.lastmod}" />`);
-        if (seo.jsonLd?.author?.name)
-            extra.push(
-                `<meta property="article:author" content="${attr(seo.jsonLd.author.name)}" />`,
-            );
+        // jsonLd may be an array of nodes; the BlogPosting is the first.
+        const posting = Array.isArray(seo.jsonLd) ? seo.jsonLd[0] : seo.jsonLd;
+        if (posting?.author?.name)
+            extra.push(`<meta property="article:author" content="${attr(posting.author.name)}" />`);
     }
 
     // Per-page JSON-LD (id matches the page's useJsonLd id → no client dup).
@@ -167,7 +173,47 @@ for (const route of [...prerenderRoutes, NOT_FOUND_ROUTE]) {
     console.log(`  prerendered  ${route}  →  ${path.relative(root, outPath)}`);
 }
 
+/** RSS 2.0 feed of the Insights articles, newest first. */
+function buildFeed() {
+    const esc = (v) => text(String(v)).replace(/"/g, '&quot;');
+    const articles = prerenderRoutes
+        .filter((r) => r.startsWith('/insights/'))
+        .map((r) => ({ route: r, seo: seoManifest[r] }))
+        .sort((x, y) => (x.seo.lastmod < y.seo.lastmod ? 1 : -1));
+    const rfc822 = (iso) => new Date(iso + 'T12:00:00Z').toUTCString();
+    const items = articles.map(({ route, seo }) => {
+        const url = SITE_ORIGIN + route;
+        const title = seo.title.replace(/ \| Sycamore Creek Consulting$/, '');
+        const enclosure = seo.image
+            ? `\n      <enclosure url="${seo.image}" type="image/jpeg" length="0" />`
+            : '';
+        return `    <item>
+      <title>${esc(title)}</title>
+      <link>${url}</link>
+      <guid isPermaLink="true">${url}</guid>
+      <pubDate>${rfc822(seo.lastmod)}</pubDate>
+      <description>${esc(seo.description)}</description>${enclosure}
+    </item>`;
+    });
+    const latest = articles[0] ? rfc822(articles[0].seo.lastmod) : new Date().toUTCString();
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sycamore Creek Consulting — Insights</title>
+    <link>${SITE_ORIGIN}/insights</link>
+    <atom:link href="${SITE_ORIGIN}/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Field notes on hiring scarce technical talent: compensation, recruiting models, and how to reach the engineers who are not looking.</description>
+    <language>en-us</language>
+    <lastBuildDate>${latest}</lastBuildDate>
+${items.join('\n')}
+  </channel>
+</rss>
+`;
+}
+
 fs.writeFileSync(path.join(distDir, 'sitemap.xml'), buildSitemap(), 'utf-8');
+fs.writeFileSync(path.join(distDir, 'feed.xml'), buildFeed(), 'utf-8');
+console.log('  generated    feed.xml');
 console.log(`  generated    sitemap.xml  (${prerenderRoutes.length} urls)`);
 console.log(`\n✓ prerendered ${count} page${count === 1 ? '' : 's'}`);
 

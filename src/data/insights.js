@@ -17,7 +17,20 @@ export const AUTHOR = {
     name: 'Owen Howe',
     title: 'Founder & Principal, Sycamore Creek Consulting',
     url: 'https://www.linkedin.com/in/owen-howe-wm2016/',
+    bio: 'Owen runs every Sycamore Creek search personally, from scoping to signed offer. Before founding the firm he built and scaled recruiting functions inside high-growth startups and global institutions, hiring across the full seniority spectrum in cleared, defense, and AI-native engineering.',
 };
+
+/**
+ * Other articles to suggest at the foot of `slug`: same category first, then
+ * the most recent, never the article itself.
+ */
+export function relatedInsights(slug, count = 2) {
+    const current = insightBySlug[slug];
+    const others = insights.filter((a) => a.slug !== slug);
+    const same = others.filter((a) => a.category === current?.category);
+    const rest = others.filter((a) => a.category !== current?.category);
+    return [...same, ...rest].slice(0, count);
+}
 
 export const insights = [
     {
