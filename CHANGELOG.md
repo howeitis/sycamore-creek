@@ -10,6 +10,24 @@ See `BACKLOG.md` for pending work.
 
 ---
 
+## 2026-09-14 — Review pass 2 (consolidation)
+
+### Engineering
+- **Route registry** — `src/routes.js` is the single source of truth for pages; `App.jsx`, the server entry, the prerender, and the sitemap all derive from it. The build fails if a route has no SEO entry or vice versa. (Closes the "add it in two places or it 404s" contract from pass 1.)
+- **SEO manifest** — titles, descriptions, and every JSON-LD block (now including `Person` and `Service`, which were client-only) live in `src/seo/seoData.js`; pages render `<Seo path>`; the prerender reads the same object instead of regex-lifting rendered HTML. Titles rewritten keyword-first. Articles get `og:type=article` + `article:*` tags; `og:site_name` and `max-image-preview:large` added.
+- **Hydration** — `hydrateRoot` + `renderToString` replace `createRoot` + `renderToStaticMarkup`. Mismatches are logged and sent to GA4 as non-fatal exceptions. `vite preview` now mimics Vercel (`appType: 'mpa'`) so hydration can be verified locally.
+- **Code splitting** — the five articles are separate chunks (main bundle 397 KB → 283 KB, 107 → 88 KB gzip). The server entry resolves loaders before rendering so articles still prerender in full.
+- **CSS extracted** — all 18 inline `<style>` blocks (~2,500 lines) moved to `src/styles/*.css`; shared scaffolding de-duplicated into `layout.css`; container widths tokenised (`--container`, `--container-wide`, `--container-narrow`, `--gutter`). About's "How We Think" grid now uses the shared `.proof-grid` (inverse variant) instead of its own hover-lifting cards.
+- **Fonts** — requested via `<link>` in `index.html` instead of `@import` inside the bundled CSS; Newsreader trimmed to the three faces in use.
+- **CSP** — `Content-Security-Policy` enforced (self + Google Fonts + GA4 + Formspree, no `'unsafe-inline'`). The GA4 bootstrap and the Sonos callback script/styles moved to external files to comply.
+- **Build checks** — prerender now also verifies exactly one meta description, a correct canonical, a non-empty root, and parseable JSON-LD on every page. Sitemap generated at build; `public/sitemap.xml` removed.
+- **Tooling** — Prettier added (`npm run format`); `App.css` removed; ErrorBoundary resets on navigation.
+
+### Bug Fixes
+- Navbar tone and current-link checks are trailing-slash-insensitive, so the client and the prerender always agree (previously a `/insights/` URL could leave the nav in the wrong tone after client-side navigation).
+
+---
+
 ## 2026-09-14 — Review pass 1 (verified defects)
 
 ### Bug Fixes

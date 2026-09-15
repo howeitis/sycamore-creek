@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/ErrorBoundary.css';
 
 /**
  * App-level error boundary.
@@ -47,65 +48,7 @@ class ErrorBoundary extends React.Component {
                         </div>
                     </section>
 
-                    <style>{`
-                        .eb-wrapper {
-                            min-height: 100vh;
-                            display: flex;
-                            flex-direction: column;
-                        }
-                        .eb-header {
-                            flex: 1;
-                            background-color: var(--color-bg-emphasis);
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            text-align: center;
-                            padding: 6rem 20px;
-                            color: var(--color-text-inverse);
-                        }
-                        .eb-container { max-width: 600px; }
-                        .eb-headline {
-                            font-family: var(--font-heading);
-                            font-size: 2.5rem;
-                            font-weight: 700;
-                            margin-bottom: 1rem;
-                            color: var(--color-text-inverse);
-                        }
-                        .eb-body {
-                            font-family: var(--font-body);
-                            font-size: 1.1rem;
-                            opacity: 0.8;
-                            margin-bottom: 2.5rem;
-                        }
-                        .eb-actions {
-                            display: flex;
-                            gap: 1.5rem;
-                            align-items: center;
-                            justify-content: center;
-                            flex-wrap: wrap;
-                        }
-                        .eb-button {
-                            display: inline-block;
-                            background-color: var(--color-text-inverse);
-                            color: var(--color-bg-emphasis);
-                            padding: 0.9rem 2rem;
-                            font-family: var(--font-body);
-                            font-weight: 700;
-                            text-transform: uppercase;
-                            letter-spacing: 1px;
-                            border-radius: 4px;
-                            text-decoration: none;
-                            transition: opacity 0.2s;
-                        }
-                        .eb-button:hover { opacity: 0.85; }
-                        .eb-link {
-                            font-family: var(--font-body);
-                            color: var(--color-text-inverse);
-                            opacity: 0.8;
-                            border-bottom: 1px solid rgba(245, 245, 240, 0.5);
-                        }
-                        .eb-link:hover { opacity: 1; }
-                    `}</style>
+
                 </div>
             );
         }

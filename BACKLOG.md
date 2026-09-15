@@ -31,7 +31,7 @@
 | E4 | Remove unused imports in `vite.config.js` | Low | Low | ✅ Done | Removed `resolve`, `fileURLToPath`, `dirname`, and `__dirname`. |
 | E5 | Remove unused `mailtoLink` variable in `Closing.jsx` | Low | Low | ✅ Done | Removed unused `const mailtoLink` declaration. |
 | E6 | Optimize images to WebP | Medium | Medium | ✅ Done | `hero_background.png` and `founder.jpg` are likely large. Converting to WebP with appropriate compression reduces page weight and improves mobile load times. |
-| E7 | Extract shared inline styles to a CSS module | Medium | High | Pending | Every page and component has a `<style>` block with duplicated rules (`.cta-button`, `.content-container`, `.page-wrapper`, etc.). A shared stylesheet would make design changes a single-file edit. |
+| E7 | Extract shared inline styles to a CSS module | Medium | High | ✅ Done | Every page and component has a `<style>` block with duplicated rules (`.cta-button`, `.content-container`, `.page-wrapper`, etc.). A shared stylesheet would make design changes a single-file edit. |
 | E8 | Add an error boundary | Low | Medium | ✅ Done | No React error boundary exists. An unhandled render error crashes the entire app to a blank white page with no recovery path. |
 
 ---
@@ -46,5 +46,5 @@
 | S4 | Submit sitemap to Google Search Console | High | Low | ✅ Done | Sitemap submitted and crawl requested via GSC. |
 | S5 | Improve founder photo alt text | Low | Low | ✅ Done | Updated to `"Owen Howe, Founder and Principal of Sycamore Creek Consulting"` in `About.jsx`. |
 | S6 | Hero image preload (Core Web Vitals) | Medium | Low | ✅ Done | Resolved by E2. `<link rel="preload">` added to `index.html`. |
-| S7 | Add page-level structured data for Services and About | Medium | Medium | Pending | Current JSON-LD covers the business entity. Adding a `Service` schema on the Services page and a `Person` schema on About gives crawlers and AI tools richer per-page signals. |
+| S7 | Add page-level structured data for Services and About | Medium | Medium | ✅ Done | Current JSON-LD covers the business entity. Adding a `Service` schema on the Services page and a `Person` schema on About gives crawlers and AI tools richer per-page signals. |
 | S8 | Add canonical tags | Low | Low | ✅ Done | Implemented via `useCanonical()` hook (`src/hooks/useCanonical.js`) using `useEffect` + DOM manipulation. JSX `<link rel="canonical">` was tried first but caused React 19's link hoisting to interfere with the favicon. |

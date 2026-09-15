@@ -1,0 +1,176 @@
+
+
+/* Header */
+ .services-header-section {
+    background-color: var(--color-bg-base);
+    padding: 6rem 0 4rem;
+}
+
+.services-eyebrow {
+    margin-bottom: 1.5rem;
+}
+
+.services-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 5.5vw, 4rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    line-height: 1.06;
+    max-width: 18ch;
+    color: var(--color-text-primary);
+}
+
+.services-headline em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-teal);
+}
+
+.services-subhead {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 800px;
+    color: var(--color-text-primary);
+    opacity: 0.9;
+}
+
+/* Retained Search */
+.retained-section {
+    background-color: var(--color-bg-emphasis); /* Racing Green */
+    color: var(--color-text-inverse);
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.service-label-inverse {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+}
+
+.retained-desc {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+}
+
+.best-for-inverse {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Embedded Recruiting */
+.embedded-section {
+    background-color: #FFFFFF;
+    padding: 5rem 0;
+    color: var(--color-text-primary);
+}
+
+.embedded-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.service-label-underline {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-bg-accent); /* Teal underline */
+    padding-bottom: 0.25rem;
+}
+
+.embedded-desc {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--color-ink-soft);
+}
+
+.best-for {
+     font-family: var(--font-body);
+     font-size: 1rem;
+     color: var(--color-sage);
+}
+
+.whats-included {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    color: var(--color-sage);
+    font-size: 0.85rem;
+}
+
+.included-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.included-list li {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--color-ink-soft);
+}
+
+.included-list li::before {
+    content: "—";
+    color: var(--color-brass-deep);
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+}
+
+/* Strategic Advising */
+.advising-section {
+     background-color: var(--color-bg-accent); /* Teal */
+     color: var(--color-text-inverse);
+     padding: 5rem 0;
+     text-align: center;
+}
+
+.advising-desc {
+     font-family: var(--font-body);
+     font-size: 1.25rem;
+     line-height: 1.6;
+     margin-bottom: 2rem;
+     max-width: 800px;
+     margin-left: auto;
+     margin-right: auto;
+     font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .services-headline {
+        font-size: 2.5rem;
+    }
+    .embedded-grid {
+         grid-template-columns: 1fr;
+         gap: 2rem;
+    }
+}

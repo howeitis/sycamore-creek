@@ -1,0 +1,127 @@
+/* ---------------------------------------------------------------
+   SHARED LAYOUT
+   Page scaffolding used by every interior page. Page-specific rules
+   live in src/styles/<Page>.css; tokens and the button system live in
+   src/index.css. Keep this file small — if a rule is used by one page,
+   it belongs in that page's sheet.
+   --------------------------------------------------------------- */
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  background-color: var(--color-bg-base);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* One measure for interior pages. Wider bands (nav) and narrower ones
+   (article prose) set their own width. */
+.content-container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Closing CTA band at the foot of interior pages. */
+.cta-section {
+  background-color: var(--color-bg-base);
+  padding: clamp(5rem, 8vw, 7rem) 0;
+  text-align: center;
+}
+
+.cta-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  max-width: 24ch;
+  margin: 0 auto 2rem;
+  color: var(--color-text-primary);
+}
+
+/* ---------------------------------------------------------------
+   PROOF GRID — hairline-divided columns with a brass tick.
+   Default is for light grounds; add .proof-grid--inverse on pine/teal.
+   --------------------------------------------------------------- */
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--hair-on-light);
+}
+
+.proof-item {
+  padding: 2.5rem 2rem 2rem 0;
+  position: relative;
+}
+
+.proof-item + .proof-item {
+  padding-left: 2rem;
+  border-left: 1px solid var(--hair-on-light);
+}
+
+.proof-item::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 2.25rem;
+  height: 2px;
+  background: var(--color-brass);
+}
+
+.proof-item + .proof-item::before {
+  left: 2rem;
+}
+
+.proof-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  color: var(--color-teal);
+  letter-spacing: -0.01em;
+}
+
+.proof-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-ink-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.proof-grid--inverse {
+  border-top-color: var(--hair-on-dark);
+}
+
+.proof-grid--inverse .proof-item + .proof-item {
+  border-left-color: var(--hair-on-dark);
+}
+
+.proof-grid--inverse .proof-title {
+  color: var(--color-text-inverse);
+}
+
+.proof-grid--inverse .proof-desc {
+  color: rgba(244, 239, 230, 0.86);
+}
+
+@media (max-width: 640px) {
+  .proof-item,
+  .proof-item + .proof-item {
+    padding: 2.25rem 0 1.5rem 0;
+    border-left: none;
+    border-top: 1px solid var(--hair-on-light);
+  }
+  .proof-grid--inverse .proof-item + .proof-item {
+    border-top-color: var(--hair-on-dark);
+  }
+  .proof-item:first-of-type { border-top: none; }
+  .proof-item + .proof-item::before { left: 0; }
+}

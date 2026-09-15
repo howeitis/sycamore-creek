@@ -9,7 +9,7 @@ Marketing website for Sycamore Creek Consulting, a boutique talent advisory firm
 | Layer | Technology |
 |---|---|
 | Framework | React 19 + Vite 7 |
-| Routing | React Router DOM v7 (SPA, client-side) |
+| Routing | React Router v7 — route registry in `src/routes.js`; every route prerendered, client hydrates |
 | Hosting | Vercel — `https://sycamorecreekconsulting.com` |
 | CI/CD | Vercel Git integration (auto-deploy on push to `main`) |
 | Forms | Formspree (endpoint ID: `xzdaglle`) |
@@ -27,40 +27,55 @@ sycamore-creek/
 │   ├── logo.webp              # On-page brand logo (navbar)
 │   ├── hero_background*.webp  # Hero photo at 1920 / 1440 / 960 wide (responsive <img> srcset)
 │   ├── founder.webp           # Founder photo (About page)
-│   ├── sitemap.xml            # Submitted to Google Search Console
 │   ├── robots.txt             # Crawler directives
 │   ├── llms.txt               # Plain-text AI crawler file
-│   ├── callback.html          # OAuth callback (Sonos widget deep link)
+│   ├── callback.html/.js/.css # OAuth callback (Sonos widget deep link); noindex
+│   ├── gtag-init.js           # GA4 bootstrap (external so the CSP needs no 'unsafe-inline')
 │   ├── .well-known/           # Android App Links verification (assetlinks.json)
 │   └── vite.svg               # Unused default asset (safe to delete)
 ├── src/
+│   ├── routes.js              # ROUTE REGISTRY — the one place a page is declared
 │   ├── pages/
 │   │   ├── Home.jsx           # Landing page (Hero + Pedigree + ServiceHierarchy + Metrics + Closing)
 │   │   ├── About.jsx          # Founder profile and firm philosophy
 │   │   ├── Services.jsx       # Retained Search, Embedded Recruiting, Strategic Advising
+│   │   ├── Process.jsx        # Seven-stage retained search process
 │   │   ├── TrackRecord.jsx    # Stats and placement cards
+│   │   ├── ForCandidates.jsx  # Candidate-facing page
 │   │   ├── Contact.jsx        # Contact form (Formspree) + direct contact info
-│   │   └── NotFound.jsx       # 404 catch-all page
+│   │   ├── FAQ.jsx            # <details>-based FAQ (reads src/data/faqs.js)
+│   │   ├── Insights.jsx       # Article index (reads src/data/insights.js)
+│   │   ├── insights/*.jsx     # Article bodies (code-split; rendered inside ArticleLayout)
+│   │   └── NotFound.jsx       # 404 page (prerendered to dist/404.html)
 │   ├── components/
-│   │   ├── Navbar.jsx         # Fixed nav with scroll detection and mobile menu
+│   │   ├── Seo.jsx            # <title>/<meta>/canonical/JSON-LD for a route, from the SEO manifest
+│   │   ├── Navbar.jsx         # Fixed nav; tone keyed to the page ground; mobile menu
 │   │   ├── Footer.jsx         # Site footer with contact links
-│   │   ├── Hero.jsx           # Full-bleed hero section
+│   │   ├── Hero.jsx           # Full-bleed hero (responsive <img>, LCP element)
 │   │   ├── Pedigree.jsx       # Capability highlights (Home page)
 │   │   ├── ServiceHierarchy.jsx # Service blocks (Home page)
 │   │   ├── Metrics.jsx        # Track-record proof strip (Home page; reads src/data/placements.js)
-│   │   └── Closing.jsx        # "How We Work" process + CTA (Home page)
-│   ├── hooks/
-│   │   └── useCanonical.js    # Sets <link rel="canonical"> via DOM (avoids React 19 hoisting)
-│   ├── data/
-│   │   └── placements.js      # Track Record stats and placement card data
-│   ├── App.jsx                # Route definitions
-│   ├── App.css                # App-level layout styles
-│   ├── main.jsx               # React entry point (reads VITE_ROUTER_BASENAME, defaults to /)
-│   └── index.css              # Global CSS variables, typography, animations
-├── index.html                 # HTML entry — meta tags, OG tags, JSON-LD, GA4
-├── vite.config.js             # Vite config (base path via VITE_BASE_PATH, defaults to /)
-├── vercel.json                # SPA rewrites, /callback rewrite, security headers
+│   │   ├── Closing.jsx        # "How We Work" process + CTA (Home page)
+│   │   ├── ArticleLayout.jsx  # Shared chrome for an Insights article
+│   │   ├── ErrorBoundary.jsx  # Branded render-error fallback (resets on navigation)
+│   │   └── ScrollToTop.jsx    # Scroll reset on route change
+│   ├── styles/
+│   │   ├── layout.css         # Shared page scaffolding: .page-wrapper, .content-container, .cta-section, .proof-grid
+│   │   └── <Component>.css    # One sheet per page/component, imported by that file
+│   ├── seo/seoData.js         # SEO MANIFEST — title, description, JSON-LD per route
+│   ├── hooks/                 # useCanonical, useJsonLd (DOM-level head management)
+│   ├── data/                  # placements.js, faqs.js, insights.js — content registries
+│   ├── utils/analytics.js     # GA4 event helper
+│   ├── App.jsx                # Builds <Routes> from routes.js; eager pages + lazy articles
+│   ├── entry-server.jsx       # Prerender entry (StaticRouter + renderToString)
+│   ├── main.jsx               # Client entry — hydrates prerendered markup
+│   └── index.css              # Design tokens, base typography, button system, motion
+├── scripts/prerender.js       # Build step: static HTML per route + 404.html + sitemap.xml
+├── index.html                 # HTML entry — meta tags, OG tags, JSON-LD, fonts, GA4
+├── vite.config.js             # Vite config (base path via VITE_BASE_PATH; preview mimics Vercel)
+├── vercel.json                # trailingSlash, /callback rewrite, security headers + CSP
 ├── eslint.config.js           # ESLint flat config (React hooks + refresh)
+├── .prettierrc                # Formatting (4-space JS/JSX, 2-space CSS/JSON/HTML)
 └── package.json
 ```
 
@@ -70,12 +85,24 @@ sycamore-creek/
 
 ```bash
 npm install
-npm run dev
+npm run dev        # Vite dev server (client-rendered; nothing is prerendered here)
+npm run build      # client bundle + SSR bundle + prerender → dist/
+npm run preview    # serves dist/ the way Vercel does (directory index per route, no SPA fallback)
+npm run lint
+npm run format     # Prettier
 ```
 
 Visit the port Vite prints (the `.claude/launch.json` configs use 5299 and 5311; the Vite default is 5173).
 
 ---
+
+## Adding a page
+
+1. Create the page component in `src/pages/` (render `<Seo path="/your-path" />` at the top).
+2. Add the route to `src/routes.js` — either `{ path, eager: true }` plus an entry in the `eager` map in `App.jsx`, or `{ path, load: () => import(...) }` to code-split it.
+3. Add its title/description (and JSON-LD, if any) to `src/seo/seoData.js`.
+
+The build fails if a route has no SEO entry or an SEO entry has no route, and the prerender, sitemap, and `<Seo>` component all read from those two files — so there is nothing else to update.
 
 ## Deployment
 
@@ -89,10 +116,10 @@ No build-time env vars are set on Vercel: `VITE_BASE_PATH` and `VITE_ROUTER_BASE
 
 ### Routing, redirects & headers (`vercel.json`)
 
-- **Static routes, real 404s** — every route is prerendered to `dist/<route>/index.html`, so there is no SPA catch-all rewrite. Unknown paths are served `dist/404.html` (prerendered from `NotFound.jsx`, `noindex`) with a genuine 404 status. `trailingSlash: false` redirects `/about/` → `/about` so each page has one URL. Adding a route means adding it to `prerenderRoutes` in `src/seo/seoData.js`, or it will 404 in production.
+- **Static routes, real 404s** — every route in `src/routes.js` is prerendered to `dist/<route>/index.html`, so there is no SPA catch-all rewrite. Unknown paths are served `dist/404.html` (prerendered from `NotFound.jsx`, `noindex`) with a genuine 404 status. `trailingSlash: false` redirects `/about/` → `/about` so each page has one URL.
 - **`/callback`** — rewrites to `/callback.html` (OAuth callback for the Sonos widget deep link); `noindex` via meta tag, `X-Robots-Tag`, and `robots.txt`.
 - **`/.well-known/*`** — served with `Content-Type: application/json` and `Access-Control-Allow-Origin: *` (Android App Links verification).
-- **Security headers** — `X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, and a restrictive `Permissions-Policy` on all routes. (HSTS is added by Vercel.)
+- **Security headers** — `X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, a restrictive `Permissions-Policy`, and a `Content-Security-Policy` that allows only self, Google Fonts, GA4, and Formspree — no `'unsafe-inline'`, which is why there are no inline `<script>`/`<style>` blocks anywhere. (HSTS is added by Vercel. The Vercel preview toolbar is blocked by the CSP on preview deployments; production is unaffected.)
 
 ### DNS
 
@@ -119,7 +146,9 @@ All on-page images are served as **WebP** for fast loading:
 
 ## Design System
 
-Tokens live in `src/index.css` under `:root`. Legacy aliases (`--color-bg-emphasis`, `--color-bg-accent`) are retained and point at the new values so components inherit the palette automatically.
+Tokens live in `src/index.css` under `:root`. Legacy aliases (`--color-bg-emphasis`, `--color-bg-accent`) are retained and point at the new values so components inherit the palette automatically. Layout tokens: `--container` (1080px, interior pages), `--container-wide` (1200px, nav), `--container-narrow` (760px, article prose), `--gutter` (24px).
+
+Styles are plain CSS files in `src/styles/` — one per page/component, imported by that component, plus `layout.css` for the shared scaffolding (`.page-wrapper`, `.content-container`, `.cta-section`, `.proof-grid`). Class names are global, so a page-specific rule gets a page-specific name.
 
 | Token | Value | Usage |
 |---|---|---|
@@ -138,7 +167,7 @@ Tokens live in `src/index.css` under `:root`. Legacy aliases (`--color-bg-emphas
 | Body font | Lato (sans-serif) | All body copy |
 | Mono font | system mono stack | Labels, step numbers, metadata |
 
-Buttons use a shared language defined in `index.css`: `.btn-primary` (teal fill), `.btn-inverse` (cream fill for dark/photo grounds), and `.btn-ghost` (editorial underlined link). Fonts are loaded via Google Fonts CDN in `index.css`.
+Buttons use a shared language defined in `index.css`: `.btn-primary` (teal fill), `.btn-inverse` (cream fill for dark/photo grounds), and `.btn-ghost` (editorial underlined link). Fonts are loaded from Google Fonts via a `<link>` in `index.html` (Newsreader 400/500 + italic 400, Lato 300/400/700).
 
 ---
 
@@ -147,13 +176,13 @@ Buttons use a shared language defined in `index.css`: `.btn-primary` (teal fill)
 The following SEO infrastructure is in place:
 
 - **Static prerendering** — every route is rendered to content-complete HTML at build time (see below), so search crawlers **and AI answer engines that don't execute JavaScript** (GPTBot, ClaudeBot, PerplexityBot, Google-Extended) see the full page in the initial response, not an empty `<div id="root">`.
-- **Per-page titles and meta descriptions** — authored via React 19 native document metadata (`<title>`/`<meta>` in page components); the prerender step lifts them into `<head>` in the static HTML.
-- **Per-page Open Graph + Twitter tags** — the base tags live in `index.html`; the prerender step overrides `og:title`/`og:description`/`og:url` and Twitter equivalents per route.
-- **Canonical tags** — `useCanonical()` hook at runtime; the prerender step also writes a per-route `<link rel="canonical">` into the static `<head>`.
+- **One SEO manifest** — `src/seo/seoData.js` holds the title, meta description, and JSON-LD for every route. The `<Seo path>` component renders them at runtime (React 19 hoists `<title>`/`<meta>` into `<head>`); the prerender step writes the same values into the static `<head>`. Titles lead with the query and end with the brand.
+- **Per-page Open Graph + Twitter tags** — the base tags live in `index.html`; the prerender sets `og:title`/`og:description`/`og:url` (and Twitter equivalents) per route, plus `og:type=article`, `article:published_time` and `article:author` on Insights articles.
+- **Canonical tags** — written into the static `<head>` per route; `useCanonical()` keeps them correct on client-side navigation.
 - **JSON-LD structured data**:
   - `ProfessionalService` (business entity) — static in `index.html`, present on every page.
-  - `FAQPage` (`/faq`), `CollectionPage` (`/insights`), and `BlogPosting` (each article) — defined once in `src/seo/seoData.js` and injected into the static `<head>` by the prerender step. The client `useJsonLd()` hook reuses the same element `id`, so nothing is duplicated after boot.
-- **Sitemap** — `/public/sitemap.xml`, includes all content routes with `lastmod` on articles.
+  - `Person` (`/about`), `ItemList` of `Service` (`/services`), `FAQPage` (`/faq`), `CollectionPage` (`/insights`), and `BlogPosting` (each article) — all in the manifest and injected into the static `<head>`. The client `useJsonLd()` hook reuses the same element `id`, so nothing is duplicated after hydration.
+- **Sitemap** — generated into `dist/sitemap.xml` from the route registry at build time (`lastmod` on articles).
 - **robots.txt** — `/public/robots.txt`, allows all crawlers.
 - **llms.txt** — `/public/llms.txt`, plain-text AI crawler file (lists Insights + FAQ).
 - **Security header** — `X-Frame-Options: SAMEORIGIN` set in `vercel.json`.
@@ -168,7 +197,7 @@ The following SEO infrastructure is in place:
 2. `vite build --ssr src/entry-server.jsx` — a Node bundle exporting a `render(url)` function (`StaticRouter` + `renderToStaticMarkup`) plus the SEO manifest, emitted to `.prerender-ssr/` (git-ignored, deleted at the end).
 3. `node scripts/prerender.js` — renders each route in `prerenderRoutes` (from `src/seo/seoData.js`) into `dist/<route>/index.html`, plus `dist/404.html`, using the client `dist/index.html` as the template (so all pages share the hashed asset references). Each page is checked for double-escaped entities, exactly one `<title>`, and no hero-image references off the home page; the build fails if a check fails.
 
-The client still boots normally via `main.jsx` (`createRoot`, which replaces the prerendered markup — no hydration to manage). On Vercel, `/faq` resolves to `dist/faq/index.html`; there is no SPA fallback, so unknown deep links get `dist/404.html` with a 404 status.
+The client hydrates the prerendered markup via `main.jsx` (`hydrateRoot`), so there is no second paint and entrance animations don't replay. A hydration mismatch is logged to the console and to GA4 as a non-fatal `exception` — the prerender and the client must produce identical markup. The five Insights articles are code-split; the server entry resolves their loaders before rendering so they prerender in full. On Vercel, `/faq` resolves to `dist/faq/index.html`; there is no SPA fallback, so unknown deep links get `dist/404.html` with a 404 status.
 
 To rebuild only the client bundle without prerendering: `npm run build:client`.
 

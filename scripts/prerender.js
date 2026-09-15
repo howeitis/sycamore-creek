@@ -2,22 +2,21 @@
  * Build-time prerenderer.
  *
  * Runs after `vite build` (client) and `vite build --ssr`. For every route in
- * the SEO manifest it:
- *   1. renders the React app to static HTML via the SSR bundle,
- *   2. lifts the page's <title>/<meta description> into <head> (pages remain the
- *      source of truth — React 19 renders them inline in the markup),
- *   3. sets a per-page canonical link and per-page Open Graph / Twitter tags,
- *   4. injects per-page JSON-LD (FAQPage, BlogPosting, …) into <head>, and
- *   5. writes dist/<route>/index.html.
+ * the route registry it:
+ *   1. renders the React app to HTML via the SSR bundle,
+ *   2. writes the page's <title>, meta description, canonical, Open Graph /
+ *      Twitter tags and JSON-LD into <head> — all read from the SEO manifest
+ *      (src/seo/seoData.js), the same object the <Seo> component renders from,
+ *   3. moves any resource hints React hoisted (e.g. the hero preload) into <head>,
+ *   4. writes dist/<route>/index.html (and dist/404.html), and
+ *   5. generates dist/sitemap.xml from the same route list.
  *
  * The result: content-complete HTML in the initial response, so crawlers and AI
  * answer engines see the page without executing JavaScript. The client bundle
- * still boots and takes over (main.jsx uses createRoot, which replaces the
- * prerendered markup — no hydration mismatch to manage).
+ * hydrates the markup (main.jsx, hydrateRoot).
  *
- * Vercel serves an existing static file before applying the SPA rewrite in
- * vercel.json, so /about resolves to dist/about/index.html while unknown deep
- * links still fall back to the SPA.
+ * There is no SPA fallback on Vercel: unknown paths get dist/404.html with a
+ * real 404 status, so every page must be listed in src/routes.js.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -31,23 +30,9 @@ const ssrEntry = path.join(root, '.prerender-ssr', 'entry-server.js');
 // Read the client-built HTML as the template (has hashed asset references).
 const template = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
-const { render, prerenderRoutes, seoManifest, SITE_ORIGIN } = await import(
+const { render, prerenderRoutes, seoManifest, SITE_ORIGIN, NOT_FOUND_ROUTE } = await import(
     pathToFileURL(ssrEntry).href
 );
-
-/**
- * React has already HTML-escaped the <title>/<meta> text we lift out of the
- * rendered markup. Decode it back to plain text first, then re-escape for the
- * context it lands in — otherwise an apostrophe ships as `&amp;#x27;`.
- */
-const decode = (s) =>
-    String(s)
-        .replace(/&#x27;/g, "'")
-        .replace(/&#39;/g, "'")
-        .replace(/&quot;/g, '"')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&amp;/g, '&');
 
 /** Escaping for text placed inside an HTML attribute value. */
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
@@ -55,83 +40,69 @@ const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 /** Escaping for text placed inside an element (e.g. <title>). */
 const text = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-/**
- * Route rendered into dist/404.html. Vercel serves that file with a real 404
- * status for any path that has no static file, so unknown URLs no longer get
- * the home page's markup with a 200 (a soft 404 to crawlers).
- */
-const NOT_FOUND_ROUTE = '/__not_found__';
-
 /** Replace the content="…" of a <meta> matched by `matcher`, if present. */
 function setMetaContent(head, matcher, value) {
     const re = new RegExp(`(<meta[^>]*${matcher}[^>]*content=")([^"]*)(")`, 'i');
     return re.test(head) ? head.replace(re, `$1${attr(value)}$3`) : head;
 }
 
-function buildPage(route) {
+/** Append tags just before </head>. */
+const intoHead = (head, tags) => head.replace('</head>', `  ${tags.join('\n  ')}\n</head>`);
+
+async function buildPage(route) {
+    const seo = seoManifest[route];
+    if (!seo) throw new Error(`prerender: no SEO manifest entry for ${route}`);
     const isNotFound = route === NOT_FOUND_ROUTE;
-    const appHtml = render(route);
+    const appHtml = await render(route);
 
-    // Pages render <title>/<meta description> inline (React 19). Lift them out.
-    const titleMatch = appHtml.match(/<title>([\s\S]*?)<\/title>/i);
-    const descMatch = appHtml.match(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?>/i);
-    const pageTitle = decode(titleMatch ? titleMatch[1] : 'Sycamore Creek Consulting');
-    const pageDesc = decode(descMatch ? descMatch[1] : '');
-
-    // React hoists resource hints (<link rel="preload">) to the top of the
-    // markup; move them into <head> where they belong, so only the pages that
-    // actually render the resource carry the hint.
+    // React 19 hoists <title>/<meta> rendered by <Seo> to the top of the
+    // markup, and emits resource hints (the hero image preload) the same way.
+    // Lift them all out of the body: metadata is written from the manifest
+    // below, and hints belong in <head>.
     const preloads = appHtml.match(/<link\s+rel="preload"[^>]*>/gi) || [];
-
-    // Strip the lifted tags from the body so they aren't duplicated.
     const body = appHtml
         .replace(/<title>[\s\S]*?<\/title>/i, '')
         .replace(/<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i, '')
+        .replace(/<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/i, '')
         .replace(/<link\s+rel="preload"[^>]*>/gi, '');
 
     const canonical = SITE_ORIGIN + (route === '/' ? '/' : route);
+    const isArticle = route.startsWith('/insights/');
 
     // --- <head> rewrites -------------------------------------------------
     let head = template;
-    head = head.replace(/<title>[\s\S]*?<\/title>/i, `<title>${text(pageTitle)}</title>`);
-    if (pageDesc) head = setMetaContent(head, 'name="description"', pageDesc);
-    head = setMetaContent(head, 'property="og:title"', pageTitle);
-    head = setMetaContent(head, 'name="twitter:title"', pageTitle);
-    if (pageDesc) {
-        head = setMetaContent(head, 'property="og:description"', pageDesc);
-        head = setMetaContent(head, 'name="twitter:description"', pageDesc);
-    }
+    head = head.replace(/<title>[\s\S]*?<\/title>/i, `<title>${text(seo.title)}</title>`);
+    head = setMetaContent(head, 'name="description"', seo.description);
+    head = setMetaContent(head, 'property="og:title"', seo.title);
+    head = setMetaContent(head, 'name="twitter:title"', seo.title);
+    head = setMetaContent(head, 'property="og:description"', seo.description);
+    head = setMetaContent(head, 'name="twitter:description"', seo.description);
 
+    const extra = [];
     if (isNotFound) {
         // No canonical, no og:url, and keep it out of the index.
         head = head.replace(/\s*<meta\s+property="og:url"[^>]*>/i, '');
-        head = head.replace('</head>', `  <meta name="robots" content="noindex" />\n</head>`);
+        extra.push('<meta name="robots" content="noindex" />');
     } else {
         head = setMetaContent(head, 'property="og:url"', canonical);
-
-        // Per-page canonical (template has none; it is set client-side otherwise).
-        const canonicalTag = `<link rel="canonical" href="${canonical}" />`;
-        head = head.includes('rel="canonical"')
-            ? head.replace(/<link\s+rel="canonical"[^>]*>/i, canonicalTag)
-            : head.replace('</head>', `  ${canonicalTag}\n</head>`);
+        extra.push(`<link rel="canonical" href="${canonical}" />`);
     }
 
-    if (preloads.length) {
-        head = head.replace('</head>', `  ${preloads.join('\n  ')}\n</head>`);
+    if (isArticle) {
+        head = setMetaContent(head, 'property="og:type"', 'article');
+        if (seo.lastmod) extra.push(`<meta property="article:published_time" content="${seo.lastmod}" />`);
+        if (seo.jsonLd?.author?.name) extra.push(`<meta property="article:author" content="${attr(seo.jsonLd.author.name)}" />`);
     }
 
     // Per-page JSON-LD (id matches the page's useJsonLd id → no client dup).
-    const entry = seoManifest[route];
-    if (entry?.jsonLd) {
-        const script = `<script type="application/ld+json" id="${entry.jsonLdId}">${JSON.stringify(entry.jsonLd)}</script>`;
-        head = head.replace('</head>', `  ${script}\n</head>`);
+    if (seo.jsonLd) {
+        extra.push(`<script type="application/ld+json" id="${seo.jsonLdId}">${JSON.stringify(seo.jsonLd)}</script>`);
     }
 
+    head = intoHead(head, [...extra, ...preloads]);
+
     // Inject rendered content into the root container.
-    return head.replace(
-        /<div id="root">\s*<\/div>/i,
-        `<div id="root">${body}</div>`,
-    );
+    return head.replace(/<div id="root">\s*<\/div>/i, `<div id="root">${body}</div>`);
 }
 
 /** Cheap post-build checks for the failure modes this pipeline has had. */
@@ -139,17 +110,37 @@ function verify(route, html) {
     const problems = [];
     if (/&amp;#x?\d+;|&amp;(quot|lt|gt|amp);/.test(html)) problems.push('double-escaped entity');
     if ((html.match(/<title>/g) || []).length !== 1) problems.push('expected exactly one <title>');
-    if (route !== '/' && route !== NOT_FOUND_ROUTE && /hero_background/.test(html)) {
-        problems.push('hero image referenced off the home page');
+    if ((html.match(/name="description"/g) || []).length !== 1) problems.push('expected exactly one meta description');
+    if (route !== '/' && /hero_background/.test(html)) problems.push('hero image referenced off the home page');
+    if (route !== NOT_FOUND_ROUTE && !html.includes(`<link rel="canonical" href="${SITE_ORIGIN}${route === '/' ? '/' : route}" />`)) {
+        problems.push('canonical missing or wrong');
+    }
+    if (/<div id="root"><\/div>/.test(html)) problems.push('empty root (nothing rendered)');
+    for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+        try {
+            JSON.parse(m[1]);
+        } catch {
+            problems.push('invalid JSON-LD');
+        }
     }
     if (problems.length) {
         throw new Error(`prerender check failed for ${route}: ${problems.join('; ')}`);
     }
 }
 
+function buildSitemap() {
+    const urls = prerenderRoutes.map((route) => {
+        const seo = seoManifest[route];
+        const loc = SITE_ORIGIN + (route === '/' ? '/' : route);
+        const lastmod = seo.lastmod ? `\n    <lastmod>${seo.lastmod}</lastmod>` : '';
+        return `  <url>\n    <loc>${loc}</loc>${lastmod}\n  </url>`;
+    });
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
+}
+
 let count = 0;
 for (const route of [...prerenderRoutes, NOT_FOUND_ROUTE]) {
-    const html = buildPage(route);
+    const html = await buildPage(route);
     verify(route, html);
     let outPath;
     if (route === '/') outPath = path.join(distDir, 'index.html');
@@ -160,6 +151,9 @@ for (const route of [...prerenderRoutes, NOT_FOUND_ROUTE]) {
     count += 1;
     console.log(`  prerendered  ${route}  →  ${path.relative(root, outPath)}`);
 }
+
+fs.writeFileSync(path.join(distDir, 'sitemap.xml'), buildSitemap(), 'utf-8');
+console.log(`  generated    sitemap.xml  (${prerenderRoutes.length} urls)`);
 console.log(`\n✓ prerendered ${count} page${count === 1 ? '' : 's'}`);
 
 // Tidy the intermediate SSR bundle so it never ships.

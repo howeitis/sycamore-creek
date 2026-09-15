@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCanonical } from '../hooks/useCanonical';
 import { trackEvent } from '../utils/analytics';
+import '../styles/Process.css';
+import Seo from '../components/Seo';
 
 const steps = [
     {
@@ -42,11 +43,9 @@ const steps = [
 ];
 
 const Process = () => {
-    useCanonical('https://sycamorecreekconsulting.com/process');
     return (
         <div className="page-wrapper">
-            <title>Our Process | Sycamore Creek Consulting</title>
-            <meta name="description" content="How a Sycamore Creek retained search works — from discovery and scorecard to market mapping, outreach, evaluation, offer, and follow-through. A partnership, not a transaction." />
+            <Seo path="/process" />
 
             {/* Header */}
             <section className="process-header-section">
@@ -84,141 +83,7 @@ const Process = () => {
                 </div>
             </section>
 
-            <style>{`
-                .page-wrapper {
-                    background-color: var(--color-bg-base);
-                    min-height: 100vh;
-                    display: flex;
-                    flex-direction: column;
-                }
 
-                .content-container {
-                    max-width: 1000px;
-                    margin: 0 auto;
-                    padding: 0 20px;
-                }
-
-                /* Header */
-                .process-header-section {
-                    background-color: var(--color-bg-emphasis); /* British Racing Green */
-                    padding: 6rem 0 4rem;
-                    color: var(--color-text-inverse);
-                }
-
-                .process-eyebrow {
-                    color: var(--color-brass-lite);
-                    margin-bottom: 1.5rem;
-                }
-
-                .process-headline {
-                    font-family: var(--font-heading);
-                    font-size: clamp(2.6rem, 5.5vw, 4rem);
-                    font-weight: 500;
-                    letter-spacing: -0.02em;
-                    margin-bottom: 1.5rem;
-                    line-height: 1.06;
-                    max-width: 16ch;
-                    color: var(--color-text-inverse);
-                }
-
-                .process-headline em {
-                    font-style: italic;
-                    font-weight: 400;
-                    color: var(--color-brass-lite);
-                }
-
-                .process-subhead {
-                    font-family: var(--font-body);
-                    font-size: 1.25rem;
-                    font-weight: 300;
-                    line-height: 1.6;
-                    max-width: 800px;
-                    color: var(--color-text-inverse);
-                    opacity: 0.9;
-                }
-
-                /* Steps */
-                .process-steps-section {
-                    background-color: #FFFFFF;
-                    padding: 5rem 0;
-                }
-
-                .process-list {
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                    max-width: 820px;
-                }
-
-                .process-step {
-                    display: grid;
-                    grid-template-columns: 4rem 1fr;
-                    gap: 1.75rem;
-                    padding: 2.25rem 0;
-                    border-top: 1px solid var(--hair-on-light);
-                }
-
-                .process-step:first-child {
-                    border-top: none;
-                    padding-top: 0;
-                }
-
-                .process-num {
-                    font-family: var(--font-mono);
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    letter-spacing: 0.05em;
-                    color: var(--color-brass-deep);
-                    line-height: 2;
-                }
-
-                .process-step-title {
-                    font-family: var(--font-heading);
-                    font-size: 1.5rem;
-                    font-weight: 500;
-                    letter-spacing: -0.01em;
-                    margin-bottom: 0.6rem;
-                    color: var(--color-text-primary);
-                }
-
-                .process-step-body {
-                    font-family: var(--font-body);
-                    font-size: 1.05rem;
-                    line-height: 1.7;
-                    color: var(--color-ink-soft);
-                }
-
-                /* CTA */
-                .cta-section {
-                    background-color: var(--color-bg-base);
-                    padding: 5rem 0;
-                    text-align: center;
-                }
-
-                .cta-headline {
-                    font-family: var(--font-heading);
-                    font-size: clamp(1.6rem, 3vw, 2.2rem);
-                    font-weight: 500;
-                    letter-spacing: -0.015em;
-                    line-height: 1.15;
-                    max-width: 24ch;
-                    margin: 0 auto 2rem;
-                    color: var(--color-text-primary);
-                }
-
-                @media (max-width: 768px) {
-                    .process-headline {
-                        font-size: 2.5rem;
-                    }
-                    .process-step {
-                        grid-template-columns: 1fr;
-                        gap: 0.5rem;
-                    }
-                    .process-num {
-                        font-size: 1.5rem;
-                    }
-                }
-            `}</style>
         </div>
     );
 };

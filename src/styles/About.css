@@ -1,0 +1,113 @@
+
+
+/* Header Section */
+.about-header-section {
+    background-color: var(--color-bg-emphasis); /* British Racing Green */
+    padding: 6rem 0 4rem;
+    color: var(--color-text-inverse);
+}
+
+.about-eyebrow {
+    color: var(--color-brass-lite);
+    margin-bottom: 1.5rem;
+}
+
+.about-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 5.5vw, 4rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    line-height: 1.06;
+    max-width: 16ch;
+    color: var(--color-text-inverse);
+}
+
+.about-headline em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-brass-lite);
+}
+
+.about-subhead {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 800px;
+    color: var(--color-text-inverse);
+    opacity: 0.9;
+}
+
+/* Founder Section */
+.founder-section {
+    background-color: #FFFFFF;
+    padding: 5rem 0;
+}
+
+.founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.founder-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.founder-label {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.founder-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--color-text-primary);
+}
+
+.founder-bio p {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+    margin-bottom: 1.5rem;
+}
+
+/* Philosophy Section */
+.philosophy-section {
+    background-color: var(--color-bg-accent); /* Sycamore Teal */
+    padding: 5rem 0;
+    color: var(--color-text-inverse);
+}
+
+.philosophy-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    margin-bottom: 3rem;
+    color: var(--color-text-inverse);
+}
+
+@media (max-width: 768px) {
+    .about-headline {
+        font-size: 2.5rem;
+    }
+    .founder-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

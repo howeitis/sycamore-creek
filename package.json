@@ -8,7 +8,9 @@
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir .prerender-ssr --logLevel error && node scripts/prerender.js",
     "build:client": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\" \"public/*.{js,css}\" \"*.{js,json}\" index.html",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\" \"public/*.{js,css}\" \"*.{js,json}\" index.html"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -24,6 +26,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "prettier": "^3.9.6",
     "vite": "^7.3.1"
   }
 }

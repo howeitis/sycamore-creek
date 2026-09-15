@@ -1,39 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCanonical } from '../hooks/useCanonical';
-import { useJsonLd } from '../hooks/useJsonLd';
 import { trackEvent } from '../utils/analytics';
-
-// Module-scoped so the reference is stable across renders (useJsonLd dependency).
-const personSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Owen Howe',
-    jobTitle: 'Founder & Principal',
-    email: 'owen@howe.app',
-    url: 'https://sycamorecreekconsulting.com/about',
-    worksFor: {
-        '@type': 'Organization',
-        name: 'Sycamore Creek Consulting',
-        url: 'https://sycamorecreekconsulting.com',
-    },
-    knowsAbout: [
-        'Retained executive search',
-        'Technical recruiting',
-        'Passive candidate sourcing',
-        'AI and LLM engineer hiring',
-        'Compensation benchmarking',
-    ],
-    sameAs: ['https://www.linkedin.com/in/owen-howe-wm2016/'],
-};
+import '../styles/About.css';
+import Seo from '../components/Seo';
 
 const About = () => {
-    useCanonical('https://sycamorecreekconsulting.com/about');
-    useJsonLd('jsonld-about-person', personSchema);
     return (
         <div className="page-wrapper">
-            <title>About | Sycamore Creek Consulting</title>
-            <meta name="description" content="Owen Howe, Founder and Principal of Sycamore Creek Consulting — built for the searches others can't close. Boutique talent advisory in Washington, D.C." />
+            <Seo path="/about" />
             {/* Section A - Page Header */}
             <section className="about-header-section">
                 <div className="content-container">
@@ -69,8 +43,8 @@ const About = () => {
             {/* Section C - Philosophy */}
             <section className="philosophy-section">
                 <div className="content-container">
-                    <h3 className="section-title">How We Think</h3>
-                    <div className="proof-grid">
+                    <h3 className="philosophy-title">How We Think</h3>
+                    <div className="proof-grid proof-grid--inverse">
                         <div className="proof-item">
                             <h4 className="proof-title">Precision Over Volume</h4>
                             <p className="proof-desc">We don't send you fifty resumes and hope for the best. Every candidate we present has been sourced against a detailed technical and cultural scorecard built with you before the search begins.</p>
@@ -96,186 +70,7 @@ const About = () => {
             </section>
 
 
-            <style>{`
-                .page-wrapper {
-                    background-color: var(--color-bg-base);
-                    min-height: 100vh;
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                .content-container {
-                    max-width: 1000px;
-                    margin: 0 auto;
-                    padding: 0 20px;
-                }
-
-                /* Header Section */
-                .about-header-section {
-                    background-color: var(--color-bg-emphasis); /* British Racing Green */
-                    padding: 6rem 0 4rem;
-                    color: var(--color-text-inverse);
-                }
-
-                .about-eyebrow {
-                    color: var(--color-brass-lite);
-                    margin-bottom: 1.5rem;
-                }
-
-                .about-headline {
-                    font-family: var(--font-heading);
-                    font-size: clamp(2.6rem, 5.5vw, 4rem);
-                    font-weight: 500;
-                    letter-spacing: -0.02em;
-                    margin-bottom: 1.5rem;
-                    line-height: 1.06;
-                    max-width: 16ch;
-                    color: var(--color-text-inverse);
-                }
-
-                .about-headline em {
-                    font-style: italic;
-                    font-weight: 400;
-                    color: var(--color-brass-lite);
-                }
-
-                .about-subhead {
-                    font-family: var(--font-body);
-                    font-size: 1.25rem;
-                    font-weight: 300;
-                    line-height: 1.6;
-                    max-width: 800px;
-                    color: var(--color-text-inverse);
-                    opacity: 0.9;
-                }
-
-                /* Founder Section */
-                .founder-section {
-                    background-color: #FFFFFF;
-                    padding: 5rem 0;
-                }
-
-                .founder-grid {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 4rem;
-                    align-items: start;
-                }
-
-                .founder-image {
-                    width: 100%;
-                    height: auto;
-                    display: block;
-                    border-radius: 4px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                }
-
-                .founder-label {
-                    display: block;
-                    font-family: var(--font-body);
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    color: var(--color-text-primary);
-                    margin-bottom: 0.5rem;
-                    font-size: 0.9rem;
-                }
-
-                .founder-title {
-                    font-family: var(--font-heading);
-                    font-size: 2rem;
-                    margin-bottom: 2rem;
-                    color: var(--color-text-primary);
-                }
-
-                .founder-bio p {
-                    font-family: var(--font-body);
-                    font-size: 1.1rem;
-                    line-height: 1.7;
-                    color: var(--color-ink-soft);
-                    margin-bottom: 1.5rem;
-                }
-
-                /* Philosophy Section */
-                .philosophy-section {
-                    background-color: var(--color-bg-accent); /* Sycamore Teal */
-                    padding: 5rem 0;
-                    color: var(--color-text-inverse);
-                }
-
-                .section-title {
-                    font-family: var(--font-heading);
-                    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
-                    font-weight: 500;
-                    letter-spacing: -0.015em;
-                    margin-bottom: 3rem;
-                    color: var(--color-text-inverse);
-                }
-
-                 /* Reusing Grid Styles */
-                .proof-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                    gap: 2rem;
-                    border-top: 1px solid rgba(255,255,255,0.2);
-                    padding-top: 3rem;
-                }
-
-                .proof-item {
-                     transition: transform 0.3s ease;
-                     padding: 1rem;
-                     border-radius: 4px;
-                }
-
-                .proof-item:hover {
-                    transform: translateY(-5px);
-                    background-color: rgba(255,255,255,0.05); /* Subtle light highlight on teal */
-                }
-
-                .proof-title {
-                    font-family: var(--font-heading);
-                    font-size: 1.2rem;
-                    margin-bottom: 0.5rem;
-                    color: var(--color-bg-base); /* Cream/Parchment for contrast on Teal */
-                    font-weight: 700;
-                }
-
-                .proof-desc {
-                    font-family: var(--font-body);
-                    font-size: 1rem;
-                    color: var(--color-text-inverse);
-                    opacity: 0.9;
-                    line-height: 1.5;
-                }
-
-                /* CTA Section */
-                .cta-section {
-                    background-color: var(--color-bg-base);
-                    padding: 5rem 0;
-                    text-align: center;
-                }
-
-                .cta-headline {
-                     font-family: var(--font-heading);
-                     font-size: clamp(1.6rem, 3vw, 2.2rem);
-                     font-weight: 500;
-                     letter-spacing: -0.015em;
-                     line-height: 1.15;
-                     max-width: 24ch;
-                     margin: 0 auto 2rem;
-                     color: var(--color-text-primary);
-                }
-
-                @media (max-width: 768px) {
-                    .about-headline {
-                        font-size: 2.5rem;
-                    }
-                    .founder-grid {
-                        grid-template-columns: 1fr;
-                        gap: 2rem;
-                    }
-                }
-            `}</style>        </div>
+</div>
     );
 };
 

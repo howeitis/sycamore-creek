@@ -4,11 +4,15 @@ import { useEffect } from 'react';
  * Sets the canonical link tag via direct DOM manipulation.
  * Using useEffect instead of JSX <link rel="canonical"> avoids React 19's
  * metadata hoisting, which can interfere with static <link> elements in index.html
- * (including the favicon).
+ * (including the favicon). Pass null to remove the canonical (404 page).
  */
 export function useCanonical(href) {
     useEffect(() => {
         let link = document.querySelector('link[rel="canonical"]');
+        if (!href) {
+            if (link) link.remove();
+            return;
+        }
         if (link) {
             link.setAttribute('href', href);
         } else {

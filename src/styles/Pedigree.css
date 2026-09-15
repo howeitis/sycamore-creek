@@ -1,0 +1,40 @@
+.pedigree-section {
+  background-color: var(--color-bg-base);
+  padding: clamp(4.5rem, 8vw, 7rem) 24px;
+  color: var(--color-text-primary);
+}
+
+.pedigree-container {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.pedigree-eyebrow {
+  margin-bottom: 1.75rem;
+}
+
+.pedigree-lead {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 1.75rem;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  max-width: 18ch;
+}
+
+.pedigree-lead em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-teal);
+}
+
+.pedigree-body {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  margin-bottom: 4rem;
+  max-width: 62ch;
+  font-weight: 300;
+  color: var(--color-ink-soft);
+}

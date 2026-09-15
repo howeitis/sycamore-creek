@@ -1,26 +1,89 @@
 /**
- * Centralized SEO / structured-data manifest.
+ * Centralized SEO manifest — one entry per route.
  *
- * Single source of truth shared by:
- *   - client-side pages (via the useJsonLd hook), and
- *   - the build-time prerender script (scripts/prerender.js),
- * which injects the same JSON-LD into the static HTML <head> using the same
- * element id. Because the id matches, when the client hydrates, useJsonLd finds
- * the prerendered <script> and updates it in place instead of duplicating it.
+ * Each entry carries the page's <title>, meta description, and (optionally)
+ * the JSON-LD block for that page. It is consumed by:
+ *   - src/components/Seo.jsx       → renders <title>/<meta>, sets the canonical,
+ *                                    injects JSON-LD at runtime
+ *   - scripts/prerender.js         → writes the same values into the static
+ *                                    <head> of dist/<route>/index.html and
+ *                                    generates sitemap.xml
  *
- * Keeping schema here (rather than inline in each page) guarantees the markup
- * that crawlers and AI answer engines read is present in the raw HTML — before
- * any JavaScript runs.
+ * Because both read the same object, what crawlers and AI answer engines see
+ * in the raw HTML can never drift from what the page renders.
+ *
+ * Routes themselves come from src/routes.js; this file only describes them.
  */
 import { faqs } from '../data/faqs.js';
 import { insights, insightBySlug, AUTHOR } from '../data/insights.js';
+import { routePaths, NOT_FOUND_ROUTE } from '../routes.js';
 
 export const SITE_ORIGIN = 'https://sycamorecreekconsulting.com';
+const BRAND = 'Sycamore Creek Consulting';
+const LOGO = {
+    '@type': 'ImageObject',
+    url: `${SITE_ORIGIN}/logo.png`,
+    width: 512,
+    height: 512,
+};
 const ORG = {
     '@type': 'Organization',
-    name: 'Sycamore Creek Consulting',
+    name: BRAND,
     url: SITE_ORIGIN,
-    logo: `${SITE_ORIGIN}/logo.png`,
+    logo: LOGO,
+};
+
+/* ------------------------------------------------------------------ */
+/* Structured data                                                     */
+/* ------------------------------------------------------------------ */
+
+/** Person schema for the founder (About page). */
+export const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: AUTHOR.name,
+    jobTitle: 'Founder & Principal',
+    email: 'owen@howe.app',
+    url: `${SITE_ORIGIN}/about`,
+    worksFor: { '@type': 'Organization', name: BRAND, url: SITE_ORIGIN },
+    knowsAbout: [
+        'Retained executive search',
+        'Technical recruiting',
+        'Passive candidate sourcing',
+        'AI and LLM engineer hiring',
+        'Compensation benchmarking',
+    ],
+    sameAs: [AUTHOR.url],
+};
+
+/** Service list schema (Services page). */
+export const servicesSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${BRAND} — Talent Advisory Services`,
+    itemListElement: [
+        {
+            '@type': 'Service',
+            name: 'Retained Search',
+            provider: { '@type': 'Organization', name: BRAND },
+            description:
+                'End-to-end search ownership for critical hires: market mapping, candidate scorecard, outreach, evaluation, and offer negotiation. Best for senior technical leadership, niche engineering roles, and confidential replacements.',
+        },
+        {
+            '@type': 'Service',
+            name: 'Embedded Recruiting',
+            provider: { '@type': 'Organization', name: BRAND },
+            description:
+                "Direct integration into the client's team for a defined engagement period, operating inside the client ATS as an extension of the internal recruiting function. Best for startups scaling rapidly after a funding round.",
+        },
+        {
+            '@type': 'Service',
+            name: 'Strategic Advising',
+            provider: { '@type': 'Organization', name: BRAND },
+            description:
+                'Advisory on compensation architecture, interview design, employer positioning, and organizational planning for teams in transition. Best for founders losing candidates and leadership navigating AI-driven workforce restructuring.',
+        },
+    ],
 };
 
 /** FAQPage schema, derived from the shared faqs array. */
@@ -57,7 +120,7 @@ export function articleSchema(slug) {
 export const insightsIndexSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Insights — Sycamore Creek Consulting',
+    name: `Insights — ${BRAND}`,
     url: `${SITE_ORIGIN}/insights`,
     hasPart: insights.map((a) => ({
         '@type': 'BlogPosting',
@@ -67,32 +130,98 @@ export const insightsIndexSchema = {
     })),
 };
 
+/* ------------------------------------------------------------------ */
+/* Per-route manifest                                                  */
+/* ------------------------------------------------------------------ */
+
 /**
- * Per-route SEO manifest consumed by the prerender script.
- *   jsonLdId → the <script> element id (must match the page's useJsonLd id)
- *   jsonLd   → the structured-data object to serialize into <head>
+ * Titles lead with what the page is about and end with the brand; keep them
+ * under ~60 characters so they don't truncate in results.
  */
-export const seoManifest = {
-    '/faq': { jsonLdId: 'jsonld-faq', jsonLd: faqPageSchema },
-    '/insights': { jsonLdId: 'jsonld-insights', jsonLd: insightsIndexSchema },
+const pages = {
+    '/': {
+        title: 'Retained Search for Cleared, Defense & AI Engineering | Sycamore Creek',
+        description:
+            "We find the people who aren't looking. Sycamore Creek is a boutique retained search and talent advisory firm for cleared, defense, and AI-native engineering hiring — rooted in DC and NYC, placing nationwide.",
+    },
+    '/about': {
+        title: 'Owen Howe, Founder — Sycamore Creek Consulting, Washington DC',
+        description:
+            "Owen Howe, Founder and Principal of Sycamore Creek Consulting — built for the searches others can't close. Boutique talent advisory in Washington, D.C.",
+        jsonLdId: 'jsonld-about-person',
+        jsonLd: personSchema,
+    },
+    '/services': {
+        title: 'Retained Search, Embedded Recruiting & Talent Advisory | Sycamore Creek',
+        description:
+            'Retained search, embedded recruiting, and strategic talent advising for high-growth teams. Engagements structured around outcomes, not billable hours.',
+        jsonLdId: 'jsonld-services',
+        jsonLd: servicesSchema,
+    },
+    '/process': {
+        title: 'How a Retained Search Works, Step by Step | Sycamore Creek',
+        description:
+            'How a Sycamore Creek retained search works — from discovery and scorecard to market mapping, outreach, evaluation, offer, and follow-through. A partnership, not a transaction.',
+    },
+    '/track-record': {
+        title: 'Placements in Cleared, Defense & AI Hiring — Results | Sycamore Creek',
+        description:
+            '$50M+ in compensation negotiated. 87% offer acceptance, 96% of searches filled, 58-day average time to fill. Placements across stealth research labs, global media organizations, and high-growth startups in DC and NYC.',
+    },
+    '/for-candidates': {
+        title: 'Confidential Representation for Cleared & AI Engineers | Sycamore Creek',
+        description:
+            'For exceptional engineers and leaders in the cleared, defense, and AI-native world. A confidential relationship with a principal who treats candidates as carefully as clients.',
+    },
+    '/contact': {
+        title: 'Contact Owen Howe | Sycamore Creek Consulting',
+        description:
+            'Start a conversation with Owen Howe. Every engagement begins with a direct conversation with the principal. No pitch decks, no pressure.',
+    },
+    '/faq': {
+        title: 'Retained Search FAQ — Fees, Timelines, Cleared Hiring | Sycamore Creek',
+        description:
+            'Answers to common questions about retained search, recruiting fees, timelines, cleared and defense hiring, embedded recruiting, and how Sycamore Creek works.',
+        jsonLdId: 'jsonld-faq',
+        jsonLd: faqPageSchema,
+    },
+    '/insights': {
+        title: 'Insights on Technical & Executive Hiring | Sycamore Creek',
+        description:
+            'Field notes on technical and executive hiring — compensation benchmarks, recruiting models, and how to hire scarce engineering talent in defense, AI, and hardware.',
+        jsonLdId: 'jsonld-insights',
+        jsonLd: insightsIndexSchema,
+    },
     ...Object.fromEntries(
         insights.map((a) => [
             `/insights/${a.slug}`,
-            { jsonLdId: `jsonld-article-${a.slug}`, jsonLd: articleSchema(a.slug) },
+            {
+                title: `${a.title} | ${BRAND}`,
+                description: a.description,
+                lastmod: a.date,
+                jsonLdId: `jsonld-article-${a.slug}`,
+                jsonLd: articleSchema(a.slug),
+            },
         ]),
     ),
+    [NOT_FOUND_ROUTE]: {
+        title: `Page Not Found | ${BRAND}`,
+        description: `The page you're looking for doesn't exist or has moved. ${BRAND} — boutique retained search for cleared, defense, and AI-native engineering.`,
+        noindex: true,
+    },
 };
 
+// Every route must be described, and every description must be a route.
+for (const p of routePaths) {
+    if (!pages[p]) throw new Error(`seoData: no SEO entry for route ${p}`);
+}
+for (const p of Object.keys(pages)) {
+    if (p !== NOT_FOUND_ROUTE && !routePaths.includes(p)) {
+        throw new Error(`seoData: SEO entry ${p} is not a route in routes.js`);
+    }
+}
+
+export const seoManifest = pages;
+
 /** Every route the prerender script should emit as static HTML. */
-export const prerenderRoutes = [
-    '/',
-    '/about',
-    '/services',
-    '/process',
-    '/track-record',
-    '/for-candidates',
-    '/contact',
-    '/faq',
-    '/insights',
-    ...insights.map((a) => `/insights/${a.slug}`),
-];
+export const prerenderRoutes = routePaths;

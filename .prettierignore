@@ -1,0 +1,7 @@
+dist
+.prerender-ssr
+node_modules
+package-lock.json
+public/.well-known
+*.pdf
+*.txt

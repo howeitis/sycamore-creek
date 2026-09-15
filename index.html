@@ -10,6 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sycamore Creek Consulting</title>
   <meta name="description" content="Sycamore Creek Consulting is a boutique talent advisory firm specializing in retained search for technical and leadership roles in DC and NYC." />
+  <meta name="robots" content="max-image-preview:large" />
+  <meta property="og:site_name" content="Sycamore Creek Consulting" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Sycamore Creek Consulting" />
   <meta property="og:description" content="Boutique talent advisory for high-growth teams. We secure elite talent and architect recruiting engines." />
@@ -23,8 +25,11 @@
   <meta name="twitter:title" content="Sycamore Creek Consulting" />
   <meta name="twitter:description" content="Boutique talent advisory for high-growth teams. We secure elite talent and architect recruiting engines." />
   <meta name="twitter:image" content="https://sycamorecreekconsulting.com/og-image.jpg" />
+  <!-- Fonts: requested from <head> (not via @import inside the app CSS) so the
+       request starts before the stylesheet has even downloaded. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Lato:wght@300;400;700&display=swap">
   <!-- Structured Data: JSON-LD -->
   <script type="application/ld+json">
   {
@@ -105,15 +110,9 @@
     }
   }
   </script>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js); bootstrap lives in /gtag-init.js so no inline script is needed -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPXQ5ZX30P"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-GPXQ5ZX30P');
-  </script>
+  <script src="/gtag-init.js"></script>
 </head>
 
 <body>
