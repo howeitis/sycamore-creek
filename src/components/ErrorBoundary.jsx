@@ -1,4 +1,5 @@
 import React from 'react';
+import { FIRM } from '../data/firm';
 import '../styles/ErrorBoundary.css';
 
 /**
@@ -48,7 +49,7 @@ class ErrorBoundary extends React.Component {
                                         &rarr;
                                     </span>
                                 </a>
-                                <a href="mailto:owen@howe.app" className="btn-ghost">
+                                <a href={`mailto:${FIRM.email}`} className="btn-ghost">
                                     Email Owen{' '}
                                     <span className="btn-arrow" aria-hidden="true">
                                         &rarr;

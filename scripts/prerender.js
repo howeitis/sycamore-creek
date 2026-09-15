@@ -30,9 +30,16 @@ const ssrEntry = path.join(root, '.prerender-ssr', 'entry-server.js');
 // Read the client-built HTML as the template (has hashed asset references).
 const template = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
 
-const { render, prerenderRoutes, seoManifest, SITE_ORIGIN, NOT_FOUND_ROUTE } = await import(
-    pathToFileURL(ssrEntry).href
-);
+const {
+    render,
+    prerenderRoutes,
+    seoManifest,
+    SITE_ORIGIN,
+    NOT_FOUND_ROUTE,
+    organizationSchema,
+    websiteSchema,
+    FIRM,
+} = await import(pathToFileURL(ssrEntry).href);
 
 /** Escaping for text placed inside an HTML attribute value. */
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
@@ -103,6 +110,11 @@ async function buildPage(route) {
         if (posting?.author?.name)
             extra.push(`<meta property="article:author" content="${attr(posting.author.name)}" />`);
     }
+
+    // Site-wide business entity + website nodes, on every page.
+    extra.push(
+        `<script type="application/ld+json" id="jsonld-org">${JSON.stringify([organizationSchema, websiteSchema])}</script>`,
+    );
 
     // Per-page JSON-LD (id matches the page's useJsonLd id → no client dup).
     if (seo.jsonLd) {
@@ -210,6 +222,18 @@ ${items.join('\n')}
 </rss>
 `;
 }
+
+// llms.txt is authored in public/ with {{FIRM_EMAIL}}-style tokens so contact
+// details stay in src/data/firm.js.
+const llmsPath = path.join(distDir, 'llms.txt');
+fs.writeFileSync(
+    llmsPath,
+    fs
+        .readFileSync(llmsPath, 'utf-8')
+        .replace(/\{\{FIRM_EMAIL\}\}/g, FIRM.email)
+        .replace(/\{\{PRINCIPAL_LINKEDIN\}\}/g, FIRM.sameAs[0]),
+    'utf-8',
+);
 
 fs.writeFileSync(path.join(distDir, 'sitemap.xml'), buildSitemap(), 'utf-8');
 fs.writeFileSync(path.join(distDir, 'feed.xml'), buildFeed(), 'utf-8');

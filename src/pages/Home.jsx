@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import Pedigree from '../components/Pedigree';
 import ServiceHierarchy from '../components/ServiceHierarchy';
 import Metrics from '../components/Metrics';
+import LatestInsights from '../components/LatestInsights';
 import Closing from '../components/Closing';
 import Seo from '../components/Seo';
 
@@ -14,6 +15,7 @@ const Home = () => {
             <Pedigree />
             <ServiceHierarchy />
             <Metrics />
+            <LatestInsights />
             <Closing />
         </div>
     );

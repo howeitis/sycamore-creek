@@ -13,7 +13,7 @@
 | P1 | Add a 404 / Not Found page | High | Low | ✅ Done | Resolved by E1. `NotFound.jsx` renders on any unmatched route. |
 | P2 | Unify CTA copy | High | Low | ✅ Closed | Reviewed and closed. Per-page CTA variation ("Start the Conversation" on About, "Get in Touch" on Services, "Initiate a Search" on Track Record) maps to user intent at each funnel stage and is intentionally kept. |
 | P3 | Enrich Track Record placement cards | High | Medium | Pending | Nine cards show only role, company type, and city. Even one sentence of context per card would sharpen credibility. Requires content input from Owen. |
-| P4 | Clarify the "$50M+" stat | High | Low | Pending | Ambiguous — total comp negotiated for candidates? Saved for clients? A short clarifier makes it land harder. Requires input on what the number actually represents. |
+| P4 | Clarify the "$50M+" stat | High | Low | ✅ Done | Ambiguous — total comp negotiated for candidates? Saved for clients? A short clarifier makes it land harder. Requires input on what the number actually represents. |
 | P5 | Resolve "Unicorn Hunting" gap | Medium | Low | ✅ Closed | Named capability on Home page (Pedigree section) has no corresponding entry on the Services page. Either expand it on Services or remove it from Home. |
 | P6 | Add an FAQ or "How Retainers Work" explainer | Medium | Medium | ✅ Done | No pricing signals anywhere. A short explainer on how retained search engagements work mechanically would reduce friction for first-time buyers. |
 | P7 | Add testimonials or client signals | High | High | Pending | Stats are strong but anonymous. Even one attributed quote from a client or hiring manager would meaningfully increase conversion. Requires sourcing real content. |

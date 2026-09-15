@@ -1,5 +1,5 @@
 export const stats = [
-    { label: 'Compensation Negotiated', value: '$50M+' },
+    { label: 'Comp negotiated for placed candidates', value: '$50M+' },
     { label: 'Offer Acceptance Rate', value: '87%' },
     { label: 'Searches Filled', value: '96%' },
     { label: 'Avg. Time to Fill', value: '58 days' },

@@ -13,10 +13,12 @@
  *
  * `slug` is the path segment under /insights. Keep dates in ISO (YYYY-MM-DD).
  */
+import { FIRM, PRINCIPAL } from './firm.js';
+
 export const AUTHOR = {
-    name: 'Owen Howe',
-    title: 'Founder & Principal, Sycamore Creek Consulting',
-    url: 'https://www.linkedin.com/in/owen-howe-wm2016/',
+    name: PRINCIPAL.name,
+    title: `${PRINCIPAL.jobTitle}, ${FIRM.name}`,
+    url: PRINCIPAL.linkedin,
     bio: 'Owen runs every Sycamore Creek search personally, from scoping to signed offer. Before founding the firm he built and scaled recruiting functions inside high-growth startups and global institutions, hiring across the full seniority spectrum in cleared, defense, and AI-native engineering.',
 };
 

@@ -16,10 +16,11 @@
  */
 import { faqs } from '../data/faqs.js';
 import { insights, insightBySlug, AUTHOR } from '../data/insights.js';
+import { FIRM, PRINCIPAL } from '../data/firm.js';
 import { routePaths, NOT_FOUND_ROUTE } from '../routes.js';
 
-export const SITE_ORIGIN = 'https://sycamorecreekconsulting.com';
-const BRAND = 'Sycamore Creek Consulting';
+export const SITE_ORIGIN = FIRM.origin;
+const BRAND = FIRM.name;
 const LOGO = {
     '@type': 'ImageObject',
     url: `${SITE_ORIGIN}/logo.png`,
@@ -37,13 +38,109 @@ const ORG = {
 /* Structured data                                                     */
 /* ------------------------------------------------------------------ */
 
+/**
+ * The business entity. Emitted into <head> on every page by the prerender
+ * (id "jsonld-org"); nothing is hard-coded in index.html any more, so the
+ * contact details here come from src/data/firm.js like everywhere else.
+ */
+export const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${SITE_ORIGIN}/#organization`,
+    name: BRAND,
+    alternateName: FIRM.shortName,
+    url: SITE_ORIGIN,
+    logo: LOGO,
+    image: `${SITE_ORIGIN}/og-image.jpg`,
+    description:
+        'Sycamore Creek Consulting is a boutique talent advisory firm specializing in retained search and recruiting for technical and leadership roles. Founded and operated by Owen Howe, the firm focuses on sourcing passive talent — candidates who are not actively looking — for high-growth startups and established institutions in Washington D.C. and New York City.',
+    founder: {
+        '@type': 'Person',
+        name: PRINCIPAL.name,
+        jobTitle: PRINCIPAL.jobTitle,
+        email: FIRM.email,
+        url: `${SITE_ORIGIN}/about`,
+        sameAs: PRINCIPAL.linkedin,
+    },
+    address: {
+        '@type': 'PostalAddress',
+        addressLocality: FIRM.city,
+        addressRegion: FIRM.region,
+        addressCountry: FIRM.country,
+    },
+    areaServed: [
+        { '@type': 'City', name: 'Washington, D.C.' },
+        { '@type': 'City', name: 'New York City' },
+        { '@type': 'Country', name: 'United States' },
+    ],
+    contactPoint: { '@type': 'ContactPoint', email: FIRM.email, contactType: 'Business Inquiries' },
+    sameAs: FIRM.sameAs,
+    priceRange: '$$$$',
+    knowsAbout: [
+        'Retained executive search',
+        'Technical recruiting',
+        'Talent acquisition strategy',
+        'Passive candidate sourcing',
+        'Compensation benchmarking',
+        'AI and LLM engineer hiring',
+        'FPGA engineer recruiting',
+        'Defense sector recruiting',
+        'Startup team building',
+        'Embedded recruiting',
+        'Offer negotiation',
+    ],
+    hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Talent Advisory Services',
+        itemListElement: [
+            {
+                '@type': 'Offer',
+                itemOffered: {
+                    '@type': 'Service',
+                    name: 'Retained Search',
+                    description:
+                        'End-to-end search ownership for critical hires. Includes market mapping, candidate scorecard development, outreach, evaluation, and offer negotiation. Best for senior technical leadership, niche engineering roles, and confidential replacements where the talent pool is small and the stakes are high.',
+                },
+            },
+            {
+                '@type': 'Offer',
+                itemOffered: {
+                    '@type': 'Service',
+                    name: 'Embedded Recruiting',
+                    description:
+                        "Direct integration into the client's team for a defined engagement period. Operates inside client ATS, attends standups, and functions as an extension of the internal recruiting function without the overhead of a full-time hire. Best for startups scaling rapidly after a funding round.",
+                },
+            },
+            {
+                '@type': 'Offer',
+                itemOffered: {
+                    '@type': 'Service',
+                    name: 'Strategic Talent Advising',
+                    description:
+                        'Advisory on compensation architecture, interview design, employer positioning, and organizational planning for teams in transition. Best for founders losing candidates and leadership navigating AI-driven workforce restructuring.',
+                },
+            },
+        ],
+    },
+};
+
+/** Site-wide WebSite node (pairs with the organization). */
+export const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE_ORIGIN}/#website`,
+    url: SITE_ORIGIN,
+    name: BRAND,
+    publisher: { '@id': `${SITE_ORIGIN}/#organization` },
+};
+
 /** Person schema for the founder (About page). */
 export const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: AUTHOR.name,
-    jobTitle: 'Founder & Principal',
-    email: 'owen@howe.app',
+    name: PRINCIPAL.name,
+    jobTitle: PRINCIPAL.jobTitle,
+    email: FIRM.email,
     url: `${SITE_ORIGIN}/about`,
     worksFor: { '@type': 'Organization', name: BRAND, url: SITE_ORIGIN },
     knowsAbout: [

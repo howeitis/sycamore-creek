@@ -1,0 +1,31 @@
+# Lint, format check, and a full build (including the prerender's own
+# post-build checks) on every push and pull request. Vercel deploys main
+# independently; this is the gate that catches a broken prerender or an
+# unformatted file before it lands.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run build
+      - name: Sanity-check prerender output
+        run: |
+          test -f dist/404.html
+          test -f dist/sitemap.xml
+          test -f dist/feed.xml
+          test -f dist/about/index.html
+          ! grep -rl "hero_background" dist/about dist/services dist/insights >/dev/null

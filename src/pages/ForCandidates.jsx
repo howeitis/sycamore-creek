@@ -1,7 +1,9 @@
 import React from 'react';
 import { trackEvent } from '../utils/analytics';
+import { FIRM, PRINCIPAL } from '../data/firm';
 import '../styles/ForCandidates.css';
 import Seo from '../components/Seo';
+import CreekLine from '../components/CreekLine';
 
 const ForCandidates = () => {
     return (
@@ -9,7 +11,8 @@ const ForCandidates = () => {
             <Seo path="/for-candidates" />
 
             {/* Header */}
-            <section className="cand-header-section">
+            <section className="cand-header-section has-creek">
+                <CreekLine />
                 <div className="content-container">
                     <p className="eyebrow cand-eyebrow">For Candidates</p>
                     <h1 className="cand-headline">
@@ -60,7 +63,7 @@ const ForCandidates = () => {
                             start.
                         </p>
                         <a
-                            href="mailto:owen@howe.app?subject=Introduction%20%E2%80%94%20Candidate"
+                            href={`mailto:${FIRM.email}?subject=Introduction%20%E2%80%94%20Candidate`}
                             className="btn-primary cand-cta-button"
                             onClick={() => trackEvent('candidate_intro', { method: 'email' })}
                         >
@@ -70,7 +73,7 @@ const ForCandidates = () => {
                             </span>
                         </a>
                         <a
-                            href="https://www.linkedin.com/in/owen-howe-wm2016/"
+                            href={PRINCIPAL.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-ghost cand-cta-link"

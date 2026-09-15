@@ -42,4 +42,11 @@ export async function render(url) {
 }
 
 export { NOT_FOUND_ROUTE };
-export { prerenderRoutes, seoManifest, SITE_ORIGIN } from './seo/seoData.js';
+export {
+    prerenderRoutes,
+    seoManifest,
+    SITE_ORIGIN,
+    organizationSchema,
+    websiteSchema,
+} from './seo/seoData.js';
+export { FIRM } from './data/firm.js';

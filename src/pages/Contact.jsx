@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { trackEvent } from '../utils/analytics';
+import { FIRM, PRINCIPAL } from '../data/firm';
 import '../styles/Contact.css';
 import Seo from '../components/Seo';
+import CreekLine from '../components/CreekLine';
 
 const FORMSPREE = 'https://formspree.io/f/xzdaglle';
-const CONTACT_EMAIL = 'owen@howe.app';
-const LINKEDIN_URL = 'https://www.linkedin.com/in/owen-howe-wm2016/';
+const CONTACT_EMAIL = FIRM.email;
+const LINKEDIN_URL = PRINCIPAL.linkedin;
 
 /**
  * Inquiry types. The value routes the email subject (so a candidate note and
@@ -63,7 +65,8 @@ const Contact = () => {
         <div className="page-wrapper">
             <Seo path="/contact" />
             {/* Section A - Page Header */}
-            <section className="contact-header-section">
+            <section className="contact-header-section has-creek">
+                <CreekLine />
                 <div className="content-container">
                     <p className="eyebrow contact-eyebrow">Get in Touch</p>
                     <h1 className="contact-headline">

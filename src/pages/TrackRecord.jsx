@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { stats, placements } from '../data/placements';
 import { trackEvent } from '../utils/analytics';
 import '../styles/TrackRecord.css';
 import Seo from '../components/Seo';
+import CreekLine from '../components/CreekLine';
 
 const TrackRecord = () => {
     return (
         <div className="page-wrapper">
             <Seo path="/track-record" />
             {/* Section A - Header */}
-            <section className="tr-header-section">
+            <section className="tr-header-section has-creek">
+                <CreekLine />
                 <div className="content-container">
                     <p className="eyebrow tr-eyebrow">The Track Record</p>
                     <h1 className="tr-headline">

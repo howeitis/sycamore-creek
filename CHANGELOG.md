@@ -10,6 +10,24 @@ See `BACKLOG.md` for pending work.
 
 ---
 
+## 2026-09-15 — Signature motif, Home field notes, one-place contact details, cleanup, CI
+
+### Design
+- **Creek line** — the meandering-line motif from the brand direction, as a non-scaling hairline low in every interior page header (`CreekLine.jsx`; brass on pine/teal, teal on parchment via `--creek-color`).
+- **Home "Field notes" strip** — the three newest articles between the proof band and the closing CTA, in the hairline-column style of the proof grid.
+
+### Engineering
+- **`src/data/firm.js`** — name, email, city, and public profiles in one place. Footer, Contact, For Candidates, ErrorBoundary, Privacy, all JSON-LD, and `llms.txt` (via `{{FIRM_EMAIL}}` tokens filled at build) read from it. Changing the email address is now a one-line edit.
+- **Business-entity schema** moved from a static block in `index.html` into `seoData.js` (`organizationSchema` + `websiteSchema`, with `priceRange`, `image`, and a founder linked to `/about`) and injected on every page by the prerender.
+- **`react-router-dom` → `react-router`** (v7 ships the DOM exports; the `-dom` package was a shim).
+- **Repo cleanup** — removed `founder.webp` (unused), `vite.svg`, `react.svg`, the PDF/PRD extraction scripts and their outputs, and the never-applied `.reveal` CSS utility.
+- **CI** — `.github/workflows/ci.yml` runs lint, `format:check`, and the full build (with the prerender's own checks) on push and PR.
+
+### Product
+- **"$50M+"** stat label clarified to "Comp negotiated for placed candidates" (the wording already used in `llms.txt`).
+
+---
+
 ## 2026-09-15 — Insights: social cards, author box, related notes, RSS
 
 - **Social cards** — `scripts/og-cards.js` (`npm run og`) renders a branded 1200×630 JPEG per article with satori + sharp (Newsreader/Lato as paths; fonts vendored in `scripts/fonts/`). Cards are committed under `public/og/` and set as `og:image` / `twitter:image` / `og:image:alt` per article by the prerender.

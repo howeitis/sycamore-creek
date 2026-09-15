@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import '../styles/Privacy.css';
 import Seo from '../components/Seo';
+import { FIRM } from '../data/firm';
+import CreekLine from '../components/CreekLine';
 
 const EFFECTIVE = 'September 15, 2026';
 
@@ -10,7 +12,8 @@ const Privacy = () => {
         <div className="page-wrapper">
             <Seo path="/privacy" />
 
-            <section className="privacy-header">
+            <section className="privacy-header has-creek">
+                <CreekLine />
                 <div className="content-container">
                     <p className="eyebrow privacy-eyebrow">Privacy</p>
                     <h1 className="privacy-headline">
@@ -97,7 +100,7 @@ const Privacy = () => {
                     <p>
                         You can ask us at any time what we hold about you, ask us to correct it, or
                         ask us to delete it. Email{' '}
-                        <a href="mailto:owen@howe.app?subject=Privacy%20request">owen@howe.app</a>{' '}
+                        <a href={`mailto:${FIRM.email}?subject=Privacy%20request`}>{FIRM.email}</a>{' '}
                         and we will respond personally.
                     </p>
 

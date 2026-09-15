@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { trackEvent } from '../utils/analytics';
 import '../styles/Process.css';
 import Seo from '../components/Seo';
+import CreekLine from '../components/CreekLine';
 
 const steps = [
     {
@@ -48,7 +49,8 @@ const Process = () => {
             <Seo path="/process" />
 
             {/* Header */}
-            <section className="process-header-section">
+            <section className="process-header-section has-creek">
+                <CreekLine />
                 <div className="content-container">
                     <p className="eyebrow process-eyebrow">Our Process</p>
                     <h1 className="process-headline">

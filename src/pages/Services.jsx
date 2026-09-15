@@ -1,15 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { trackEvent } from '../utils/analytics';
 import '../styles/Services.css';
 import Seo from '../components/Seo';
+import CreekLine from '../components/CreekLine';
 
 const Services = () => {
     return (
         <div className="page-wrapper">
             <Seo path="/services" />
             {/* Section A - Page Header */}
-            <section className="services-header-section">
+            <section className="services-header-section has-creek has-creek--light">
+                <CreekLine />
                 <div className="content-container">
                     <p className="eyebrow services-eyebrow">Our Services</p>
                     <h1 className="services-headline">

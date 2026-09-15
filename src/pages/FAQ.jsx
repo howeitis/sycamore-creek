@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { faqs } from '../data/faqs';
 import { trackEvent } from '../utils/analytics';
 import '../styles/FAQ.css';
 import Seo from '../components/Seo';
+import CreekLine from '../components/CreekLine';
 
 /**
  * FAQ page. Uses native <details>/<summary> so every answer is present in the
@@ -16,7 +17,8 @@ const FAQ = () => {
         <div className="faq-wrapper">
             <Seo path="/faq" />
 
-            <section className="faq-header">
+            <section className="faq-header has-creek">
+                <CreekLine />
                 <div className="faq-container">
                     <p className="eyebrow faq-eyebrow">Straight answers</p>
                     <h1 className="faq-headline">

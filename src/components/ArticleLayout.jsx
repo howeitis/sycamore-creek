@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Seo from './Seo';
 import { insightBySlug, relatedInsights, AUTHOR } from '../data/insights';
 import { trackEvent } from '../utils/analytics';

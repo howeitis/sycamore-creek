@@ -52,6 +52,6 @@ Common questions on retained search, recruiting fees, timelines, cleared/defense
 
 ## Contact
 - Website: https://sycamorecreekconsulting.com
-- Email: owen@howe.app
-- LinkedIn: https://www.linkedin.com/in/owen-howe-wm2016/
+- Email: {{FIRM_EMAIL}}
+- LinkedIn: {{PRINCIPAL_LINKEDIN}}
 - Location: Washington, D.C. — serving clients nationwide

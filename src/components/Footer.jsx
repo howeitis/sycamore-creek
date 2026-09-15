@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { trackEvent } from '../utils/analytics';
+import { FIRM, PRINCIPAL } from '../data/firm';
 import '../styles/Footer.css';
 
-const CONTACT_EMAIL = 'owen@howe.app';
-const LINKEDIN_URL = 'https://www.linkedin.com/in/owen-howe-wm2016/';
+const CONTACT_EMAIL = FIRM.email;
+const LINKEDIN_URL = PRINCIPAL.linkedin;
 
 const Footer = () => {
     const year = new Date().getFullYear();

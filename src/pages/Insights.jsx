@@ -1,15 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { insights } from '../data/insights';
 import '../styles/Insights.css';
 import Seo from '../components/Seo';
+import CreekLine from '../components/CreekLine';
 
 const Insights = () => {
     return (
         <div className="insights-wrapper">
             <Seo path="/insights" />
 
-            <section className="insights-header">
+            <section className="insights-header has-creek">
+                <CreekLine />
                 <div className="insights-container">
                     <p className="eyebrow insights-eyebrow">Field notes</p>
                     <h1 className="insights-headline">

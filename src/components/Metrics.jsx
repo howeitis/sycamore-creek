@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { stats } from '../data/placements';
 import '../styles/Metrics.css';
 
