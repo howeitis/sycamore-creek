@@ -14,11 +14,11 @@ const NotFound = () => {
                     <p className="nf-body">
                         The page you're looking for doesn't exist or has moved.
                     </p>
-                    <Link to="/" className="nf-button">Back to Home</Link>
+                    <Link to="/" className="nf-button">
+                        Back to Home
+                    </Link>
                 </div>
             </section>
-
-
         </div>
     );
 };

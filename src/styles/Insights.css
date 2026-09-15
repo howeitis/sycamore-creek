@@ -1,91 +1,100 @@
 .insights-wrapper {
-    background-color: var(--color-bg-base);
-    min-height: 100vh;
+  background-color: var(--color-bg-base);
+  min-height: 100vh;
 }
 .insights-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 .insights-header {
-    background-color: var(--color-bg-emphasis);
-    color: var(--color-text-inverse);
-    padding: 8rem 0 4rem;
+  background-color: var(--color-bg-emphasis);
+  color: var(--color-text-inverse);
+  padding: 8rem 0 4rem;
 }
 .insights-headline {
-    font-family: var(--font-heading);
-    font-size: clamp(2.6rem, 5vw, 3.6rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.06;
-    margin-bottom: 1.25rem;
-    color: var(--color-text-inverse);
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-inverse);
 }
 .insights-subhead {
-    font-family: var(--font-body);
-    font-size: 1.25rem;
-    font-weight: 300;
-    line-height: 1.6;
-    max-width: 640px;
-    opacity: 0.9;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 640px;
+  opacity: 0.9;
 }
-.insights-list-section { padding: 4rem 0 5rem; }
+.insights-list-section {
+  padding: 4rem 0 5rem;
+}
 .insights-grid {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 }
 .insight-card {
-    background: var(--color-surface);
-    border: 1px solid var(--hair-on-light);
-    border-radius: var(--radius-lg);
-    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+  background: var(--color-surface);
+  border: 1px solid var(--hair-on-light);
+  border-radius: var(--radius-lg);
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    border-color 0.25s var(--ease);
 }
 .insight-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--hair-brass);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--hair-brass);
 }
 .insight-card-link {
-    display: block;
-    padding: 1.75rem;
-    text-decoration: none;
-    height: 100%;
+  display: block;
+  padding: 1.75rem;
+  text-decoration: none;
+  height: 100%;
 }
 .insight-card-category {
-    font-family: var(--font-body);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 0.7rem;
-    color: var(--color-brass-deep);
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  color: var(--color-brass-deep);
 }
 .insight-card-title {
-    font-family: var(--font-heading);
-    font-size: 1.45rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-    margin: 0.6rem 0 0.75rem;
-    color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0.6rem 0 0.75rem;
+  color: var(--color-text-primary);
 }
 .insight-card-excerpt {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.65;
-    color: var(--color-ink-soft);
-    margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-ink-soft);
+  margin-bottom: 1rem;
 }
 .insight-card-meta {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.03em;
-    color: var(--color-sage);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--color-sage);
 }
 @media (max-width: 768px) {
-    .insights-headline { font-size: 2.5rem; }
-    .insights-grid { grid-template-columns: 1fr; }
+  .insights-headline {
+    font-size: 2.5rem;
+  }
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
 }

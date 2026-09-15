@@ -65,8 +65,7 @@ const Navbar = () => {
     ];
 
     // Tone is a property of the page ground, not just scroll position.
-    const tone =
-        scrolled || mobileMenuOpen || isLightHeader(pathname) ? 'light' : 'dark';
+    const tone = scrolled || mobileMenuOpen || isLightHeader(pathname) ? 'light' : 'dark';
 
     return (
         <nav
@@ -76,7 +75,13 @@ const Navbar = () => {
         >
             <div className="navbar-container">
                 <Link to="/" className="navbar-brand">
-                    <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="Sycamore Creek" className="navbar-logo" width="48" height="48" />
+                    <img
+                        src={`${import.meta.env.BASE_URL}logo.webp`}
+                        alt="Sycamore Creek"
+                        className="navbar-logo"
+                        width="48"
+                        height="48"
+                    />
                     <span className="navbar-brand-name">Sycamore Creek Consulting</span>
                 </Link>
 
@@ -111,8 +116,6 @@ const Navbar = () => {
                     <span className="hamburger" aria-hidden="true"></span>
                 </button>
             </div>
-
-
         </nav>
     );
 };

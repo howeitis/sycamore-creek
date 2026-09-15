@@ -51,9 +51,13 @@ const Process = () => {
             <section className="process-header-section">
                 <div className="content-container">
                     <p className="eyebrow process-eyebrow">Our Process</p>
-                    <h1 className="process-headline">How a search <em>actually runs.</em></h1>
+                    <h1 className="process-headline">
+                        How a search <em>actually runs.</em>
+                    </h1>
                     <p className="process-subhead">
-                        A retained search is a partnership, not a transaction. Here is exactly how an engagement runs — from the first conversation to the weeks after your new hire starts.
+                        A retained search is a partnership, not a transaction. Here is exactly how
+                        an engagement runs — from the first conversation to the weeks after your new
+                        hire starts.
                     </p>
                 </div>
             </section>
@@ -78,12 +82,21 @@ const Process = () => {
             {/* CTA */}
             <section className="cta-section">
                 <div className="content-container cta-container">
-                    <h3 className="cta-headline">Have a search in mind? Let's start with a conversation.</h3>
-                    <Link to="/contact" className="btn-primary" onClick={() => trackEvent('cta_click', { location: 'process' })}>Start the Conversation <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link>
+                    <h3 className="cta-headline">
+                        Have a search in mind? Let's start with a conversation.
+                    </h3>
+                    <Link
+                        to="/contact"
+                        className="btn-primary"
+                        onClick={() => trackEvent('cta_click', { location: 'process' })}
+                    >
+                        Start the Conversation{' '}
+                        <span className="btn-arrow" aria-hidden="true">
+                            &rarr;
+                        </span>
+                    </Link>
                 </div>
             </section>
-
-
         </div>
     );
 };

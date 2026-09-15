@@ -17,8 +17,10 @@
 import { insights } from './data/insights.js';
 
 const articleLoaders = {
-    'cleared-defense-ai-engineer-salary-guide-dc': () => import('./pages/insights/ClearedAiSalaryGuide.jsx'),
-    'retained-vs-contingency-vs-embedded-recruiting': () => import('./pages/insights/RetainedVsContingencyVsEmbedded.jsx'),
+    'cleared-defense-ai-engineer-salary-guide-dc': () =>
+        import('./pages/insights/ClearedAiSalaryGuide.jsx'),
+    'retained-vs-contingency-vs-embedded-recruiting': () =>
+        import('./pages/insights/RetainedVsContingencyVsEmbedded.jsx'),
     'how-to-hire-fpga-engineers': () => import('./pages/insights/HowToHireFpgaEngineers.jsx'),
     'how-to-hire-product-leaders': () => import('./pages/insights/HowToHireProductLeaders.jsx'),
     'how-to-hire-executives': () => import('./pages/insights/HowToHireExecutives.jsx'),
@@ -26,7 +28,9 @@ const articleLoaders = {
 
 for (const a of insights) {
     if (!articleLoaders[a.slug]) {
-        throw new Error(`routes.js: article "${a.slug}" is in data/insights.js but has no page component`);
+        throw new Error(
+            `routes.js: article "${a.slug}" is in data/insights.js but has no page component`,
+        );
     }
 }
 

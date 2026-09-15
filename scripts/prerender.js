@@ -90,13 +90,19 @@ async function buildPage(route) {
 
     if (isArticle) {
         head = setMetaContent(head, 'property="og:type"', 'article');
-        if (seo.lastmod) extra.push(`<meta property="article:published_time" content="${seo.lastmod}" />`);
-        if (seo.jsonLd?.author?.name) extra.push(`<meta property="article:author" content="${attr(seo.jsonLd.author.name)}" />`);
+        if (seo.lastmod)
+            extra.push(`<meta property="article:published_time" content="${seo.lastmod}" />`);
+        if (seo.jsonLd?.author?.name)
+            extra.push(
+                `<meta property="article:author" content="${attr(seo.jsonLd.author.name)}" />`,
+            );
     }
 
     // Per-page JSON-LD (id matches the page's useJsonLd id → no client dup).
     if (seo.jsonLd) {
-        extra.push(`<script type="application/ld+json" id="${seo.jsonLdId}">${JSON.stringify(seo.jsonLd)}</script>`);
+        extra.push(
+            `<script type="application/ld+json" id="${seo.jsonLdId}">${JSON.stringify(seo.jsonLd)}</script>`,
+        );
     }
 
     head = intoHead(head, [...extra, ...preloads]);
@@ -110,13 +116,22 @@ function verify(route, html) {
     const problems = [];
     if (/&amp;#x?\d+;|&amp;(quot|lt|gt|amp);/.test(html)) problems.push('double-escaped entity');
     if ((html.match(/<title>/g) || []).length !== 1) problems.push('expected exactly one <title>');
-    if ((html.match(/name="description"/g) || []).length !== 1) problems.push('expected exactly one meta description');
-    if (route !== '/' && /hero_background/.test(html)) problems.push('hero image referenced off the home page');
-    if (route !== NOT_FOUND_ROUTE && !html.includes(`<link rel="canonical" href="${SITE_ORIGIN}${route === '/' ? '/' : route}" />`)) {
+    if ((html.match(/name="description"/g) || []).length !== 1)
+        problems.push('expected exactly one meta description');
+    if (route !== '/' && /hero_background/.test(html))
+        problems.push('hero image referenced off the home page');
+    if (
+        route !== NOT_FOUND_ROUTE &&
+        !html.includes(
+            `<link rel="canonical" href="${SITE_ORIGIN}${route === '/' ? '/' : route}" />`,
+        )
+    ) {
         problems.push('canonical missing or wrong');
     }
     if (/<div id="root"><\/div>/.test(html)) problems.push('empty root (nothing rendered)');
-    for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+    for (const m of html.matchAll(
+        /<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g,
+    )) {
         try {
             JSON.parse(m[1]);
         } catch {

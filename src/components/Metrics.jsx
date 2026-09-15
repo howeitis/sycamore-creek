@@ -8,7 +8,9 @@ const Metrics = () => {
         <section className="metrics-home">
             <div className="metrics-home-container">
                 <p className="eyebrow metrics-home-eyebrow">The Track Record</p>
-                <h2 className="metrics-home-title">We are defined by the offers we <em>close.</em></h2>
+                <h2 className="metrics-home-title">
+                    We are defined by the offers we <em>close.</em>
+                </h2>
 
                 <div className="metrics-home-strip">
                     {stats.map((stat, i) => (
@@ -21,11 +23,12 @@ const Metrics = () => {
 
                 <p className="metrics-home-note">
                     Figures reflect completed engagements; identities withheld for confidentiality.
-                    <Link to="/track-record" className="metrics-home-link"> See the full record <span aria-hidden="true">&rarr;</span></Link>
+                    <Link to="/track-record" className="metrics-home-link">
+                        {' '}
+                        See the full record <span aria-hidden="true">&rarr;</span>
+                    </Link>
                 </p>
             </div>
-
-
         </section>
     );
 };

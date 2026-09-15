@@ -12,7 +12,6 @@ import Seo from '../components/Seo';
  * array via seoData, so the visible copy and the structured data can't drift.
  */
 const FAQ = () => {
-
     return (
         <div className="faq-wrapper">
             <Seo path="/faq" />
@@ -21,9 +20,11 @@ const FAQ = () => {
                 <div className="faq-container">
                     <h1 className="faq-headline">Frequently asked questions</h1>
                     <p className="faq-subhead">
-                        Straight answers on how retained search works, what it costs, and how we
-                        run an engagement. Don’t see your question?{' '}
-                        <Link to="/contact" className="faq-inline-link">Ask us directly.</Link>
+                        Straight answers on how retained search works, what it costs, and how we run
+                        an engagement. Don’t see your question?{' '}
+                        <Link to="/contact" className="faq-inline-link">
+                            Ask us directly.
+                        </Link>
                     </p>
                 </div>
             </section>
@@ -47,7 +48,10 @@ const FAQ = () => {
                         className="btn-inverse"
                         onClick={() => trackEvent('cta_click', { location: 'faq' })}
                     >
-                        Get in Touch <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+                        Get in Touch{' '}
+                        <span className="btn-arrow" aria-hidden="true">
+                            &rarr;
+                        </span>
                     </Link>
                 </div>
             </section>

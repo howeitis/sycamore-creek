@@ -66,7 +66,7 @@
 }
 
 .proof-item::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -1px;
   left: 0;
@@ -122,6 +122,10 @@
   .proof-grid--inverse .proof-item + .proof-item {
     border-top-color: var(--hair-on-dark);
   }
-  .proof-item:first-of-type { border-top: none; }
-  .proof-item + .proof-item::before { left: 0; }
+  .proof-item:first-of-type {
+    border-top: none;
+  }
+  .proof-item + .proof-item::before {
+    left: 0;
+  }
 }

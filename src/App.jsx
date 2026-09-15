@@ -35,7 +35,8 @@ const eager = {
 
 for (const r of routes) {
     if (r.eager && !eager[r.path]) throw new Error(`App: eager route ${r.path} has no component`);
-    if (!r.eager && !r.load) throw new Error(`App: route ${r.path} has neither a component nor a loader`);
+    if (!r.eager && !r.load)
+        throw new Error(`App: route ${r.path} has neither a component nor a loader`);
 }
 
 // Module-scoped so lazy components keep their identity across renders.

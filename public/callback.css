@@ -1,5 +1,19 @@
-body { font-family: -apple-system, sans-serif; text-align: center; padding: 60px 20px; color: #333; }
-h1 { font-size: 22px; }
-p { font-size: 16px; color: #666; }
-a { color: #1a73e8; }
-.manual { margin-top: 24px; }
+body {
+  font-family: -apple-system, sans-serif;
+  text-align: center;
+  padding: 60px 20px;
+  color: #333;
+}
+h1 {
+  font-size: 22px;
+}
+p {
+  font-size: 16px;
+  color: #666;
+}
+a {
+  color: #1a73e8;
+}
+.manual {
+  margin-top: 24px;
+}

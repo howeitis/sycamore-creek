@@ -27,11 +27,14 @@ const ArticleLayout = ({ slug, children }) => {
 
             <article className="article">
                 <header className="article-header">
-                    <Link to="/insights" className="article-back">← Insights</Link>
+                    <Link to="/insights" className="article-back">
+                        ← Insights
+                    </Link>
                     <span className="article-category">{article.category}</span>
                     <h1 className="article-title">{article.title}</h1>
                     <p className="article-meta">
-                        By {AUTHOR.name} · <time dateTime={article.date}>{dateLabel}</time> · {article.readingTime}
+                        By {AUTHOR.name} · <time dateTime={article.date}>{dateLabel}</time> ·{' '}
+                        {article.readingTime}
                     </p>
                 </header>
 
@@ -48,7 +51,10 @@ const ArticleLayout = ({ slug, children }) => {
                         className="btn-inverse"
                         onClick={() => trackEvent('cta_click', { location: `article:${slug}` })}
                     >
-                        Start a Conversation <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+                        Start a Conversation{' '}
+                        <span className="btn-arrow" aria-hidden="true">
+                            &rarr;
+                        </span>
                     </Link>
                 </aside>
             </article>

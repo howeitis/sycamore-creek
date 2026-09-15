@@ -37,18 +37,20 @@ class ErrorBoundary extends React.Component {
                         <div className="eb-container">
                             <h1 className="eb-headline">Something went wrong.</h1>
                             <p className="eb-body">
-                                We hit an unexpected error. Please reload the page, or reach
-                                out directly and we&apos;ll help right away.
+                                We hit an unexpected error. Please reload the page, or reach out
+                                directly and we&apos;ll help right away.
                             </p>
                             <div className="eb-actions">
                                 {/* Full reload guarantees a clean React tree. */}
-                                <a href="/" className="eb-button">Back to Home</a>
-                                <a href="mailto:owen@howe.app" className="eb-link">owen@howe.app</a>
+                                <a href="/" className="eb-button">
+                                    Back to Home
+                                </a>
+                                <a href="mailto:owen@howe.app" className="eb-link">
+                                    owen@howe.app
+                                </a>
                             </div>
                         </div>
                     </section>
-
-
                 </div>
             );
         }

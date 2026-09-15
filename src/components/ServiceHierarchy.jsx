@@ -10,7 +10,10 @@ const ServiceHierarchy = () => {
                     <p className="eyebrow block-eyebrow">Lead Service</p>
                     <h2 className="block-headline">Retained Search</h2>
                     <p className="block-body">
-                        Dedicated, end-to-end ownership of your most critical hires. When a mis-hire isn&rsquo;t an option &mdash; cleared engineering leads, AI-native specialists, confidential replacements &mdash; we run the search from market map to signed offer.
+                        Dedicated, end-to-end ownership of your most critical hires. When a mis-hire
+                        isn&rsquo;t an option &mdash; cleared engineering leads, AI-native
+                        specialists, confidential replacements &mdash; we run the search from market
+                        map to signed offer.
                     </p>
                 </div>
             </div>
@@ -21,13 +24,17 @@ const ServiceHierarchy = () => {
                     <div className="foundation-col">
                         <h3 className="foundation-headline">Embedded Recruiting</h3>
                         <p className="foundation-body">
-                            We integrate directly into your team for a defined engagement &mdash; inside your ATS and standups &mdash; building pipeline and scaling hiring without the overhead of a full-time recruiter.
+                            We integrate directly into your team for a defined engagement &mdash;
+                            inside your ATS and standups &mdash; building pipeline and scaling
+                            hiring without the overhead of a full-time recruiter.
                         </p>
                     </div>
                     <div className="foundation-col">
                         <h3 className="foundation-headline">Strategic Advising</h3>
                         <p className="foundation-body">
-                            When the problem is the process &mdash; slow interviews, uncompetitive offers, an org navigating AI-driven change &mdash; we advise leadership on compensation, interview design, and talent strategy.
+                            When the problem is the process &mdash; slow interviews, uncompetitive
+                            offers, an org navigating AI-driven change &mdash; we advise leadership
+                            on compensation, interview design, and talent strategy.
                         </p>
                     </div>
                 </div>
@@ -39,12 +46,14 @@ const ServiceHierarchy = () => {
                     <p className="eyebrow block-eyebrow block-eyebrow--light">Our Focus</p>
                     <h2 className="block-headline">Cleared, Defense &amp; AI-Native Talent</h2>
                     <p className="block-body">
-                        AI is rewriting the org chart, and the cleared world is racing to keep up. We specialize in the hardest technical searches &mdash; LLM-native engineers, FPGA and reverse-engineering talent, research leadership &mdash; and the leaders who build those teams. From early-career cohorts to executive leadership, across DC, NYC, and nationwide.
+                        AI is rewriting the org chart, and the cleared world is racing to keep up.
+                        We specialize in the hardest technical searches &mdash; LLM-native
+                        engineers, FPGA and reverse-engineering talent, research leadership &mdash;
+                        and the leaders who build those teams. From early-career cohorts to
+                        executive leadership, across DC, NYC, and nationwide.
                     </p>
                 </div>
             </div>
-
-
         </section>
     );
 };

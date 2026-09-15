@@ -13,9 +13,12 @@ const TrackRecord = () => {
             <section className="tr-header-section">
                 <div className="content-container">
                     <p className="eyebrow tr-eyebrow">The Track Record</p>
-                    <h1 className="tr-headline">We are defined by the offers we <em>close.</em></h1>
+                    <h1 className="tr-headline">
+                        We are defined by the offers we <em>close.</em>
+                    </h1>
                     <p className="tr-subhead">
-                        From stealth research labs to global media organizations, we secure the talent that builds the future.
+                        From stealth research labs to global media organizations, we secure the
+                        talent that builds the future.
                     </p>
                 </div>
             </section>
@@ -31,8 +34,13 @@ const TrackRecord = () => {
                             </div>
                         ))}
                     </div>
-                    <p className="metrics-caption">Rooted in DC and NYC &mdash; placing talent nationwide.</p>
-                    <p className="metrics-note">Figures reflect completed engagements, identities withheld for confidentiality.</p>
+                    <p className="metrics-caption">
+                        Rooted in DC and NYC &mdash; placing talent nationwide.
+                    </p>
+                    <p className="metrics-note">
+                        Figures reflect completed engagements, identities withheld for
+                        confidentiality.
+                    </p>
                 </div>
             </section>
 
@@ -59,7 +67,16 @@ const TrackRecord = () => {
             <section className="cta-section">
                 <div className="content-container cta-container">
                     <h2 className="cta-headline">Ready to add to this list?</h2>
-                    <Link to="/contact" className="btn-primary" onClick={() => trackEvent('cta_click', { location: 'track_record' })}>Initiate a Search <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link>
+                    <Link
+                        to="/contact"
+                        className="btn-primary"
+                        onClick={() => trackEvent('cta_click', { location: 'track_record' })}
+                    >
+                        Initiate a Search{' '}
+                        <span className="btn-arrow" aria-hidden="true">
+                            &rarr;
+                        </span>
+                    </Link>
                 </div>
             </section>
         </div>

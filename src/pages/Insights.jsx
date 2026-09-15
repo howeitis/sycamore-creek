@@ -5,7 +5,6 @@ import '../styles/Insights.css';
 import Seo from '../components/Seo';
 
 const Insights = () => {
-
     return (
         <div className="insights-wrapper">
             <Seo path="/insights" />
