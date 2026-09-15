@@ -1,7 +1,7 @@
 /* Header Section */
 .about-header-section {
-  background-color: var(--color-bg-emphasis); /* British Racing Green */
-  padding: 6rem 0 4rem;
+  background-color: var(--color-pine);
+  padding: clamp(7rem, 12vw, 9rem) 0 clamp(3.5rem, 6vw, 5rem);
   color: var(--color-text-inverse);
 }
 
@@ -32,15 +32,14 @@
   font-size: 1.25rem;
   font-weight: 300;
   line-height: 1.6;
-  max-width: 800px;
-  color: var(--color-text-inverse);
-  opacity: 0.9;
+  max-width: 54ch;
+  color: rgba(244, 239, 230, 0.86);
 }
 
 /* Founder Section */
 .founder-section {
-  background-color: #ffffff;
-  padding: 5rem 0;
+  background-color: var(--color-surface);
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
 }
 
 .founder-grid {
@@ -54,8 +53,8 @@
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .founder-label {
@@ -63,7 +62,7 @@
   font-family: var(--font-body);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.12em;
   color: var(--color-text-primary);
   margin-bottom: 0.5rem;
   font-size: 0.9rem;

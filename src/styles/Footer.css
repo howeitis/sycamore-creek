@@ -1,57 +1,95 @@
 .footer-section {
   background-color: var(--color-pine-deep);
   color: var(--color-text-inverse);
-  padding: 3rem 24px;
+  padding: clamp(3.5rem, 6vw, 5rem) var(--gutter) 2rem;
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   border-top: 1px solid var(--hair-brass);
 }
 
 .footer-container {
   max-width: var(--container);
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--hair-on-dark);
 }
 
-.brand {
+.footer-brand {
+  display: inline-block;
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   letter-spacing: -0.01em;
   color: var(--color-text-inverse);
+  margin-bottom: 1rem;
 }
 
-.footer-center {
-  color: rgba(244, 239, 230, 0.6);
+.footer-statement {
+  color: rgba(244, 239, 230, 0.72);
+  line-height: 1.6;
+  max-width: 38ch;
+  margin-bottom: 1.25rem;
 }
 
-.footer-right {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.25rem 0;
-}
-
-.footer-link {
-  color: rgba(244, 239, 230, 0.82);
-  transition: color 0.2s var(--ease);
-}
-
-.footer-link:hover {
+.footer-place {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-brass-lite);
 }
 
-.separator {
-  margin: 0 0.65rem;
-  color: rgba(244, 239, 230, 0.28);
+.footer-heading {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.55);
+  margin-bottom: 1.1rem;
+}
+
+.footer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.footer-list a {
+  color: rgba(244, 239, 230, 0.85);
+  transition: color 0.2s var(--ease);
+}
+
+.footer-list a:hover {
+  color: var(--color-brass-lite);
+}
+
+.footer-bottom {
+  max-width: var(--container);
+  margin: 1.5rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.8rem;
+  color: rgba(244, 239, 230, 0.55);
+}
+
+.footer-bottom a {
+  color: rgba(244, 239, 230, 0.7);
+}
+
+.footer-bottom a:hover {
+  color: var(--color-brass-lite);
 }
 
 @media (max-width: 768px) {
   .footer-container {
-    flex-direction: column;
-    text-align: center;
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
   }
 }

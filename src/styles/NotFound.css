@@ -45,21 +45,3 @@
   opacity: 0.8;
   margin-bottom: 2.5rem;
 }
-
-.nf-button {
-  display: inline-block;
-  background-color: var(--color-text-inverse);
-  color: var(--color-bg-emphasis);
-  padding: 0.9rem 2rem;
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-
-.nf-button:hover {
-  opacity: 0.85;
-}

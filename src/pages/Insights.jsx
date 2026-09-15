@@ -11,7 +11,10 @@ const Insights = () => {
 
             <section className="insights-header">
                 <div className="insights-container">
-                    <h1 className="insights-headline">Insights</h1>
+                    <p className="eyebrow insights-eyebrow">Field notes</p>
+                    <h1 className="insights-headline">
+                        Insights on <em>technical hiring.</em>
+                    </h1>
                     <p className="insights-subhead">
                         Field notes on hiring scarce technical talent — compensation, recruiting
                         models, and how to reach the engineers who aren’t looking.

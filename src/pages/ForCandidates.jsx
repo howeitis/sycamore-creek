@@ -61,19 +61,25 @@ const ForCandidates = () => {
                         </p>
                         <a
                             href="mailto:owen@howe.app?subject=Introduction%20%E2%80%94%20Candidate"
-                            className="cand-cta-button"
+                            className="btn-primary cand-cta-button"
                             onClick={() => trackEvent('candidate_intro', { method: 'email' })}
                         >
-                            Email Owen
+                            Email Owen{' '}
+                            <span className="btn-arrow" aria-hidden="true">
+                                &rarr;
+                            </span>
                         </a>
                         <a
                             href="https://www.linkedin.com/in/owen-howe-wm2016/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="cand-cta-link"
+                            className="btn-ghost cand-cta-link"
                             onClick={() => trackEvent('candidate_intro', { method: 'linkedin' })}
                         >
-                            Connect on LinkedIn
+                            Connect on LinkedIn{' '}
+                            <span className="btn-arrow" aria-hidden="true">
+                                &rarr;
+                            </span>
                         </a>
                     </aside>
                 </div>

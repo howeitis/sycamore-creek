@@ -5,7 +5,7 @@
 }
 .eb-header {
   flex: 1;
-  background-color: var(--color-bg-emphasis);
+  background-color: var(--color-pine);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,29 +35,4 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-}
-.eb-button {
-  display: inline-block;
-  background-color: var(--color-text-inverse);
-  color: var(--color-bg-emphasis);
-  padding: 0.9rem 2rem;
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-.eb-button:hover {
-  opacity: 0.85;
-}
-.eb-link {
-  font-family: var(--font-body);
-  color: var(--color-text-inverse);
-  opacity: 0.8;
-  border-bottom: 1px solid rgba(245, 245, 240, 0.5);
-}
-.eb-link:hover {
-  opacity: 1;
 }

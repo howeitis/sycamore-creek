@@ -192,6 +192,11 @@ const pages = {
         jsonLdId: 'jsonld-insights',
         jsonLd: insightsIndexSchema,
     },
+    '/privacy': {
+        title: 'Privacy | Sycamore Creek Consulting',
+        description:
+            'What sycamorecreekconsulting.com collects (contact form, analytics), why, who processes it, and how to ask us to correct or delete your information.',
+    },
     ...Object.fromEntries(
         insights.map((a) => [
             `/insights/${a.slug}`,

@@ -18,7 +18,10 @@ const FAQ = () => {
 
             <section className="faq-header">
                 <div className="faq-container">
-                    <h1 className="faq-headline">Frequently asked questions</h1>
+                    <p className="eyebrow faq-eyebrow">Straight answers</p>
+                    <h1 className="faq-headline">
+                        Frequently asked <em>questions.</em>
+                    </h1>
                     <p className="faq-subhead">
                         Straight answers on how retained search works, what it costs, and how we run
                         an engagement. Don’t see your question?{' '}

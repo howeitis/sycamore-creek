@@ -49,8 +49,8 @@ const ServiceHierarchy = () => {
                         AI is rewriting the org chart, and the cleared world is racing to keep up.
                         We specialize in the hardest technical searches &mdash; LLM-native
                         engineers, FPGA and reverse-engineering talent, research leadership &mdash;
-                        and the leaders who build those teams. From early-career cohorts to
-                        executive leadership, across DC, NYC, and nationwide.
+                        across the full seniority spectrum, from early-career cohorts to the
+                        executive suite. Rooted in DC and NYC, placing nationwide.
                     </p>
                 </div>
             </div>

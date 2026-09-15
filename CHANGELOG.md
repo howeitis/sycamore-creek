@@ -10,6 +10,23 @@ See `BACKLOG.md` for pending work.
 
 ---
 
+## 2026-09-15 — Review pass 3 (finish the system on interior pages)
+
+### Design
+- **Services** — the three service names are now serif display H2s with an eyebrow that says who each is for ("Lead service", "For scaling teams", "For leadership"); "Best for" is a labelled line; "What's included" is a hairline list with a brass tick. Pure-white band replaced with the warm surface.
+- **Warm surfaces everywhere** — About founder section, Process steps, For Candidates body: `#ffffff` → `var(--color-surface)`. System radius/shadow tokens on the founder portrait.
+- **One button language** — 404, error boundary, and For Candidates now use `.btn-primary` / `.btn-inverse` / `.btn-ghost`; their bespoke button rules (and two dead ones in FAQ/ArticleLayout) are gone. Remaining px letter-spacing converted to em.
+- **Page headers** — FAQ and Insights get the same eyebrow + italic-emphasis header as every other page; header padding rhythm unified across interior pages.
+- **Footer** — three columns: firm statement + location, site navigation, principal contact; © line and Privacy link. Contact links fire `contact_click`.
+- **Home copy** — the hero subhead is one sentence; "Why Sycamore Creek" now says how the firm works (principal-led, scorecard); "Our Focus" carries the seniority and geography lines once. Hero uses `svh`; eyebrow tightened at phone width.
+
+### Product
+- **Privacy page** (`/privacy`) — what the site collects (form, analytics), why, third parties, candidate confidentiality, and how to ask for correction or deletion. Linked from the footer and the contact form.
+- **Contact form** — inquiry-type select (routes the email subject and segments `generate_lead`), candidate-aware labels, `autocomplete` on every field, honeypot, `aria-busy` + `readOnly` during submit (no focus loss), "what happens next" and a confidentiality/reply-time note, error message with a direct mailto, and "send another / read the field notes" after success.
+- **Navigation** — "For Candidates" added to the menu (mobile/tablet) as a secondary link.
+
+---
+
 ## 2026-09-14 — Review pass 2 (consolidation)
 
 ### Engineering

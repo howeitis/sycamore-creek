@@ -24,31 +24,34 @@ const Services = () => {
                 </div>
             </section>
 
-            {/* Section B - Retained Search */}
-            <section className="retained-section">
-                <div className="content-container">
-                    <h2 className="service-label-inverse">RETAINED SEARCH</h2>
-                    <p className="retained-desc">
+            {/* Section B - Retained Search (lead service) */}
+            <section className="service-band service-band--pine">
+                <div className="content-container service-band-inner">
+                    <p className="eyebrow service-eyebrow service-eyebrow--light">Lead service</p>
+                    <h2 className="service-title">Retained Search</h2>
+                    <p className="service-desc">
                         For roles where a mis-hire is not an option. We own the search end to end —
                         from building the market map and defining the candidate scorecard to
                         managing every stage of outreach, evaluation, and offer negotiation.
                         Retained engagements are our highest-touch service: fully dedicated
                         bandwidth, weekly progress reporting, and a commitment to fill the role.
                     </p>
-                    <p className="best-for-inverse">
-                        <strong>Best for:</strong> Cleared and defense engineering leads, AI-native
-                        specialists, senior technical leadership, confidential replacements, and any
-                        position where the talent pool is small and the stakes are high.
+                    <p className="best-for">
+                        <span className="best-for-label">Best for</span>
+                        Cleared and defense engineering leads, AI-native specialists, senior
+                        technical leadership, confidential replacements, and any position where the
+                        talent pool is small and the stakes are high.
                     </p>
                 </div>
             </section>
 
             {/* Section C - Embedded Recruiting */}
-            <section className="embedded-section">
+            <section className="service-band service-band--surface">
                 <div className="content-container embedded-grid">
                     <div className="embedded-left">
-                        <h2 className="service-label-underline">EMBEDDED RECRUITING</h2>
-                        <p className="embedded-desc">
+                        <p className="eyebrow service-eyebrow">For scaling teams</p>
+                        <h2 className="service-title">Embedded Recruiting</h2>
+                        <p className="service-desc">
                             We integrate directly into your team for a defined engagement period. We
                             attend your standups, work inside your ATS and Slack, run intake
                             sessions with your hiring managers, and operate as a seamless extension
@@ -56,14 +59,14 @@ const Services = () => {
                             full-time hire.
                         </p>
                         <p className="best-for">
-                            <strong>Best for:</strong> Startups scaling rapidly after a funding
-                            round, companies without an internal recruiting team, or any
-                            organization facing a surge in hiring volume that their current team
-                            cannot absorb.
+                            <span className="best-for-label">Best for</span>
+                            Startups scaling rapidly after a funding round, companies without an
+                            internal recruiting team, or any organization facing a surge in hiring
+                            volume that their current team cannot absorb.
                         </p>
                     </div>
                     <div className="embedded-right">
-                        <span className="whats-included">WHAT'S INCLUDED</span>
+                        <h3 className="included-title">What&rsquo;s included</h3>
                         <ul className="included-list">
                             <li>
                                 Dedicated sourcing and screening aligned to your technical stack
@@ -81,21 +84,22 @@ const Services = () => {
             </section>
 
             {/* Section D - Strategic Advising */}
-            <section className="advising-section">
-                <div className="content-container">
-                    <h2 className="service-label-inverse">STRATEGIC ADVISING</h2>
-                    <p className="advising-desc">
+            <section className="service-band service-band--teal">
+                <div className="content-container service-band-inner">
+                    <p className="eyebrow service-eyebrow service-eyebrow--light">For leadership</p>
+                    <h2 className="service-title">Strategic Advising</h2>
+                    <p className="service-desc">
                         Not every hiring problem is solved by adding a recruiter. Sometimes the
                         problem is the process itself — the interviews are too slow, the offers are
-                        uncompetitive, or the employer brand isn't reaching the right people. We
-                        advise leadership on the structural and strategic dimensions of talent
+                        uncompetitive, or the employer brand isn&rsquo;t reaching the right people.
+                        We advise leadership on the structural and strategic dimensions of talent
                         acquisition: compensation architecture, interview design, employer
                         positioning, and organizational planning for teams in transition.
                     </p>
-                    <p className="best-for-inverse">
-                        <strong>Best for:</strong> Founders losing candidates and unsure why, HR
-                        teams seeking an outside perspective, and leadership navigating AI-driven
-                        workforce restructuring.
+                    <p className="best-for">
+                        <span className="best-for-label">Best for</span>
+                        Founders losing candidates and unsure why, HR teams seeking an outside
+                        perspective, and leadership navigating AI-driven workforce restructuring.
                     </p>
                 </div>
             </section>
@@ -103,7 +107,9 @@ const Services = () => {
             {/* Section E - CTA Block */}
             <section className="cta-section">
                 <div className="content-container cta-container">
-                    <h3 className="cta-headline">Not sure which engagement fits? Let's talk.</h3>
+                    <h2 className="cta-headline">
+                        Not sure which engagement fits? Let&rsquo;s talk.
+                    </h2>
                     <Link
                         to="/contact"
                         className="btn-primary"

@@ -12,10 +12,13 @@ const NotFound = () => {
                     <p className="nf-code">404</p>
                     <h1 className="nf-headline">Page not found.</h1>
                     <p className="nf-body">
-                        The page you're looking for doesn't exist or has moved.
+                        The page you&rsquo;re looking for doesn&rsquo;t exist or has moved.
                     </p>
-                    <Link to="/" className="nf-button">
-                        Back to Home
+                    <Link to="/" className="btn-inverse">
+                        Back to Home{' '}
+                        <span className="btn-arrow" aria-hidden="true">
+                            &rarr;
+                        </span>
                     </Link>
                 </div>
             </section>

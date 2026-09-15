@@ -14,6 +14,7 @@ import ForCandidates from './pages/ForCandidates';
 import Contact from './pages/Contact';
 import FAQ from './pages/FAQ';
 import Insights from './pages/Insights';
+import Privacy from './pages/Privacy';
 import { routes } from './routes';
 import './styles/layout.css';
 
@@ -31,6 +32,7 @@ const eager = {
     '/contact': Contact,
     '/faq': FAQ,
     '/insights': Insights,
+    '/privacy': Privacy,
 };
 
 for (const r of routes) {

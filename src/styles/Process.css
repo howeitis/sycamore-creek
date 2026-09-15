@@ -39,8 +39,8 @@
 
 /* Steps */
 .process-steps-section {
-  background-color: #ffffff;
-  padding: 5rem 0;
+  background-color: var(--color-surface);
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
 }
 
 .process-list {

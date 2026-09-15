@@ -44,6 +44,7 @@ export const routes = [
     { path: '/contact', eager: true },
     { path: '/faq', eager: true },
     { path: '/insights', eager: true },
+    { path: '/privacy', eager: true },
     ...insights.map((a) => ({ path: `/insights/${a.slug}`, load: articleLoaders[a.slug] })),
 ];
 

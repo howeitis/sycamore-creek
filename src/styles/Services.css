@@ -1,7 +1,7 @@
 /* Header */
 .services-header-section {
   background-color: var(--color-bg-base);
-  padding: 6rem 0 4rem;
+  padding: clamp(7rem, 12vw, 9rem) 0 clamp(3.5rem, 6vw, 5rem);
 }
 
 .services-eyebrow {
@@ -30,95 +30,148 @@
   font-size: 1.25rem;
   font-weight: 300;
   line-height: 1.6;
-  max-width: 800px;
-  color: var(--color-text-primary);
-  opacity: 0.9;
-}
-
-/* Retained Search */
-.retained-section {
-  background-color: var(--color-bg-emphasis); /* Racing Green */
-  color: var(--color-text-inverse);
-  padding: 5rem 0;
-  text-align: center;
-}
-
-.service-label-inverse {
-  display: block;
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 1.5rem;
-  opacity: 0.8;
-}
-
-.retained-desc {
-  font-family: var(--font-body);
-  font-size: 1.25rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: 300;
-}
-
-.best-for-inverse {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  opacity: 0.9;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Embedded Recruiting */
-.embedded-section {
-  background-color: #ffffff;
-  padding: 5rem 0;
-  color: var(--color-text-primary);
-}
-
-.embedded-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-}
-
-.service-label-underline {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--color-bg-accent); /* Teal underline */
-  padding-bottom: 0.25rem;
-}
-
-.embedded-desc {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  max-width: 54ch;
   color: var(--color-ink-soft);
 }
 
+/* ---------------------------------------------------------------
+   Service bands — one pattern, three grounds.
+   The service name is the H2 and gets the serif display treatment;
+   the eyebrow above it says who the service is for.
+   --------------------------------------------------------------- */
+.service-band {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+}
+
+.service-band--pine {
+  background-color: var(--color-pine);
+  color: var(--color-text-inverse);
+  text-align: center;
+}
+
+.service-band--teal {
+  background-color: var(--color-teal);
+  color: var(--color-text-inverse);
+  text-align: center;
+}
+
+.service-band--surface {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.service-band-inner {
+  max-width: var(--container-narrow);
+}
+
+.service-eyebrow {
+  margin-bottom: 1.4rem;
+}
+
+.service-band--pine .service-eyebrow,
+.service-band--teal .service-eyebrow {
+  justify-content: center;
+}
+
+.service-eyebrow--light {
+  color: var(--color-brass-lite);
+}
+
+.service-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-bottom: 1.5rem;
+}
+
+.service-desc {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  line-height: 1.65;
+  font-weight: 300;
+  margin-bottom: 1.75rem;
+}
+
+.service-band--pine .service-desc {
+  color: rgba(244, 239, 230, 0.85);
+}
+
+.service-band--teal .service-desc {
+  color: rgba(244, 239, 230, 0.88);
+}
+
+.service-band--surface .service-desc {
+  color: var(--color-ink-soft);
+  font-size: 1.1rem;
+}
+
+/* "Best for" — a labelled line, not a bolded prefix */
 .best-for {
   font-family: var(--font-body);
   font-size: 1rem;
-  color: var(--color-sage);
+  line-height: 1.6;
+  margin: 0;
 }
 
-.whats-included {
+.service-band--pine .best-for,
+.service-band--teal .best-for {
+  color: rgba(244, 239, 230, 0.78);
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+.service-band--surface .best-for {
+  color: var(--color-ink-soft);
+}
+
+.best-for-label {
   display: block;
-  font-family: var(--font-body);
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
-  color: var(--color-sage);
-  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.service-band--pine .best-for-label,
+.service-band--teal .best-for-label {
+  color: var(--color-brass-lite);
+}
+
+.service-band--surface .best-for-label {
+  color: var(--color-brass-deep);
+}
+
+/* Embedded Recruiting — two columns on the warm surface */
+.embedded-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.included-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--hair-on-light);
+  position: relative;
+}
+
+.included-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 2.25rem;
+  height: 2px;
+  background: var(--color-brass);
 }
 
 .included-list {
@@ -130,10 +183,15 @@
 .included-list li {
   font-family: var(--font-body);
   font-size: 1rem;
-  margin-bottom: 0.75rem;
-  padding-left: 1.5rem;
+  line-height: 1.55;
+  padding: 0.7rem 0 0.7rem 1.5rem;
   position: relative;
   color: var(--color-ink-soft);
+  border-bottom: 1px solid var(--hair-on-light);
+}
+
+.included-list li:last-child {
+  border-bottom: none;
 }
 
 .included-list li::before {
@@ -144,31 +202,12 @@
   font-weight: 700;
 }
 
-/* Strategic Advising */
-.advising-section {
-  background-color: var(--color-bg-accent); /* Teal */
-  color: var(--color-text-inverse);
-  padding: 5rem 0;
-  text-align: center;
-}
-
-.advising-desc {
-  font-family: var(--font-body);
-  font-size: 1.25rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: 300;
-}
-
 @media (max-width: 768px) {
   .services-headline {
     font-size: 2.5rem;
   }
   .embedded-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
 }

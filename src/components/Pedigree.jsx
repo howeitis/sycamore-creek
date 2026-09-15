@@ -12,10 +12,10 @@ const Pedigree = () => {
                 </h2>
 
                 <p className="pedigree-body">
-                    From stealth defense startups to global institutions, we navigate complex,
-                    high-stakes hiring &mdash; reaching the specialists other firms can&rsquo;t,
-                    across the full seniority spectrum from early-career cohorts to executive
-                    leadership.
+                    One principal runs every search from scoping to signed offer &mdash; no handoff,
+                    no associates. From stealth defense startups to global institutions, we reach
+                    the specialists other firms can&rsquo;t and close them on a scorecard built with
+                    you.
                 </p>
 
                 <div className="proof-grid">

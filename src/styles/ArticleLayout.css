@@ -13,7 +13,7 @@
   font-weight: 700;
   color: var(--color-teal);
   text-decoration: none;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.02em;
 }
 .article-back:hover {
   color: var(--color-brass-deep);
@@ -165,23 +165,6 @@
   opacity: 0.9;
   max-width: 480px;
   margin: 0 auto 1.75rem;
-}
-.article-cta-button {
-  display: inline-block;
-  background: #ffffff;
-  color: var(--color-bg-emphasis);
-  padding: 0.9rem 2.25rem;
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.85rem;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: transform 0.2s;
-}
-.article-cta-button:hover {
-  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

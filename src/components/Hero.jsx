@@ -36,10 +36,8 @@ const Hero = () => {
                 </h1>
 
                 <p className="hero-subhead">
-                    A boutique talent advisory firm for high-stakes technical hiring &mdash;
-                    cleared, defense, and AI-native engineering, and the leaders who build those
-                    teams. We reach the specialists others can&rsquo;t, from DC and NYC to
-                    nationwide.
+                    Boutique retained search for cleared, defense, and AI-native engineering &mdash;
+                    and the leaders who build those teams.
                 </p>
 
                 <Link

@@ -109,6 +109,11 @@
   text-shadow: var(--nav-shadow);
 }
 
+/* Secondary links live in the menu only; the desktop row is full. */
+.nav-link--secondary {
+  display: none;
+}
+
 .nav-link:hover {
   opacity: 0.82;
 }
@@ -258,6 +263,12 @@
   .navbar-links .nav-link {
     color: var(--color-text-primary);
     text-shadow: none;
+  }
+
+  .nav-link--secondary {
+    display: inline-block;
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
   }
 
   .navbar-links.active {

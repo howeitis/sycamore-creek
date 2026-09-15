@@ -8,9 +8,13 @@
   padding: 0 20px;
 }
 .faq-header {
-  background-color: var(--color-bg-emphasis);
+  background-color: var(--color-pine);
   color: var(--color-text-inverse);
-  padding: 8rem 0 4rem;
+  padding: clamp(7rem, 12vw, 9rem) 0 clamp(3.5rem, 6vw, 5rem);
+}
+.faq-eyebrow {
+  color: var(--color-brass-lite);
+  margin-bottom: 1.5rem;
 }
 .faq-headline {
   font-family: var(--font-heading);
@@ -20,6 +24,11 @@
   line-height: 1.06;
   margin-bottom: 1.25rem;
   color: var(--color-text-inverse);
+}
+.faq-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-brass-lite);
 }
 .faq-subhead {
   font-family: var(--font-body);
@@ -62,7 +71,7 @@
   transform: translateY(-50%);
   font-size: 1.6rem;
   font-weight: 400;
-  color: var(--color-bg-accent);
+  color: var(--color-teal);
   transition: transform 0.2s;
 }
 .faq-item[open] .faq-question::after {
@@ -77,8 +86,8 @@
   margin: 0;
 }
 .faq-cta {
-  background-color: var(--color-bg-accent);
-  padding: 4rem 0;
+  background-color: var(--color-teal);
+  padding: clamp(4rem, 7vw, 6rem) 0;
 }
 .faq-cta-inner {
   text-align: center;
@@ -90,23 +99,6 @@
   letter-spacing: -0.015em;
   color: var(--color-text-inverse);
   margin-bottom: 1.75rem;
-}
-.faq-cta-button {
-  display: inline-block;
-  background: #ffffff;
-  color: var(--color-bg-emphasis);
-  padding: 0.9rem 2.25rem;
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.85rem;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: transform 0.2s;
-}
-.faq-cta-button:hover {
-  transform: translateY(-2px);
 }
 @media (max-width: 768px) {
   .faq-headline {

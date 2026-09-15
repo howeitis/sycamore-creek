@@ -62,6 +62,9 @@ const Navbar = () => {
         { name: 'Track Record', path: '/track-record' },
         { name: 'Insights', path: '/insights' },
         { name: 'Contact', path: '/contact' },
+        // Candidates are half the network; the desktop row is full, so this
+        // shows in the menu (and the footer carries it everywhere).
+        { name: 'For Candidates', path: '/for-candidates', secondary: true },
     ];
 
     // Tone is a property of the page ground, not just scroll position.
@@ -90,7 +93,7 @@ const Navbar = () => {
                         <Link
                             key={link.name}
                             to={link.path}
-                            className={`nav-link ${pathname === link.path ? 'current' : ''}`}
+                            className={`nav-link ${pathname === link.path ? 'current' : ''} ${link.secondary ? 'nav-link--secondary' : ''}`}
                             aria-current={pathname === link.path ? 'page' : undefined}
                         >
                             {link.name}

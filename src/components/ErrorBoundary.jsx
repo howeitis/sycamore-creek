@@ -42,11 +42,17 @@ class ErrorBoundary extends React.Component {
                             </p>
                             <div className="eb-actions">
                                 {/* Full reload guarantees a clean React tree. */}
-                                <a href="/" className="eb-button">
-                                    Back to Home
+                                <a href="/" className="btn-inverse">
+                                    Back to Home{' '}
+                                    <span className="btn-arrow" aria-hidden="true">
+                                        &rarr;
+                                    </span>
                                 </a>
-                                <a href="mailto:owen@howe.app" className="eb-link">
-                                    owen@howe.app
+                                <a href="mailto:owen@howe.app" className="btn-ghost">
+                                    Email Owen{' '}
+                                    <span className="btn-arrow" aria-hidden="true">
+                                        &rarr;
+                                    </span>
                                 </a>
                             </div>
                         </div>

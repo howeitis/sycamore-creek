@@ -45,6 +45,7 @@ sycamore-creek/
 │   │   ├── Contact.jsx        # Contact form (Formspree) + direct contact info
 │   │   ├── FAQ.jsx            # <details>-based FAQ (reads src/data/faqs.js)
 │   │   ├── Insights.jsx       # Article index (reads src/data/insights.js)
+│   │   ├── Privacy.jsx        # Privacy policy (GA4 + Formspree disclosure)
 │   │   ├── insights/*.jsx     # Article bodies (code-split; rendered inside ArticleLayout)
 │   │   └── NotFound.jsx       # 404 page (prerendered to dist/404.html)
 │   ├── components/
@@ -214,6 +215,6 @@ Running `npm audit` reports vulnerabilities in `ajv` and `minimatch`, both trans
 
 ## Key Integrations
 
-**Formspree** — Contact form POSTs to `https://formspree.io/f/xzdaglle`. On success, a confirmation message is shown in-page. No backend required.
+**Formspree** — Contact form POSTs to `https://formspree.io/f/xzdaglle`. The inquiry-type select sets the email `_subject` (`[Retained search] …`, `[I'm a candidate] …`) and is attached to the GA4 `generate_lead` event as `inquiry_type`. A `_gotcha` honeypot field discards bot submissions. On success, a confirmation with follow-on links is shown in-page. No backend required.
 
-**Google Analytics 4** — Tracking ID `G-GPXQ5ZX30P`. Script loaded async in `index.html`.
+**Google Analytics 4** — Tracking ID `G-GPXQ5ZX30P`. Script loaded async in `index.html`; bootstrap in `public/gtag-init.js`. Custom events (`src/utils/analytics.js`): `cta_click` (location), `generate_lead` (form, inquiry_type), `contact_click` (method: email | linkedin; location: footer | contact_page), `candidate_intro` (method), `exception` (render or hydration errors).
