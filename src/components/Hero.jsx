@@ -1,12 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { trackEvent } from '../utils/analytics';
-import '../index.css';
+
+const BASE = import.meta.env.BASE_URL;
 
 const Hero = () => {
   return (
     <section className="hero-section">
-      <div className="hero-bg" aria-hidden="true"></div>
+      {/* The canopy photo is a real <img> (not a CSS background) so the browser
+          picks the right size per viewport and can fetch it at high priority
+          straight from the prerendered HTML — it is the LCP element. */}
+      <img
+        className="hero-bg"
+        src={`${BASE}hero_background.webp`}
+        srcSet={`${BASE}hero_background-960.webp 960w, ${BASE}hero_background-1440.webp 1440w, ${BASE}hero_background.webp 1920w`}
+        sizes="100vw"
+        width="1920"
+        height="1446"
+        alt=""
+        fetchPriority="high"
+        decoding="async"
+        aria-hidden="true"
+      />
       <div className="hero-overlay" aria-hidden="true"></div>
       <div className="hero-grain" aria-hidden="true"></div>
 
@@ -51,10 +66,12 @@ const Hero = () => {
         .hero-bg {
           position: absolute;
           inset: -4%;
+          width: 108%;
+          height: 108%;
+          max-width: none;
           z-index: 0;
-          background-image: url('${import.meta.env.BASE_URL}hero_background.webp');
-          background-size: cover;
-          background-position: center;
+          object-fit: cover;
+          object-position: center;
           animation: heroZoom 18s var(--ease) forwards;
         }
 

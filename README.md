@@ -22,9 +22,10 @@ Marketing website for Sycamore Creek Consulting, a boutique talent advisory firm
 ```
 sycamore-creek/
 ├── public/
-│   ├── logo.png               # Favicon / OpenGraph / Twitter / schema.org logo (optimized PNG)
-│   ├── logo.webp              # On-page brand logo (navbar + hero)
-│   ├── hero_background.webp   # Hero section background image
+│   ├── logo.png               # schema.org logo (512px)
+│   ├── favicon.ico / favicon-*.png / apple-touch-icon.png   # Favicon set (derived from logo.png)
+│   ├── logo.webp              # On-page brand logo (navbar)
+│   ├── hero_background*.webp  # Hero photo at 1920 / 1440 / 960 wide (responsive <img> srcset)
 │   ├── founder.webp           # Founder photo (About page)
 │   ├── sitemap.xml            # Submitted to Google Search Console
 │   ├── robots.txt             # Crawler directives
@@ -72,7 +73,7 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:5173`.
+Visit the port Vite prints (the `.claude/launch.json` configs use 5299 and 5311; the Vite default is 5173).
 
 ---
 
@@ -88,10 +89,10 @@ No build-time env vars are set on Vercel: `VITE_BASE_PATH` and `VITE_ROUTER_BASE
 
 ### Routing, redirects & headers (`vercel.json`)
 
-- **SPA fallback** — all non-file routes rewrite to `/index.html` so React Router handles client-side navigation and deep-link refreshes.
-- **`/callback`** — rewrites to `/callback.html` (OAuth callback for the Sonos widget deep link).
+- **Static routes, real 404s** — every route is prerendered to `dist/<route>/index.html`, so there is no SPA catch-all rewrite. Unknown paths are served `dist/404.html` (prerendered from `NotFound.jsx`, `noindex`) with a genuine 404 status. `trailingSlash: false` redirects `/about/` → `/about` so each page has one URL. Adding a route means adding it to `prerenderRoutes` in `src/seo/seoData.js`, or it will 404 in production.
+- **`/callback`** — rewrites to `/callback.html` (OAuth callback for the Sonos widget deep link); `noindex` via meta tag, `X-Robots-Tag`, and `robots.txt`.
 - **`/.well-known/*`** — served with `Content-Type: application/json` and `Access-Control-Allow-Origin: *` (Android App Links verification).
-- **Security header** — `X-Frame-Options: SAMEORIGIN` on all routes.
+- **Security headers** — `X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, and a restrictive `Permissions-Policy` on all routes. (HSTS is added by Vercel.)
 
 ### DNS
 
@@ -105,13 +106,14 @@ All on-page images are served as **WebP** for fast loading:
 
 | File | Use | Notes |
 |---|---|---|
-| `hero_background.webp` | Hero background (CSS) + LCP preload | Downscaled to 2560px wide |
-| `logo.webp` | Navbar + hero logo (`<img>`) | 512×512 |
-| `founder.webp` | About page portrait | 1440×1080 |
-| `logo.png` | Favicon + schema.org logo | Kept as PNG (512×512) — favicons are safest as PNG |
+| `hero_background.webp`, `-1440`, `-960` | Hero photo, rendered as a responsive `<img srcset>` with `fetchpriority="high"` (LCP element) | 1920 / 1440 / 960 wide, q58 with a 0.6–0.9px soften (invisible under the overlay + grain); 387 / 229 / 124 KB. React emits the matching responsive preload into `<head>` on Home only. |
+| `logo.webp` | Navbar logo (`<img>`) | 512×512 |
+| `hero_profile.webp` | About page portrait + Contact avatar | 1024×747 |
+| `favicon.ico`, `favicon-32.png`, `favicon-192.png`, `apple-touch-icon.png` | Favicon set | Derived from `logo.png`; ~2 KB / 2 KB / 42 KB / 39 KB |
+| `logo.png` | schema.org logo | 512×512 |
 | `og-image.jpg` | OpenGraph + Twitter social share card | 1200×630 — hero canopy, logo, and tagline; referenced absolutely in `index.html` |
 
-> **Why the logo has both formats:** On-page `<img>`/CSS references use `logo.webp`; the favicon and schema.org logo use the optimized `logo.png` (favicons are safest as PNG). The social-share preview (OpenGraph/Twitter) is a dedicated 1200×630 card, `og-image.jpg`, because Facebook, LinkedIn, and iMessage scrapers do not reliably render WebP.
+> **Why the logo has both formats:** On-page `<img>` references use `logo.webp`; the schema.org logo uses `logo.png`, and the favicon set is derived from it. The social-share preview (OpenGraph/Twitter) is a dedicated 1200×630 card, `og-image.jpg`, because Facebook, LinkedIn, and iMessage scrapers do not reliably render WebP.
 
 ---
 
@@ -129,8 +131,9 @@ Tokens live in `src/index.css` under `:root`. Legacy aliases (`--color-bg-emphas
 | Warm Surface (`--color-surface`) | `#FBF9F4` | Cards, forms, light sections |
 | Warm Ink (`--color-text-primary`) | `#1C2620` | Body text |
 | Ink Soft (`--color-ink-soft`) | `#47544C` | Secondary body text |
-| Sage (`--color-sage`) | `#7C8E80` | Captions, metadata |
-| Brass (`--color-brass`) | `#C6A15B` | Restrained accent — hairlines, eyebrows, key figures |
+| Sage (`--color-sage`) | `#5E6E63` | Captions, metadata — ≈5:1 on parchment/white |
+| Brass (`--color-brass`) | `#C6A15B` | Restrained accent — hairlines, rules, large figures |
+| Brass Ink (`--color-brass-deep`) | `#7F6128` | Brass for *small text* on light grounds (eyebrows, step numbers, categories) — ≈5:1 contrast on parchment |
 | Heading font | **Newsreader** (editorial serif) | All `h1`–`h6`; italics carry emphasis |
 | Body font | Lato (sans-serif) | All body copy |
 | Mono font | system mono stack | Labels, step numbers, metadata |
@@ -154,7 +157,8 @@ The following SEO infrastructure is in place:
 - **robots.txt** — `/public/robots.txt`, allows all crawlers.
 - **llms.txt** — `/public/llms.txt`, plain-text AI crawler file (lists Insights + FAQ).
 - **Security header** — `X-Frame-Options: SAMEORIGIN` set in `vercel.json`.
-- **Hero image preload** — `<link rel="preload">` in `index.html` for LCP.
+- **Hero image** — a responsive `<img>` with `fetchpriority="high"`; React 19 emits the matching `<link rel="preload" imagesrcset>` which the prerender lifts into `<head>` on the home page only.
+- **Real 404s** — `dist/404.html` is prerendered with `noindex`; unknown URLs no longer return the home page with a 200.
 
 ### Static prerendering
 
@@ -162,9 +166,9 @@ The following SEO infrastructure is in place:
 
 1. `vite build` — the normal client bundle.
 2. `vite build --ssr src/entry-server.jsx` — a Node bundle exporting a `render(url)` function (`StaticRouter` + `renderToStaticMarkup`) plus the SEO manifest, emitted to `.prerender-ssr/` (git-ignored, deleted at the end).
-3. `node scripts/prerender.js` — renders each route in `prerenderRoutes` (from `src/seo/seoData.js`) into `dist/<route>/index.html`, using the client `dist/index.html` as the template (so all pages share the hashed asset references).
+3. `node scripts/prerender.js` — renders each route in `prerenderRoutes` (from `src/seo/seoData.js`) into `dist/<route>/index.html`, plus `dist/404.html`, using the client `dist/index.html` as the template (so all pages share the hashed asset references). Each page is checked for double-escaped entities, exactly one `<title>`, and no hero-image references off the home page; the build fails if a check fails.
 
-The client still boots normally via `main.jsx` (`createRoot`, which replaces the prerendered markup — no hydration to manage). On Vercel, an existing static file is served **before** the SPA rewrite in `vercel.json` (`rewrites` are filesystem-aware), so `/faq` resolves to `dist/faq/index.html` while unknown deep links still fall back to the SPA.
+The client still boots normally via `main.jsx` (`createRoot`, which replaces the prerendered markup — no hydration to manage). On Vercel, `/faq` resolves to `dist/faq/index.html`; there is no SPA fallback, so unknown deep links get `dist/404.html` with a 404 status.
 
 To rebuild only the client bundle without prerendering: `npm run build:client`.
 

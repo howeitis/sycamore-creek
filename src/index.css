@@ -39,13 +39,14 @@
   /* Warm cream on dark grounds */
   --color-ink-soft: #47544C;
   /* Secondary body text */
-  --color-sage: #7C8E80;
-  /* Muted captions/metadata (retires ad-hoc greys) */
+  --color-sage: #5E6E63;
+  /* Muted captions/metadata — dark enough for small text on parchment (≈5:1) */
 
   /* Accent — brass, used sparingly */
   --color-brass: #C6A15B;
   --color-brass-lite: #E3C88A;
-  --color-brass-deep: #A9863F;
+  --color-brass-deep: #7F6128;
+  /* Brass for *text* on light grounds (≈5:1). Use --color-brass for hairlines. */
 
   /* Hairlines */
   --hair-on-light: rgba(28, 38, 32, 0.12);

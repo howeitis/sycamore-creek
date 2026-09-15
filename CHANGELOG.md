@@ -10,6 +10,26 @@ See `BACKLOG.md` for pending work.
 
 ---
 
+## 2026-09-14 — Review pass 1 (verified defects)
+
+### Bug Fixes
+- **Nav unreadable on light-header pages** — the fixed nav painted white links over the parchment Services header (and article pages). The nav now carries a `data-tone` (`dark` over the hero/pine/teal grounds; `light` over parchment, when scrolled, or when the mobile menu is open) and all ink, gradient, and CTA colours key off it. Nav CTA copy unified to "Initiate a Search".
+- **Mobile menu** — brand name and CTA were white-on-white when open. Panel is now the warm surface colour, brand name is ink, CTA is teal; hamburger becomes an X; Escape closes; page scroll is locked while open; `aria-controls`/`aria-label` added. The closed menu is `visibility: hidden` so its links leave the tab order.
+- **Prerender double-escaped meta descriptions** (`can&amp;#x27;t` on `/about`) — lifted text is decoded, then re-escaped for its context. A post-build check now fails the build on double-escaped entities.
+- **Hero image preloaded on every route** — the static `<link rel="preload">` in `index.html` was the template for all 13 pages. The hero is now a responsive `<img srcset fetchpriority="high">`; React's matching preload is lifted into `<head>` on Home only. A build check enforces no hero references off Home.
+- **Soft 404s** — unknown URLs returned Home's prerendered HTML with a 200. `dist/404.html` is now prerendered (`noindex`, no canonical) and the SPA catch-all rewrite is removed; `trailingSlash: false` normalises `/about/` → `/about`.
+
+### Performance
+- Hero photo recompressed: 2560px / 1.73 MB → 1920px / 387 KB, plus 1440px (229 KB) and 960px (124 KB) variants. Favicon set (`favicon.ico`, 32/192px PNG, 180px apple-touch-icon) replaces the 240 KB `logo.png` favicon; `theme-color` added.
+
+### Accessibility
+- `--color-brass-deep` → `#7F6128` and `--color-sage` → `#5E6E63` so eyebrow text, step numbers, categories and captions meet WCAG AA (≈5:1) on parchment and white. `--color-brass` (`#C6A15B`) is unchanged for hairlines and large figures.
+
+### Security / SEO
+- `vercel.json`: `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` added. `/callback` (Sonos widget OAuth page) is `noindex` via meta, `X-Robots-Tag`, and `robots.txt`.
+
+---
+
 ## 2026-02-18 (latest)
 
 ### Bug Fixes

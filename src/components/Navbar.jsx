@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { trackEvent } from '../utils/analytics';
 
+/**
+ * Routes whose page header sits on a light (parchment) ground. The nav is
+ * "light" tone on these — dark ink, no photo gradient — instead of the white
+ * text it uses over the hero and the pine/teal page headers.
+ */
+const isLightHeader = (pathname) =>
+    pathname === '/services' || pathname.startsWith('/insights/');
+
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,7 +21,7 @@ const Navbar = () => {
             setScrolled(isScrolled);
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -26,6 +34,22 @@ const Navbar = () => {
         setMobileMenuOpen(false);
     }
 
+    // While the mobile menu is open: Escape closes it and the page behind it
+    // doesn't scroll.
+    useEffect(() => {
+        if (!mobileMenuOpen) return undefined;
+        const onKey = (e) => {
+            if (e.key === 'Escape') setMobileMenuOpen(false);
+        };
+        document.addEventListener('keydown', onKey);
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.removeEventListener('keydown', onKey);
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [mobileMenuOpen]);
+
     const navLinks = [
         { name: 'About', path: '/about' },
         { name: 'Services', path: '/services' },
@@ -35,20 +59,29 @@ const Navbar = () => {
         { name: 'Contact', path: '/contact' },
     ];
 
+    // Tone is a property of the page ground, not just scroll position.
+    const tone =
+        scrolled || mobileMenuOpen || isLightHeader(location.pathname) ? 'light' : 'dark';
+
     return (
-        <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}>
+        <nav
+            className={`navbar ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}
+            data-tone={tone}
+            aria-label="Primary"
+        >
             <div className="navbar-container">
                 <Link to="/" className="navbar-brand">
-                    <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="Sycamore Creek" className="navbar-logo" />
+                    <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="Sycamore Creek" className="navbar-logo" width="48" height="48" />
                     <span className="navbar-brand-name">Sycamore Creek Consulting</span>
                 </Link>
 
-                <div className={`navbar-links ${mobileMenuOpen ? 'active' : ''}`}>
+                <div id="primary-nav" className={`navbar-links ${mobileMenuOpen ? 'active' : ''}`}>
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
                             to={link.path}
                             className={`nav-link ${location.pathname === link.path ? 'current' : ''}`}
+                            aria-current={location.pathname === link.path ? 'page' : undefined}
                         >
                             {link.name}
                         </Link>
@@ -58,17 +91,19 @@ const Navbar = () => {
                         className="nav-cta-button"
                         onClick={() => trackEvent('cta_click', { location: 'navbar' })}
                     >
-                        Initiate Search
+                        Initiate a Search
                     </Link>
                 </div>
 
                 <button
+                    type="button"
                     className="mobile-menu-toggle"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle navigation"
+                    aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
                     aria-expanded={mobileMenuOpen}
+                    aria-controls="primary-nav"
                 >
-                    <span className="hamburger"></span>
+                    <span className="hamburger" aria-hidden="true"></span>
                 </button>
             </div>
 
@@ -79,9 +114,22 @@ const Navbar = () => {
                     left: 0;
                     width: 100%;
                     z-index: 1000;
-                    transition: all 0.3s ease;
-                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 100%);
+                    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
                     padding: 1.5rem 0;
+                }
+
+                /* Tone: "dark" = white ink over photo / pine / teal grounds,
+                   "light" = warm ink over parchment or the scrolled surface bar. */
+                .navbar[data-tone="dark"] {
+                    --nav-ink: #ffffff;
+                    --nav-shadow: 0 1px 3px rgba(0,0,0,0.3);
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 100%);
+                }
+
+                .navbar[data-tone="light"] {
+                    --nav-ink: var(--color-text-primary);
+                    --nav-shadow: none;
+                    background: none;
                 }
 
                 .navbar.scrolled {
@@ -117,25 +165,15 @@ const Navbar = () => {
                     font-size: 1.05rem;
                     font-weight: 500;
                     letter-spacing: 0.01em;
-                    color: #ffffff;
-                    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+                    color: var(--nav-ink);
+                    text-shadow: var(--nav-shadow);
                     transition: color 0.3s ease;
                     white-space: nowrap;
                 }
 
-                .navbar.scrolled .navbar-brand-name {
-                    color: var(--color-text-primary);
-                    text-shadow: none;
-                }
-
                 @media (max-width: 480px) {
-                    .navbar-logo {
-                        height: 48px;
-                    }
-
                     .navbar-brand-name {
                         margin-left: 0.6rem;
-                        font-size: 1.05rem;
                         white-space: normal;
                         line-height: 1.15;
                         max-width: 180px;
@@ -153,17 +191,12 @@ const Navbar = () => {
                     font-weight: 500;
                     font-size: 0.9rem;
                     letter-spacing: 0.01em;
-                    color: #ffffff;
+                    color: var(--nav-ink);
                     text-decoration: none;
                     padding-bottom: 3px;
                     border-bottom: 1px solid transparent;
                     transition: color 0.2s var(--ease), border-color 0.2s var(--ease), opacity 0.2s var(--ease);
-                    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-                }
-
-                .navbar.scrolled .nav-link {
-                    color: var(--color-text-primary);
-                    text-shadow: none;
+                    text-shadow: var(--nav-shadow);
                 }
 
                 .nav-link:hover {
@@ -174,15 +207,13 @@ const Navbar = () => {
                     border-bottom-color: var(--color-brass);
                 }
 
-                .navbar.scrolled .nav-link:hover,
-                .navbar.scrolled .nav-link.current {
+                .navbar[data-tone="light"] .nav-link:hover,
+                .navbar[data-tone="light"] .nav-link.current {
                     color: var(--color-teal);
                     opacity: 1;
                 }
 
                 .nav-cta-button {
-                    background-color: #ffffff;
-                    color: var(--color-pine);
                     padding: 0.6rem 1.3rem;
                     border-radius: var(--radius);
                     text-decoration: none;
@@ -191,23 +222,30 @@ const Navbar = () => {
                     text-transform: uppercase;
                     letter-spacing: 0.12em;
                     border-bottom: none;
+                    white-space: nowrap;
                     transition: transform 0.2s var(--ease), background-color 0.2s var(--ease), color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+                }
+
+                .navbar[data-tone="dark"] .nav-cta-button {
+                    background-color: #ffffff;
+                    color: var(--color-pine);
                     box-shadow: 0 2px 10px rgba(7,20,15,0.22);
                 }
 
-                .navbar.scrolled .nav-cta-button {
+                .navbar[data-tone="dark"] .nav-cta-button:hover {
+                    transform: translateY(-1px);
+                    box-shadow: 0 6px 16px rgba(7,20,15,0.28);
+                }
+
+                .navbar[data-tone="light"] .nav-cta-button {
                     background-color: var(--color-teal);
                     color: var(--color-text-inverse);
                     box-shadow: none;
                 }
 
-                .nav-cta-button:hover {
-                    transform: translateY(-1px);
-                    box-shadow: 0 6px 16px rgba(7,20,15,0.28);
-                }
-
-                .navbar.scrolled .nav-cta-button:hover {
+                .navbar[data-tone="light"] .nav-cta-button:hover {
                     background-color: var(--color-pine);
+                    transform: translateY(-1px);
                 }
 
                 .mobile-menu-toggle {
@@ -216,45 +254,45 @@ const Navbar = () => {
                     border: none;
                     cursor: pointer;
                     padding: 0.5rem;
+                    min-width: 44px;
+                    min-height: 44px;
+                    align-items: center;
+                    justify-content: center;
                 }
 
-                .hamburger {
+                .hamburger,
+                .hamburger::before,
+                .hamburger::after {
                     display: block;
                     width: 24px;
                     height: 2px;
-                    background-color: #ffffff;
-                    position: relative;
-                    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+                    background-color: var(--nav-ink);
+                    box-shadow: var(--nav-shadow);
+                    transition: transform 0.3s var(--ease), top 0.3s var(--ease), opacity 0.2s var(--ease), background-color 0.3s ease;
                 }
 
-                .navbar.scrolled .hamburger {
-                    background-color: var(--color-text-primary);
-                    box-shadow: none;
+                .hamburger {
+                    position: relative;
                 }
 
                 .hamburger::before,
                 .hamburger::after {
                     content: '';
                     position: absolute;
-                    width: 24px;
-                    height: 2px;
-                    background-color: #ffffff;
-                    transition: all 0.3s ease;
-                    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-                }
-
-                .navbar.scrolled .hamburger::before,
-                .navbar.scrolled .hamburger::after {
-                    background-color: var(--color-text-primary);
-                    box-shadow: none;
+                    left: 0;
                 }
 
                 .hamburger::before { top: -8px; }
                 .hamburger::after { top: 8px; }
 
+                /* Open state: the three bars become an X. */
+                .navbar.menu-open .hamburger { background-color: transparent; box-shadow: none; }
+                .navbar.menu-open .hamburger::before { top: 0; transform: rotate(45deg); }
+                .navbar.menu-open .hamburger::after { top: 0; transform: rotate(-45deg); }
+
                 @media (max-width: 768px) {
                     .mobile-menu-toggle {
-                        display: block;
+                        display: flex;
                     }
 
                     .navbar {
@@ -262,15 +300,8 @@ const Navbar = () => {
                     }
 
                     .navbar.menu-open {
-                        background: white;
-                        box-shadow: none;
-                    }
-
-                    .navbar.menu-open .hamburger,
-                    .navbar.menu-open .hamburger::before,
-                    .navbar.menu-open .hamburger::after {
-                        background-color: var(--color-text-primary);
-                        box-shadow: none;
+                        background: var(--color-surface);
+                        box-shadow: 0 1px 0 var(--hair-on-light);
                     }
 
                     .navbar-links {
@@ -278,12 +309,16 @@ const Navbar = () => {
                         top: 100%;
                         left: 0;
                         width: 100%;
-                        background-color: white;
+                        background-color: var(--color-surface);
                         flex-direction: column;
                         padding: 2rem;
-                        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                        box-shadow: 0 12px 30px rgba(7,20,15,0.10);
+                        border-top: 1px solid var(--hair-on-light);
                         transform: translateY(-150%);
-                        transition: transform 0.3s ease;
+                        /* Closed: hidden from the accessibility tree and the
+                           tab order too, not just moved off-screen. */
+                        visibility: hidden;
+                        transition: transform 0.3s ease, visibility 0s linear 0.3s;
                         z-index: 999;
                     }
 
@@ -294,7 +329,20 @@ const Navbar = () => {
 
                     .navbar-links.active {
                         transform: translateY(0);
+                        visibility: visible;
+                        transition: transform 0.3s ease, visibility 0s;
                     }
+
+                    .navbar-links .nav-cta-button {
+                        background-color: var(--color-teal);
+                        color: var(--color-text-inverse);
+                        box-shadow: none;
+                        margin-top: 0.5rem;
+                    }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .navbar-links { transition: none; }
                 }
             `}</style>
         </nav>
