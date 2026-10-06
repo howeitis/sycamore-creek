@@ -82,13 +82,58 @@
 .metrics-home-link {
   color: var(--color-brass-lite);
   font-weight: 700;
-  border-bottom: 1px solid transparent;
   white-space: nowrap;
   margin-left: 0.35rem;
 }
 
-.metrics-home-link:hover {
-  border-bottom-color: var(--color-brass-lite);
+.metrics-home-link .arrow-ring {
+  margin-left: 0.35rem;
+}
+
+/* ---------------------------------------------------------------
+   ODOMETER — each digit is a reel of 0–9 inside a one-digit window.
+   At rest the reel sits on its digit; .is-rolling spins it up from 0.
+   --------------------------------------------------------------- */
+.odo {
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.odo-col,
+.odo-text {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+.odo-text {
+  white-space: pre;
+}
+
+.odo-col {
+  overflow: hidden;
+}
+
+.odo-reel {
+  display: block;
+  transform: translateY(calc(var(--d) * -10%));
+}
+
+.odo-reel > span {
+  display: block;
+  height: 1em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .odo.is-rolling .odo-reel {
+    animation: odoRoll 1.8s cubic-bezier(0.2, 0.7, 0.15, 1) calc(var(--i) * 110ms) both;
+  }
+}
+
+@keyframes odoRoll {
+  from {
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 720px) {

@@ -126,27 +126,49 @@
   z-index: 3;
 }
 
+/* Scroll cue: a still hairline with a small brass drop that runs down it
+   every few seconds, like water. Hover pauses it. */
 .hero-scroll-line {
   display: block;
+  position: relative;
   width: 1px;
-  height: 3rem;
-  background: linear-gradient(to bottom, rgba(244, 239, 230, 0), rgba(244, 239, 230, 0.7));
-  animation: scrollPulse 2.4s var(--ease) infinite;
-  transform-origin: top;
+  height: 3.5rem;
+  background: linear-gradient(to bottom, rgba(244, 239, 230, 0.05), rgba(244, 239, 230, 0.45));
 }
 
-@keyframes scrollPulse {
+.hero-scroll-line::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-brass-lite);
+  opacity: 0;
+  animation: creekDrop 3.2s cubic-bezier(0.55, 0, 0.45, 1) 1.6s infinite;
+}
+
+.hero-scroll:hover .hero-scroll-line::after {
+  animation-play-state: paused;
+}
+
+@keyframes creekDrop {
   0% {
-    transform: scaleY(0.3);
-    opacity: 0.2;
+    transform: translateY(0) scaleY(1);
+    opacity: 0;
   }
-  50% {
-    transform: scaleY(1);
-    opacity: 0.9;
+  12% {
+    opacity: 1;
   }
+  55% {
+    transform: translateY(3.2rem) scaleY(1.6);
+    opacity: 1;
+  }
+  70%,
   100% {
-    transform: scaleY(0.3);
-    opacity: 0.2;
+    transform: translateY(3.5rem) scaleY(1);
+    opacity: 0;
   }
 }
 
@@ -169,7 +191,7 @@
   .hero-bg {
     animation: none;
   }
-  .hero-scroll-line {
+  .hero-scroll-line::after {
     animation: none;
   }
 }

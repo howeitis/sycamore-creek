@@ -6,7 +6,26 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
-See `BACKLOG.md` for pending work.
+See `BACKLOG.md` for pending work, and `future-work/` for parked design explorations.
+
+---
+
+## 2026-10-06 — Motion refinements
+
+### Design
+Small, single-gesture motion added throughout the site. Every piece is fully visible before it animates and is skipped under reduced motion.
+- **Creek line draws itself** in every page header, left to right, once per page view.
+- **Circled-arrow links**: `.btn-ghost` arrows (and "See the full record") sit in a brass ring. On hover the arrow passes through and the ring fills. This replaces the ghost link's brass underline.
+- **Brass underline on heading emphasis**: drawn on load for page-header `h1`s, and on scroll-in for the Home section `h2`s. Article prose is excluded.
+- **Track record odometer** on Home: each digit is a reel that spins up to its value. The real figure is kept for screen readers.
+- **Process line**: on Home, a brass line with a riding dot runs 01 → 03 and each step number lights as it arrives. On `/process`, a scroll-linked line grows down the list and the numbers light in turn (scroll-driven animations; unchanged in browsers without them).
+- **Insight card peek**: on hover a second card peeks out from behind the lifted card on `/insights`.
+- **Hero scroll cue**: a still hairline with a brass drop running down it; hover pauses it.
+
+### Engineering
+- **`src/hooks/useInView.js`**: a one-shot in-view flag that is hydration-safe (false on the server and on first render).
+- **`.sr-only`** utility added to `index.css`.
+- **`future-work/`**: motion demos for a logo build-in and printed placement cards, plus a note on trimming the global headline fade-up.
 
 ---
 

@@ -1,9 +1,12 @@
 import React from 'react';
+import useInView from '../hooks/useInView';
 import '../styles/Pedigree.css';
 
 const Pedigree = () => {
+    const [ref, inView] = useInView();
+
     return (
-        <section className="pedigree-section">
+        <section ref={ref} className={`pedigree-section reveal ${inView ? 'is-inview' : ''}`}>
             <div className="pedigree-container">
                 <p className="eyebrow pedigree-eyebrow">Why Sycamore Creek</p>
 

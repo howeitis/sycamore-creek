@@ -88,6 +88,57 @@
   color: var(--color-ink-soft);
 }
 
+/* Scroll-linked thread: a brass line grows down the left of the list as you
+   read, and each step number lights as its step comes up. Uses scroll-driven
+   animations where supported; elsewhere the list stays exactly as it was. */
+@supports (animation-timeline: view()) {
+  @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+    .process-list {
+      position: relative;
+    }
+
+    .process-list::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.5rem;
+      bottom: 0;
+      width: 1px;
+      background: var(--color-brass);
+      transform-origin: top;
+      animation: threadGrow linear both;
+      animation-timeline: view();
+      animation-range: entry 30% exit 40%;
+    }
+
+    .process-num {
+      animation: numLight linear both;
+      animation-timeline: view();
+      animation-range: entry 60% cover 45%;
+    }
+  }
+}
+
+@keyframes threadGrow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes numLight {
+  from {
+    color: var(--color-sage);
+    opacity: 0.45;
+  }
+  to {
+    color: var(--color-brass-deep);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 768px) {
   .process-headline {
     font-size: 2.5rem;

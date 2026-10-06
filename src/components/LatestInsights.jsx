@@ -1,14 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { insights } from '../data/insights';
+import useInView from '../hooks/useInView';
 import '../styles/LatestInsights.css';
 
 /** The three most recent articles, for the home page. */
 const latest = [...insights].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3);
 
 const LatestInsights = () => {
+    const [ref, inView] = useInView();
+
     return (
-        <section className="latest-section" aria-labelledby="latest-heading">
+        <section
+            ref={ref}
+            className={`latest-section reveal ${inView ? 'is-inview' : ''}`}
+            aria-labelledby="latest-heading"
+        >
             <div className="latest-container">
                 <div className="latest-head">
                     <div>

@@ -162,6 +162,29 @@
   z-index: 0;
 }
 
+/* The line traces itself in, left to right, once per page view — like a pen
+   drawing it. Dash lengths are in screen px (the stroke is non-scaling), and
+   3000 is longer than the path at any header width. */
+@media (prefers-reduced-motion: no-preference) {
+  .creek-line path {
+    stroke-dasharray: 3000;
+    animation: creekDraw 2.4s var(--ease) 0.2s both;
+  }
+
+  .creek-line path + path {
+    animation-delay: 0.5s;
+  }
+}
+
+@keyframes creekDraw {
+  from {
+    stroke-dashoffset: 3000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @media (max-width: 640px) {
   .creek-line {
     width: 150%;

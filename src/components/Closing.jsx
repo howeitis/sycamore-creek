@@ -1,16 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { trackEvent } from '../utils/analytics';
+import useInView from '../hooks/useInView';
 import '../styles/Closing.css';
 
 const Closing = () => {
+    const [stepsRef, stepsInView] = useInView({ rootMargin: '0px 0px -15% 0px' });
+
     return (
         <section className="closing-section">
             <div className="closing-container">
                 <p className="eyebrow closing-eyebrow">How We Work</p>
                 <h2 className="section-title">Three steps from brief to signed offer.</h2>
 
-                <div className="steps-container">
+                <div ref={stepsRef} className={`steps-container ${stepsInView ? 'is-inview' : ''}`}>
+                    {/* A brass line runs 01 → 03 with a dot riding its tip. */}
+                    <span className="steps-progress" aria-hidden="true">
+                        <span className="steps-dot"></span>
+                    </span>
                     <div className="step-item">
                         <span className="step-number">01</span>
                         <h3 className="step-title">Alignment</h3>

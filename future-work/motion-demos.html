@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sycamore Creek Motion Demos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Lato:wght@300;400;700&display=swap">
+<style>
+/* Layout: two stacked demo stages in the site's own palette and type (the site is light-only, so this page commits to one look). */
+:root {
+  --pine: #0b2f24;
+  --pine-deep: #071c16;
+  --teal: #2c4c48;
+  --paper: #f4efe6;
+  --paper-2: #efe8db;
+  --surface: #fbf9f4;
+  --ink: #1c2620;
+  --ink-soft: #47544c;
+  --sage: #5e6e63;
+  --brass: #c6a15b;
+  --brass-lite: #e3c88a;
+  --brass-deep: #7f6128;
+  --hair: rgba(28, 38, 32, 0.12);
+  --hair-dark: rgba(244, 239, 230, 0.16);
+
+  --f-head: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --f-body: 'Lato', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --f-mono: 'SF Mono', 'Cascadia Code', ui-monospace, 'Roboto Mono', Menlo, monospace;
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 24px; padding-block: 56px 96px; }
+@media (max-width: 520px) { .wrap { padding-inline: 16px; } }
+h1, h2, h3 { font-family: var(--f-head); font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.eyebrow { font: 700 0.72rem/1 var(--f-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass-deep); display: inline-flex; align-items: center; gap: 0.7rem; }
+.eyebrow::before { content: ''; width: 1.6rem; height: 1px; background: currentColor; opacity: .75; }
+
+.intro { display: grid; gap: 14px; max-width: 64ch; margin-bottom: 56px; }
+.intro h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); }
+.intro h1 em { font-style: italic; font-weight: 400; }
+.intro p { color: var(--ink-soft); }
+
+.demo { margin-top: 64px; }
+.demo-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 18px; }
+.demo-head > div { display: grid; gap: 10px; max-width: 62ch; }
+.demo-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); }
+.demo-head p { color: var(--ink-soft); font-size: .98rem; }
+.replay { font: 700 .78rem var(--f-body); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; align-items: center; gap: .7rem; }
+.replay .ring { width: 2.2em; height: 2.2em; border: 1px solid var(--brass); border-radius: 50%; display: grid; place-items: center; color: var(--brass); transition: background-color .25s var(--ease), color .25s var(--ease); }
+.replay:hover .ring, .replay:focus-visible .ring { background: var(--brass); color: var(--pine-deep); }
+.replay:hover .ring svg { animation: spin .6s var(--ease); }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(-360deg); } }
+:focus-visible { outline: 2px solid var(--brass-lite); outline-offset: 3px; box-shadow: 0 0 0 5px var(--pine); border-radius: 2px; }
+
+.notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--hair); margin-top: 18px; }
+.notes div { padding: 14px 18px 0 0; font-size: .92rem; color: var(--ink-soft); }
+.notes div + div { padding-left: 18px; border-left: 1px solid var(--hair); }
+.notes b { display: block; font: 600 .7rem var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--brass-deep); margin-bottom: 4px; }
+@media (max-width: 760px) { .notes { grid-template-columns: 1fr; } .notes div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--hair); margin-top: 12px; } }
+
+/* ============ DEMO 9: the mark assembles ============ */
+.stage9 { background: var(--pine); color: var(--paper); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 420px; position: relative; overflow: hidden; }
+@media (max-width: 760px) { .stage9 { grid-template-columns: 1fr; } }
+.big { display: grid; place-items: center; padding: 32px; border-right: 1px solid var(--hair-dark); }
+@media (max-width: 760px) { .big { border-right: 0; border-bottom: 1px solid var(--hair-dark); } }
+.tile { background: var(--teal); width: min(320px, 100%); aspect-ratio: 1; display: grid; place-items: center; box-shadow: 0 24px 60px rgba(7, 20, 15, .3); }
+.tile svg { width: 100%; height: 100%; display: block; }
+.side { display: grid; align-content: center; gap: 28px; padding: 32px; }
+.navmock { background: rgba(251, 249, 244, .98); color: var(--ink); display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; gap: 12px; box-shadow: 0 1px 2px rgba(7,20,15,.06); }
+.navbrand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.navbrand .mini { width: 44px; height: 44px; background: var(--teal); flex: none; }
+.navbrand .mini svg { width: 100%; height: 100%; display: block; }
+.word { font: 500 1.05rem/1 var(--f-head); white-space: nowrap; display: inline-flex; }
+.word span { display: inline-block; white-space: pre; }
+.navlinks { display: flex; gap: 14px; font-size: .78rem; color: var(--ink-soft); white-space: nowrap; }
+@media (max-width: 520px) { .navlinks { display: none; } }
+.sizes { display: flex; align-items: end; gap: 18px; }
+.sizes figure { margin: 0; display: grid; gap: 6px; justify-items: start; }
+.sizes figcaption { font: 400 .7rem var(--f-mono); letter-spacing: .06em; color: rgba(244,239,230,.6); }
+.sizes .s { background: var(--teal); }
+.sizes .s svg { width: 100%; height: 100%; display: block; }
+.sizes .s32 { width: 32px; height: 32px; } .sizes .s16 { width: 16px; height: 16px; } .sizes .s64 { width: 64px; height: 64px; }
+.side p { font-size: .92rem; color: rgba(244, 239, 230, .78); max-width: 46ch; }
+
+/* mark parts */
+.mk .trunk, .mk .branch { fill: none; stroke: var(--paper); stroke-linecap: round; }
+.mk .trunk { stroke-width: 7; }
+.mk .branch { stroke-width: 2.6; }
+.mk .branch.thin { stroke-width: 1.6; }
+.mk .leaf { fill: var(--paper); transform-box: fill-box; transform-origin: center; }
+.mk .creek { fill: none; stroke: var(--brass-lite); stroke-width: 1.4; stroke-linecap: round; }
+.mk .creek.b { stroke-width: .9; opacity: .55; }
+
+.play .mk .trunk { stroke-dasharray: 1; animation: draw .55s cubic-bezier(.5,0,.3,1) both; }
+.play .mk .branch { stroke-dasharray: 1; animation: draw .5s cubic-bezier(.3,0,.2,1) both; animation-delay: calc(.45s + var(--b) * 70ms); }
+.play .mk .leaf { animation: bud .55s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(.85s + var(--t) * 900ms); }
+.play .mk .creek { stroke-dasharray: 1; animation: draw 1s var(--ease) both; animation-delay: 1.9s; }
+.play .mk .creek.b { animation-delay: 2.05s; }
+.play .word span { animation: letter .6s var(--ease) both; animation-delay: calc(1.7s + var(--i) * 32ms); }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes bud { from { transform: scale(0); opacity: 0; } 60% { opacity: 1; } }
+@keyframes letter { from { opacity: 0; transform: translateY(.35em); } }
+
+/* ============ DEMO 10: placements print in ============ */
+.stage10 { background: var(--teal); padding: clamp(28px, 5vw, 56px); }
+.stage10 .eyebrow { color: var(--brass-lite); margin-bottom: 28px; }
+.grid10 { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.1rem; }
+.pcard { background: var(--surface); padding: 1.8rem; border-radius: 3px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 1.4rem; }
+.ptype { font: 400 .7rem var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--brass-deep); }
+.ploc { font: 700 .72rem var(--f-body); text-transform: uppercase; letter-spacing: .1em; color: var(--sage); }
+.prole { font: 500 1.3rem/1.2 var(--f-head); letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.pco { font-size: .98rem; color: var(--ink-soft); }
+
+/* Each character starts as a thin brass bar of random height, then resolves
+   into its letter as the print head passes. */
+.ch { display: inline-block; white-space: pre; position: relative; }
+.ch.bar { color: transparent; }
+.ch.bar::before { content: ''; position: absolute; left: 50%; bottom: .12em; width: 2px; margin-left: -1px; height: calc(var(--h) * 1em); background: var(--brass); opacity: .85; }
+.ch.bar.dim::before { background: var(--sage); opacity: .4; }
+.head { position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--brass); opacity: 0; pointer-events: none; }
+.pcard.printing .head { animation: sweep var(--dur) linear both; }
+@keyframes sweep { 0% { opacity: .9; transform: translateX(0); } 92% { opacity: .9; } 100% { opacity: 0; transform: translateX(var(--w)); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <span class="eyebrow">Motion demos · not yet in the site</span>
+    <h1>Two bigger moments, <em>to try before we build.</em></h1>
+    <p>These are standalone previews in the site's own colours and type. Press Replay to watch either one again. Both respect reduced-motion settings; with motion off they simply show their finished state.</p>
+  </header>
+
+  <!-- ============ 9 ============ -->
+  <section class="demo" id="demo9">
+    <div class="demo-head">
+      <div>
+        <span class="eyebrow">Suggestion 9</span>
+        <h2>The mark grows in on first visit</h2>
+        <p>The trunk draws up, the branches reach out, the canopy buds from the centre outwards, and a creek line runs underneath. The wordmark settles in last. It plays once per visit in the navbar, and the large version could open the About page.</p>
+      </div>
+      <button class="replay" type="button" id="replay9"><span class="ring"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.5-3.6M13 2.5V5h-2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Replay</button>
+    </div>
+
+    <div class="stage9" id="stage9">
+      <div class="big"><div class="tile"><svg class="mk" id="markBig" viewBox="0 0 200 200" role="img" aria-label="Sycamore Creek tree mark"></svg></div></div>
+      <div class="side">
+        <div class="navmock">
+          <span class="navbrand"><span class="mini"><svg class="mk" id="markNav" viewBox="0 0 200 200" aria-hidden="true"></svg></span><span class="word" id="word" aria-label="Sycamore Creek Consulting"></span></span>
+          <span class="navlinks"><span>About</span><span>Services</span><span>Process</span></span>
+        </div>
+        <div class="sizes">
+          <figure><span class="s s64"><svg class="mk" viewBox="0 0 200 200" aria-hidden="true" data-mark></svg></span><figcaption>64px</figcaption></figure>
+          <figure><span class="s s32"><svg class="mk" viewBox="0 0 200 200" aria-hidden="true" data-mark></svg></span><figcaption>32px</figcaption></figure>
+          <figure><span class="s s16"><svg class="mk" viewBox="0 0 200 200" aria-hidden="true" data-mark></svg></span><figcaption>16px</figcaption></figure>
+        </div>
+        <p>This needs the tree redrawn as a vector, since today's logo is a raster image. The sketch here is a stand-in to show the motion. The real one would trace your existing tree, and a cleaner vector also fixes how the logo looks at favicon size.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <div><b>Where</b>Navbar on the first page view of a visit; large on the About header.</div>
+      <div><b>Timing</b>About 2.4s total. It never replays on route changes, and it's skipped entirely with reduced motion.</div>
+      <div><b>Work</b>Vector redraw of the tree (the main job), then about half a day for the animation.</div>
+    </div>
+  </section>
+
+  <!-- ============ 10 ============ -->
+  <section class="demo" id="demo10">
+    <div class="demo-head">
+      <div>
+        <span class="eyebrow">Suggestion 10</span>
+        <h2>Placements print in as you scroll</h2>
+        <p>Each card's text first appears as thin brass bars of uneven height, like the butterfly built from bars in your motion channel. A print head then sweeps across and resolves them into letters. The cards go one after another as they scroll into view.</p>
+      </div>
+      <button class="replay" type="button" id="replay10"><span class="ring"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.5-3.6M13 2.5V5h-2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Replay</button>
+    </div>
+
+    <div class="stage10">
+      <p class="eyebrow">Selected Placements</p>
+      <div class="grid10" id="grid10"></div>
+    </div>
+    <div class="notes">
+      <div><b>Where</b>/track-record placement cards only. It's the one page where "printing the record" means something.</div>
+      <div><b>Timing</b>About 0.9s per card, staggered 120ms. Each card prints once, and the real text is in the HTML from the start.</div>
+      <div><b>Work</b>About half a day: one small component wrapping the card text, plus the in-view hook already added for the home page.</div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NS = 'http://www.w3.org/2000/svg';
+
+  /* ---------- 9: build the mark ---------- */
+  // Seeded PRNG so every copy of the mark is identical.
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+  var branches = [
+    ['M100 132 C 92 116, 78 104, 58 96', 0, ''],
+    ['M100 128 C 110 112, 124 104, 144 96', 1, ''],
+    ['M100 122 C 98 104, 100 88, 103 66', 2, ''],
+    ['M100 140 C 86 134, 68 128, 46 122', 3, 'thin'],
+    ['M100 138 C 116 132, 134 126, 156 120', 4, 'thin'],
+    ['M80 106 C 74 92, 72 82, 74 70', 5, 'thin'],
+    ['M122 108 C 128 94, 130 84, 128 72', 6, 'thin']
+  ];
+
+  // Canopy: buds packed inside a broad, slightly flattened crown.
+  var buds = (function () {
+    var r = rng(7), out = [], cx = 100, cy = 88, tries = 0;
+    while (out.length < 120 && tries < 6000) {
+      tries++;
+      var x = cx + (r() * 2 - 1) * 72, y = cy + (r() * 2 - 1) * 54;
+      var nx = (x - cx) / 72, ny = (y - cy) / (y < cy ? 54 : 40);
+      var edge = nx * nx + ny * ny;
+      if (edge > 1) continue;
+      var rad = 3.2 + r() * 5.4 * (1 - edge * 0.45);
+      var ok = true;
+      for (var i = 0; i < out.length; i++) { var o = out[i]; var dx = o.x - x, dy = o.y - y; if (dx * dx + dy * dy < Math.pow((o.r + rad) * 0.82, 2)) { ok = false; break; } }
+      if (!ok) continue;
+      // Bud timing: by distance from the top of the trunk, plus a little jitter.
+      var dist = Math.sqrt(Math.pow(x - 100, 2) + Math.pow(y - 118, 2));
+      out.push({ x: x, y: y, r: rad, t: Math.min(1, dist / 90) * 0.85 + r() * 0.15 });
+    }
+    return out;
+  })();
+
+  function el(name, attrs) { var e = document.createElementNS(NS, name); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+  function buildMark(svg, detailed) {
+    svg.textContent = '';
+    svg.appendChild(el('path', { class: 'trunk', d: 'M100 170 C 100 156, 99 142, 100 120', pathLength: 1 }));
+    branches.forEach(function (b) {
+      if (!detailed && b[2] === 'thin') return;
+      var p = el('path', { class: 'branch ' + b[2], d: b[0], pathLength: 1 });
+      p.style.setProperty('--b', b[1]);
+      svg.appendChild(p);
+    });
+    var g = el('g', {});
+    buds.forEach(function (b) {
+      var c = el('circle', { class: 'leaf', cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: (detailed ? b.r : b.r * 1.25).toFixed(1) });
+      c.style.setProperty('--t', b.t.toFixed(3));
+      g.appendChild(c);
+    });
+    svg.appendChild(g);
+    svg.appendChild(el('path', { class: 'creek', d: 'M40 178 C 62 170, 80 186, 100 178 S 140 170, 162 178', pathLength: 1 }));
+    if (detailed) svg.appendChild(el('path', { class: 'creek b', d: 'M52 186 C 70 180, 86 192, 104 186 S 136 180, 150 186', pathLength: 1 }));
+  }
+
+  buildMark(document.getElementById('markBig'), true);
+  buildMark(document.getElementById('markNav'), false);
+  document.querySelectorAll('[data-mark]').forEach(function (s) { buildMark(s, false); });
+
+  var word = document.getElementById('word');
+  'Sycamore Creek Consulting'.split('').forEach(function (ch, i) {
+    var s = document.createElement('span'); s.textContent = ch; s.setAttribute('aria-hidden', 'true'); s.style.setProperty('--i', i); word.appendChild(s);
+  });
+
+  var stage9 = document.getElementById('stage9');
+  function play9() { stage9.classList.remove('play'); void stage9.offsetWidth; if (!reduce) stage9.classList.add('play'); }
+  document.getElementById('replay9').addEventListener('click', play9);
+
+  /* ---------- 10: placements ---------- */
+  var placements = [
+    ['Senior FPGA Developer', 'Stealth', 'DC Metro', 'Engineering'],
+    ['Principal Research Engineer', 'Stealth', 'DC Metro', 'R&D'],
+    ['Senior AI Engineer', 'Stealth', 'NYC', 'Engineering'],
+    ['VP of Engineering', 'Major Media Organization', 'NYC', 'Executive'],
+    ['Director of Research', 'Federal Research Lab', 'Arlington, VA', 'Executive'],
+    ['Business Development Lead', 'High-growth Start-up', 'NYC', 'Sales'],
+    ['Senior Reverse Engineer', 'Cleared Research Lab', 'DC Metro', 'Security'],
+    ['Staff Android Engineer', 'Global Media Organization', 'NYC', 'Mobile'],
+    ['Product Director', 'Media Start-up', 'Remote', 'Product']
+  ];
+  var grid = document.getElementById('grid10');
+
+  function spanify(node, text, dim) {
+    node.setAttribute('aria-label', text);
+    // Characters are grouped per word so lines still only break between words.
+    text.split(/(\s+)/).forEach(function (part) {
+      if (!part) return;
+      if (/^\s+$/.test(part)) { node.appendChild(document.createTextNode(' ')); return; }
+      var wd = document.createElement('span');
+      wd.style.whiteSpace = 'nowrap';
+      wd.setAttribute('aria-hidden', 'true');
+      part.split('').forEach(function (c) {
+        var s = document.createElement('span');
+        s.className = 'ch';
+        s.textContent = c;
+        if (dim) s.dataset.dim = '1';
+        wd.appendChild(s);
+      });
+      node.appendChild(wd);
+    });
+  }
+
+  placements.forEach(function (p) {
+    var card = document.createElement('div'); card.className = 'pcard';
+    card.innerHTML = '<div class="card-top"><span class="ptype"></span><span class="ploc"></span></div><h3 class="prole"></h3><p class="pco"></p><span class="head" aria-hidden="true"></span>';
+    spanify(card.querySelector('.ptype'), p[3]);
+    spanify(card.querySelector('.ploc'), p[2], true);
+    spanify(card.querySelector('.prole'), p[0]);
+    spanify(card.querySelector('.pco'), p[1], true);
+    grid.appendChild(card);
+  });
+
+  var DUR = 900;
+  function print(card, delay) {
+    var chars = card.querySelectorAll('.ch');
+    var box = card.getBoundingClientRect();
+    var r = rng(Math.round(box.top + box.left) + 3);
+    chars.forEach(function (c) {
+      c.classList.add('bar');
+      if (c.dataset.dim) c.classList.add('dim');
+      c.style.setProperty('--h', c.textContent === ' ' ? 0 : (0.25 + r() * 0.75).toFixed(2));
+    });
+    card.style.setProperty('--dur', DUR + 'ms');
+    card.style.setProperty('--w', box.width + 'px');
+    setTimeout(function () {
+      card.classList.remove('printing'); void card.offsetWidth; card.classList.add('printing');
+      chars.forEach(function (c) {
+        // Resolve when the head passes this character's x position, with a little scatter.
+        var x = c.getBoundingClientRect().left - box.left;
+        var t = (x / box.width) * DUR * 0.92 + r() * 90;
+        setTimeout(function () { c.classList.remove('bar', 'dim'); }, t);
+      });
+    }, delay);
+  }
+
+  var cards = Array.prototype.slice.call(grid.children);
+  function play10(onlyVisible) {
+    if (reduce) return;
+    var i = 0;
+    cards.forEach(function (card) {
+      if (onlyVisible && card.dataset.done) return;
+      card.dataset.done = '1';
+      print(card, i++ * 120);
+    });
+  }
+  document.getElementById('replay10').addEventListener('click', function () { cards.forEach(function (c) { delete c.dataset.done; }); play10(false); });
+
+  /* ---------- trigger on scroll-in ---------- */
+  if ('IntersectionObserver' in window) {
+    var seen9 = false;
+    new IntersectionObserver(function (es, io) { if (es[0].isIntersecting && !seen9) { seen9 = true; play9(); io.disconnect(); } }, { threshold: 0.3 }).observe(stage9);
+    var queue = [], timer = null;
+    var io10 = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting && !e.target.dataset.done) { e.target.dataset.done = '1'; queue.push(e.target); io10.unobserve(e.target); } });
+      if (!timer && queue.length) {
+        timer = setTimeout(function flush() { var c = queue.shift(); if (c && !reduce) print(c, 0); timer = queue.length ? setTimeout(flush, 120) : null; }, 0);
+      }
+    }, { threshold: 0.35 });
+    cards.forEach(function (c) { io10.observe(c); });
+  } else { play9(); }
+})();
+</script>
