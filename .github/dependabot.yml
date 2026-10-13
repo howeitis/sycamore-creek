@@ -1,0 +1,15 @@
+# Weekly dependency PRs. Dev tooling is grouped into one PR so it stays
+# reviewable; GitHub Actions pins (SHAs) are kept current too.
+version: 2
+updates:
+    - package-ecosystem: npm
+      directory: /
+      schedule:
+          interval: weekly
+      groups:
+          dev-dependencies:
+              dependency-type: development
+    - package-ecosystem: github-actions
+      directory: /
+      schedule:
+          interval: weekly
