@@ -29,7 +29,7 @@ export default defineConfig([
     {
         // Build-time / server / config files run in Node, not the browser, and are
         // not part of the React Fast Refresh graph.
-        files: ['vite.config.js', 'scripts/**/*.js', 'src/entry-server.jsx'],
+        files: ['vite.config.js', 'scripts/**/*.js', 'api/**/*.js', 'src/entry-server.jsx'],
         languageOptions: { globals: globals.node },
         rules: { 'react-refresh/only-export-components': 'off' },
     },

@@ -9,8 +9,8 @@
     "build:client": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\" \"public/*.{js,css}\" \"*.{js,json}\" index.html",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\" \"public/*.{js,css}\" \"*.{js,json}\" index.html",
+    "format": "prettier --write \"api/**/*.js\" \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\" \"public/*.{js,css}\" \"*.{js,json}\" index.html",
+    "format:check": "prettier --check \"api/**/*.js\" \"src/**/*.{js,jsx,css}\" \"scripts/**/*.js\" \"public/*.{js,css}\" \"*.{js,json}\" index.html",
     "og": "node scripts/og-cards.js"
   },
   "dependencies": {
